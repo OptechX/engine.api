@@ -22,8 +22,20 @@
   <ItemGroup>
     <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
     <None Remove="Models\" />
+    <None Remove="Data\" />
+    <None Remove="Models\Engine\" />
+    <None Remove="Models\Generic\" />
+    <None Remove="Models\Shared\" />
+    <None Remove="Models\Shared\Enums\" />
+    <None Remove="Models\Engine\Enums\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Data\" />
+    <Folder Include="Models\Engine\" />
+    <Folder Include="Models\Generic\" />
+    <Folder Include="Models\Shared\" />
+    <Folder Include="Models\Shared\Enums\" />
+    <Folder Include="Models\Engine\Enums\" />
   </ItemGroup>
 </Project>

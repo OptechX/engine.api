@@ -13,6 +13,9 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        // SQL Connection
+        //builder.Services.AddDbContext<"DefaultDbContext">
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
