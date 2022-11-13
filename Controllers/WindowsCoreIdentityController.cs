@@ -32,19 +32,48 @@ namespace api.engine_v2.Controllers
             return await _context.WindowsCoreIdentities.ToListAsync();
         }
 
-        // GET: v1WindowsCoreIdentity/5
+        // // GET: v1WindowsCoreIdentity/5
+        // [HttpGet("{id:int}")]
+        // public async Task<ActionResult<WindowsCoreIdentity>> GetWindowsCoreIdentity(int id)
+        // {
+        //   if (_context.WindowsCoreIdentities == null)
+        //   {
+        //       return NotFound();
+        //   }
+        //     var windowsCoreIdentity = await _context.WindowsCoreIdentities.FindAsync(id);
+
+        //     if (windowsCoreIdentity == null)
+        //     {
+        //         return NotFound();
+        //     }
+
+        //     return windowsCoreIdentity;
+        // }
+
+        // GET: v1/WindowsCoreIdentity/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<WindowsCoreIdentity>> GetWindowsCoreIdentity(int id)
         {
-          if (_context.WindowsCoreIdentities == null)
-          {
-              return NotFound();
-          }
             var windowsCoreIdentity = await _context.WindowsCoreIdentities.FindAsync(id);
 
             if (windowsCoreIdentity == null)
             {
-                return NotFound();
+                var result = new WindowsCoreIdentity
+                {
+                    Id = 0,
+                    UUID = Guid.Empty,
+                    UID = "No Results",
+                    Release = "",
+                    Edition = "",
+                    Version = "",
+                    Build = "",
+                    Arch = "",
+                    WindowsLcid = "",
+                    SupportedUntil = "",
+                };
+                
+                //return NotFound();
+                return result;
             }
 
             return windowsCoreIdentity;
