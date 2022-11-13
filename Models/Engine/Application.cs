@@ -48,5 +48,12 @@ namespace api.engine_v2.Models.Engine
             this.UUID = Guid.NewGuid();
         }
     }
+
+    public class ApplicationLast5
+    {
+        public string Name { get; set; } = null!;
+        public string Version { get; set; } = null!;
+        public string? Publisher { get; set; }
+    }
 }
 

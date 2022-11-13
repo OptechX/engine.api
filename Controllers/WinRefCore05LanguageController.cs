@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("v1[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class WinRefCore05LanguageController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1WinRefCore05Language
+        // GET: v1/WinRefCore05Language
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WinRefCore05Language>>> GetWinRefCore05Languages()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.WinRefCore05Languages.ToListAsync();
         }
 
-        // GET: v1WinRefCore05Language/5
+        // GET: v1/WinRefCore05Language/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<WinRefCore05Language>> GetWinRefCore05Language(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return winRefCore05Language;
         }
 
-        // PUT: v1WinRefCore05Language/5
+        // PUT: v1/WinRefCore05Language/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWinRefCore05Language(int id, WinRefCore05Language winRefCore05Language)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1WinRefCore05Language
+        // POST: v1/WinRefCore05Language
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<WinRefCore05Language>> PostWinRefCore05Language(WinRefCore05Language winRefCore05Language)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetWinRefCore05Language", new { id = winRefCore05Language.Id }, winRefCore05Language);
         }
 
-        // DELETE: v1WinRefCore05Language/5
+        // DELETE: v1/WinRefCore05Language/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWinRefCore05Language(int id)
         {
@@ -121,7 +121,7 @@ namespace api.engine_v2.Controllers
             return (_context.WinRefCore05Languages?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-        // GET: v1/WinRefCore05Language/{release}/{edition}/{version}/{arch}
+        // GET: v1//WinRefCore05Language/{release}/{edition}/{version}/{arch}
         [HttpGet("{release}/{edition}/{version}/{arch}")]
         public async Task<ActionResult<IEnumerable<WinRefCore05Language>>> GetWinRefCore05MultiSearch(
             [FromRoute]string release,
@@ -144,6 +144,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

@@ -7,7 +7,7 @@ using api.engine_v2.Models.Engine.Enums;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("v1[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class ApplicationController : ControllerBase
     {
@@ -18,7 +18,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1Application
+        // GET: v1/Application
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplications()
         {
@@ -29,7 +29,7 @@ namespace api.engine_v2.Controllers
             return await _context.Applications.ToListAsync();
         }
 
-        // GET: v1Application/5
+        // GET: v1/Application/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Application>> GetApplication(int id)
         {
@@ -47,7 +47,7 @@ namespace api.engine_v2.Controllers
             return application;
         }
 
-        // PUT: v1Application/5
+        // PUT: v1/Application/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutApplication(int id, Application application)
@@ -78,7 +78,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1Application
+        // POST: v1/Application
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Application>> PostApplication(Application application)
@@ -93,7 +93,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetApplication", new { id = application.Id }, application);
         }
 
-        // DELETE: v1Application/5
+        // DELETE: v1/Application/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteApplication(int id)
         {
@@ -118,7 +118,7 @@ namespace api.engine_v2.Controllers
             return (_context.Applications?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-        // GET: v1/application/uid/{uid}
+        // GET: v1//application/uid/{uid}
         [HttpGet("uid/{uid}")]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByUid([FromRoute] string uid)
         {
@@ -134,7 +134,7 @@ namespace api.engine_v2.Controllers
         }
 
 
-        // GET: v1/application/applicationcategory/{category}
+        // GET: v1//application/applicationcategory/{category}
         [HttpGet("category/{category}")]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByCategory([FromRoute] string category)
         {
@@ -151,7 +151,7 @@ namespace api.engine_v2.Controllers
             return await applications.ToListAsync();
         }
 
-        // GET: v1/application/publisher/{publisher}
+        // GET: v1//application/publisher/{publisher}
         [HttpGet("publisher/{publisher}")]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByPublisher([FromRoute] string publisher)
         {
@@ -166,7 +166,7 @@ namespace api.engine_v2.Controllers
             return await applications.ToListAsync();
         }
 
-        // GET: v1/application/name/{name}
+        // GET: v1//application/name/{name}
         [HttpGet("name/{name}")]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByName([FromRoute] string name)
         {
@@ -181,7 +181,7 @@ namespace api.engine_v2.Controllers
             return await applications.ToListAsync();
         }
 
-        // GET: v1/application/cpuarch/{cpuarch}
+        // GET: v1//application/cpuarch/{cpuarch}
         [HttpGet("arch/{arch}")]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByCpuArch([FromRoute] string arch)
         {
@@ -195,7 +195,7 @@ namespace api.engine_v2.Controllers
             return await applications.ToListAsync();
         }
 
-        // GET: v1/application/lcid/{lcid}
+        // GET: v1//application/lcid/{lcid}
         [HttpGet("lcid/{lcid}")]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByLcid([FromRoute] string lcid)
         {
@@ -209,7 +209,7 @@ namespace api.engine_v2.Controllers
             return await applications.ToListAsync();
         }
 
-        // GET: v1/application/tags/{tags}
+        // GET: v1//application/tags/{tags}
         [HttpGet("tags/{tag}")]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByTags([FromRoute] string tag)
         {
@@ -222,8 +222,32 @@ namespace api.engine_v2.Controllers
 
             return await applications.ToListAsync();
         }
+
+        // GET: v1/Application/last5
+        [HttpGet("last5")]
+        public async Task<ActionResult<IEnumerable<ApplicationLast5>>> Get5Applications()
+        {
+            List<ApplicationLast5> tmpList = new();
+
+            var list = await _context.Applications.ToListAsync();
+
+
+            for (int i = Math.Max(0, list.Count - 5); i < list.Count; ++i)
+            {
+                tmpList.Add(new ApplicationLast5
+                {
+                    Name = list[i].Name,
+                    Version = list[i].Version,
+                    Publisher = list[i].Publisher,
+                });
+            }
+            var ordersArray = tmpList.ToArray();
+
+            return tmpList;
+        }
     }
 }
+
 
 
 

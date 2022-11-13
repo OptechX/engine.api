@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("v1[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class WinRefCore04ArchController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1WinRefCore04Arch
+        // GET: v1/WinRefCore04Arch
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WinRefCore04Arch>>> GetWinRefCore04Arches()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.WinRefCore04Arches.ToListAsync();
         }
 
-        // GET: v1WinRefCore04Arch/5
+        // GET: v1/WinRefCore04Arch/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<WinRefCore04Arch>> GetWinRefCore04Arch(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return winRefCore04Arch;
         }
 
-        // PUT: v1WinRefCore04Arch/5
+        // PUT: v1/WinRefCore04Arch/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWinRefCore04Arch(int id, WinRefCore04Arch winRefCore04Arch)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1WinRefCore04Arch
+        // POST: v1/WinRefCore04Arch
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<WinRefCore04Arch>> PostWinRefCore04Arch(WinRefCore04Arch winRefCore04Arch)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetWinRefCore04Arch", new { id = winRefCore04Arch.Id }, winRefCore04Arch);
         }
 
-        // DELETE: v1WinRefCore04Arch/5
+        // DELETE: v1/WinRefCore04Arch/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWinRefCore04Arch(int id)
         {
@@ -121,7 +121,7 @@ namespace api.engine_v2.Controllers
             return (_context.WinRefCore04Arches?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-        // GET: v1/WinRefCore04Arch/{release}/{edition}/{version}
+        // GET: v1//WinRefCore04Arch/{release}/{edition}/{version}
         [HttpGet("{release}/{edition}/{version}")]
         public async Task<ActionResult<IEnumerable<WinRefCore04Arch>>> GetWinRefCore04ArchIndexSearch(
             [FromRoute]string release,
@@ -142,6 +142,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

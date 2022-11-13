@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -10,7 +5,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("v1[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class BaseImageFileTypeIndexController : ControllerBase
     {
@@ -21,7 +16,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1BaseImageFileTypeIndex
+        // GET: v1/BaseImageFileTypeIndex
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BaseImageFileTypeIndex>>> GetBaseImageFileTypeIndices()
         {
@@ -32,7 +27,7 @@ namespace api.engine_v2.Controllers
             return await _context.BaseImageFileTypeIndices.ToListAsync();
         }
 
-        // GET: v1BaseImageFileTypeIndex/5
+        // GET: v1/BaseImageFileTypeIndex/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<BaseImageFileTypeIndex>> GetBaseImageFileTypeIndex(int id)
         {
@@ -50,7 +45,7 @@ namespace api.engine_v2.Controllers
             return baseImageFileTypeIndex;
         }
 
-        // PUT: v1BaseImageFileTypeIndex/5
+        // PUT: v1/BaseImageFileTypeIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutBaseImageFileTypeIndex(int id, BaseImageFileTypeIndex baseImageFileTypeIndex)
@@ -81,7 +76,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1BaseImageFileTypeIndex
+        // POST: v1/BaseImageFileTypeIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<BaseImageFileTypeIndex>> PostBaseImageFileTypeIndex(BaseImageFileTypeIndex baseImageFileTypeIndex)
@@ -96,7 +91,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetBaseImageFileTypeIndex", new { id = baseImageFileTypeIndex.Id }, baseImageFileTypeIndex);
         }
 
-        // DELETE: v1BaseImageFileTypeIndex/5
+        // DELETE: v1/BaseImageFileTypeIndex/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteBaseImageFileTypeIndex(int id)
         {
@@ -122,6 +117,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

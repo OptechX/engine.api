@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("v1[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class RegistryKeyController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1/[controller]egistryKey
+        // GET: v1//[controller]egistryKey
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RegistryKey>>> GetRegistryKeys()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.RegistryKeys.ToListAsync();
         }
 
-        // GET: v1/[controller]egistryKey/5
+        // GET: v1//[controller]egistryKey/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<RegistryKey>> GetRegistryKey(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return registryKey;
         }
 
-        // PUT: v1/[controller]egistryKey/5
+        // PUT: v1//[controller]egistryKey/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutRegistryKey(int id, RegistryKey registryKey)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1/[controller]egistryKey
+        // POST: v1//[controller]egistryKey
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<RegistryKey>> PostRegistryKey(RegistryKey registryKey)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetRegistryKey", new { id = registryKey.Id }, registryKey);
         }
 
-        // DELETE: v1/[controller]egistryKey/5
+        // DELETE: v1//[controller]egistryKey/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteRegistryKey(int id)
         {
@@ -122,6 +122,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

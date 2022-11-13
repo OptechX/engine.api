@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("v1[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class WinRefCore03VersionController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1WinRefCore03Version
+        // GET: v1/WinRefCore03Version
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WinRefCore03Version>>> GetWinRefCore03Versions()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.WinRefCore03Versions.ToListAsync();
         }
 
-        // GET: v1WinRefCore03Version/5
+        // GET: v1/WinRefCore03Version/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<WinRefCore03Version>> GetWinRefCore03Version(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return winRefCore03Version;
         }
 
-        // PUT: v1WinRefCore03Version/5
+        // PUT: v1/WinRefCore03Version/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWinRefCore03Version(int id, WinRefCore03Version winRefCore03Version)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1WinRefCore03Version
+        // POST: v1/WinRefCore03Version
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<WinRefCore03Version>> PostWinRefCore03Version(WinRefCore03Version winRefCore03Version)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetWinRefCore03Version", new { id = winRefCore03Version.Id }, winRefCore03Version);
         }
 
-        // DELETE: v1WinRefCore03Version/5
+        // DELETE: v1/WinRefCore03Version/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWinRefCore03Version(int id)
         {
@@ -121,7 +121,7 @@ namespace api.engine_v2.Controllers
             return (_context.WinRefCore03Versions?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-        // GET: v1/WinRefCore03Version/{release}/{editionM}
+        // GET: v1//WinRefCore03Version/{release}/{editionM}
         [HttpGet("{release}/{edition}")]
         public async Task<ActionResult<IEnumerable<WinRefCore03Version>>> GetWinRefCore03VersionsIndexSearch(
             [FromRoute]string release,
@@ -140,6 +140,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

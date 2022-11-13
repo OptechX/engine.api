@@ -10,7 +10,7 @@ using api.engine_v2.Models.Shared;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("v1[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class CpuArchIndexController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1/[controller]puArchIndex
+        // GET: v1//[controller]puArchIndex
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CpuArchIndex>>> GetCpuArchIndices()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.CpuArchIndices.ToListAsync();
         }
 
-        // GET: v1/[controller]puArchIndex/5
+        // GET: v1//[controller]puArchIndex/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<CpuArchIndex>> GetCpuArchIndex(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return cpuArchIndex;
         }
 
-        // PUT: v1/[controller]puArchIndex/5
+        // PUT: v1//[controller]puArchIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutCpuArchIndex(int id, CpuArchIndex cpuArchIndex)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1/[controller]puArchIndex
+        // POST: v1//[controller]puArchIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<CpuArchIndex>> PostCpuArchIndex(CpuArchIndex cpuArchIndex)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetCpuArchIndex", new { id = cpuArchIndex.Id }, cpuArchIndex);
         }
 
-        // DELETE: v1/[controller]puArchIndex/5
+        // DELETE: v1//[controller]puArchIndex/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteCpuArchIndex(int id)
         {
@@ -122,6 +122,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

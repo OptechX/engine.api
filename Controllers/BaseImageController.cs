@@ -8,7 +8,7 @@ using api.engine_v2.Models.Engine.Enums;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("v1[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class BaseImageController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1BaseImage
+        // GET: v1/BaseImage
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BaseImage>>> GetBaseImages()
         {
@@ -30,7 +30,7 @@ namespace api.engine_v2.Controllers
             return await _context.BaseImages.ToListAsync();
         }
 
-        // GET: v1BaseImage/5
+        // GET: v1/BaseImage/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<BaseImage>> GetBaseImage(int id)
         {
@@ -48,7 +48,7 @@ namespace api.engine_v2.Controllers
             return baseImage;
         }
 
-        // PUT: v1BaseImage/5
+        // PUT: v1/BaseImage/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutBaseImage(int id, BaseImage baseImage)
@@ -79,7 +79,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1BaseImage
+        // POST: v1/BaseImage
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<BaseImage>> PostBaseImage(BaseImage baseImage)
@@ -94,7 +94,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetBaseImage", new { id = baseImage.Id }, baseImage);
         }
 
-        // DELETE: v1BaseImage/5
+        // DELETE: v1/BaseImage/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteBaseImage(int id)
         {
@@ -119,7 +119,7 @@ namespace api.engine_v2.Controllers
             return (_context.BaseImages?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-        // GET: v1/BaseImage/release/{release}
+        // GET: v1//BaseImage/release/{release}
         [HttpGet("release/{release}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByRelease([FromRoute]string release)
         {
@@ -134,7 +134,7 @@ namespace api.engine_v2.Controllers
             return await images.ToListAsync();
         }
 
-        // GET: v1/BaseImage/edition/{edition}
+        // GET: v1//BaseImage/edition/{edition}
         [HttpGet("edition/{edition}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByEdition([FromRoute]string edition)
         {
@@ -149,7 +149,7 @@ namespace api.engine_v2.Controllers
             return await images.ToListAsync();
         }
 
-        // GET: v1/BaseImage/version/{version}
+        // GET: v1//BaseImage/version/{version}
         [HttpGet("version/{version}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByVersion([FromRoute]string version)
         {
@@ -164,7 +164,7 @@ namespace api.engine_v2.Controllers
             return await images.ToListAsync();
         }
 
-        // GET: v1/BaseImage/cpuarch/{cpuarch}
+        // GET: v1//BaseImage/cpuarch/{cpuarch}
         [HttpGet("cpuarch/{cpuarch}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByCpuArch([FromRoute]string cpuarch)
         {
@@ -178,7 +178,7 @@ namespace api.engine_v2.Controllers
             return await images.ToListAsync();
         }
 
-        // GET: v1/BaseImage/baseimagefiletype/{filetype}
+        // GET: v1//BaseImage/baseimagefiletype/{filetype}
         [HttpGet("baseimagefiletype/{filetype}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByBaseImageFileType([FromRoute]string filetype)
         {
@@ -192,7 +192,7 @@ namespace api.engine_v2.Controllers
             return await images.ToListAsync();
         }
 
-        // GET: v1/BaseImage/windowslcid/{windowslcid}
+        // GET: v1//BaseImage/windowslcid/{windowslcid}
         [HttpGet("windowslcid/{windowslcid}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByWindowsLcid([FromRoute]string windowslcid)
         {
@@ -206,7 +206,7 @@ namespace api.engine_v2.Controllers
             return await images.ToListAsync();
         }
 
-        // GET: v1/BaseImage/locale/{locale}
+        // GET: v1//BaseImage/locale/{locale}
         [HttpGet("locale/{locale}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByLocale([FromRoute]string locale)
         {
@@ -221,7 +221,7 @@ namespace api.engine_v2.Controllers
             return await images.ToListAsync();
         }
 
-        // GET: v1/BaseImage/transfermethod/{method}
+        // GET: v1//BaseImage/transfermethod/{method}
         [HttpGet("transfermethod/{method}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByTransferMethod([FromRoute]string method)
         {
@@ -235,7 +235,7 @@ namespace api.engine_v2.Controllers
             return await images.ToListAsync();
         }
 
-        //GET: v1/BaseImage/multisearch/{release}/{edition}/{version}/{cpuarch}/{windowslcid}
+        //GET: v1//BaseImage/multisearch/{release}/{edition}/{version}/{cpuarch}/{windowslcid}
         [HttpGet("multisearch/{release}/{edition}/{version}/{cpuarch}/{windowslcid}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByMultiSearch([FromRoute]string release, string edition, string version, string cpuarch, string windowslcid)
         {
@@ -253,6 +253,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

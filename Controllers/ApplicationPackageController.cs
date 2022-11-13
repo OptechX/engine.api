@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -10,7 +5,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("v1[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class ApplicationPackageController : ControllerBase
     {
@@ -21,7 +16,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1ApplicationPackage
+        // GET: v1/ApplicationPackage
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ApplicationPackage>>> GetApplicationPackages()
         {
@@ -32,7 +27,7 @@ namespace api.engine_v2.Controllers
             return await _context.ApplicationPackages.ToListAsync();
         }
 
-        // GET: v1ApplicationPackage/5
+        // GET: v1/ApplicationPackage/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<ApplicationPackage>> GetApplicationPackage(int id)
         {
@@ -50,7 +45,7 @@ namespace api.engine_v2.Controllers
             return applicationPackage;
         }
 
-        // PUT: v1ApplicationPackage/5
+        // PUT: v1/ApplicationPackage/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutApplicationPackage(int id, ApplicationPackage applicationPackage)
@@ -81,7 +76,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1ApplicationPackage
+        // POST: v1/ApplicationPackage
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<ApplicationPackage>> PostApplicationPackage(ApplicationPackage applicationPackage)
@@ -96,7 +91,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetApplicationPackage", new { id = applicationPackage.Id }, applicationPackage);
         }
 
-        // DELETE: v1ApplicationPackage/5
+        // DELETE: v1/ApplicationPackage/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteApplicationPackage(int id)
         {
@@ -122,6 +117,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

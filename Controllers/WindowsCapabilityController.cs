@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("v1[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class WindowsCapabilityController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1WindowsCapability
+        // GET: v1/WindowsCapability
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilities()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.WindowsCapabilities.ToListAsync();
         }
 
-        // GET: v1WindowsCapability/5
+        // GET: v1/WindowsCapability/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<WindowsCapability>> GetWindowsCapability(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return windowsCapability;
         }
 
-        // PUT: v1WindowsCapability/5
+        // PUT: v1/WindowsCapability/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWindowsCapability(int id, WindowsCapability windowsCapability)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1WindowsCapability
+        // POST: v1/WindowsCapability
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<WindowsCapability>> PostWindowsCapability(WindowsCapability windowsCapability)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetWindowsCapability", new { id = windowsCapability.Id }, windowsCapability);
         }
 
-        // DELETE: v1WindowsCapability/5
+        // DELETE: v1/WindowsCapability/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWindowsCapability(int id)
         {
@@ -121,7 +121,7 @@ namespace api.engine_v2.Controllers
             return (_context.WindowsCapabilities?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-        // GET: v1/WindowsCapability/name/{name}
+        // GET: v1//WindowsCapability/name/{name}
         [HttpGet("name/{name}")]
         public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilityByName([FromRoute]string name)
         {
@@ -135,7 +135,7 @@ namespace api.engine_v2.Controllers
             return await capability.ToListAsync();
         }
 
-        // GET: v1/WindowsCapability/supportedwindowsversions/{version}
+        // GET: v1//WindowsCapability/supportedwindowsversions/{version}
         [HttpGet("supportedwindowsversions/{version}")]
         public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilityBySupportedWindowsVersions([FromRoute]string version)
         {
@@ -149,7 +149,7 @@ namespace api.engine_v2.Controllers
             return await capability.ToListAsync();
         }
 
-        // GET: v1/WindowsCapability/supportedwindowseditions/{supportedwindowsedition}
+        // GET: v1//WindowsCapability/supportedwindowseditions/{supportedwindowsedition}
         [HttpGet("supportedwindowseditions/{edition}")]
         public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilityBySupportedWindowsEditions([FromRoute]string edition)
         {
@@ -163,7 +163,7 @@ namespace api.engine_v2.Controllers
             return await capability.ToListAsync();
         }
 
-        // GET: v1/WindowsCapability/supportedwindowsreleases/{supportedwindowsrelease}
+        // GET: v1//WindowsCapability/supportedwindowsreleases/{supportedwindowsrelease}
         [HttpGet("supportedwindowsreleases/{release}")]
         public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilityBySupportedWindowsReleases([FromRoute]string release)
         {
@@ -177,7 +177,7 @@ namespace api.engine_v2.Controllers
             return await capability.ToListAsync();
         }
 
-        // GET: v1/WindowsCapability/multisearch/{supportedwindowsversion}/{supportedwindowsedition}/{supportedwindowsrelease}
+        // GET: v1//WindowsCapability/multisearch/{supportedwindowsversion}/{supportedwindowsedition}/{supportedwindowsrelease}
         [HttpGet("multisearch/{version}/{edition}/{release}")]
         public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilityMultiSearch(
             [FromRoute]string version,
@@ -198,6 +198,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

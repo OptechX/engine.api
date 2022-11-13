@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -10,7 +5,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("v1[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class UninstallProcessIndexController : ControllerBase
     {
@@ -21,7 +16,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1UninstallProcessIndex
+        // GET: v1/UninstallProcessIndex
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UninstallProcessIndex>>> GetUninstallProcessIndices()
         {
@@ -32,7 +27,7 @@ namespace api.engine_v2.Controllers
             return await _context.UninstallProcessIndices.ToListAsync();
         }
 
-        // GET: v1UninstallProcessIndex/5
+        // GET: v1/UninstallProcessIndex/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<UninstallProcessIndex>> GetUninstallProcessIndex(int id)
         {
@@ -50,7 +45,7 @@ namespace api.engine_v2.Controllers
             return uninstallProcessIndex;
         }
 
-        // PUT: v1UninstallProcessIndex/5
+        // PUT: v1/UninstallProcessIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutUninstallProcessIndex(int id, UninstallProcessIndex uninstallProcessIndex)
@@ -81,7 +76,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1UninstallProcessIndex
+        // POST: v1/UninstallProcessIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<UninstallProcessIndex>> PostUninstallProcessIndex(UninstallProcessIndex uninstallProcessIndex)
@@ -96,7 +91,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetUninstallProcessIndex", new { id = uninstallProcessIndex.Id }, uninstallProcessIndex);
         }
 
-        // DELETE: v1UninstallProcessIndex/5
+        // DELETE: v1/UninstallProcessIndex/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteUninstallProcessIndex(int id)
         {
@@ -122,6 +117,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

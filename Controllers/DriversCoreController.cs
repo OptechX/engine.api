@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("v1[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class DriversCoreController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1DriversCore
+        // GET: v1/DriversCore
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriverCores()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.DriverCores.ToListAsync();
         }
 
-        // GET: v1DriversCore/5
+        // GET: v1/DriversCore/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<DriversCore>> GetDriversCore(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return driversCore;
         }
 
-        // PUT: v1DriversCore/5
+        // PUT: v1/DriversCore/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutDriversCore(int id, DriversCore driversCore)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1DriversCore
+        // POST: v1/DriversCore
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<DriversCore>> PostDriversCore(DriversCore driversCore)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetDriversCore", new { id = driversCore.Id }, driversCore);
         }
 
-        // DELETE: v1DriversCore/5
+        // DELETE: v1/DriversCore/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteDriversCore(int id)
         {
@@ -121,7 +121,7 @@ namespace api.engine_v2.Controllers
             return (_context.DriverCores?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-        // GET: v1/DriversCore/uid/{uid}
+        // GET: v1//DriversCore/uid/{uid}
         [HttpGet("uid/{uid}")]
         public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByUID([FromRoute] string uid)
         {
@@ -135,7 +135,7 @@ namespace api.engine_v2.Controllers
             return await drivers.ToListAsync();
         }
 
-        // GET: v1/DriversCore/oem/{oem}
+        // GET: v1//DriversCore/oem/{oem}
         [HttpGet("oem/{oem}")]
         public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByOriginalEquipmentManufacturer([FromRoute] string oem)
         {
@@ -149,7 +149,7 @@ namespace api.engine_v2.Controllers
             return await drivers.ToListAsync();
         }
 
-        // GET: v1/DriversCore/make/{make}
+        // GET: v1//DriversCore/make/{make}
         [HttpGet("make/{make}")]
         public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByMake([FromRoute] string make)
         {
@@ -163,7 +163,7 @@ namespace api.engine_v2.Controllers
             return await drivers.ToListAsync();
         }
 
-        // GET: v1/DriversCore/model/{model}
+        // GET: v1//DriversCore/model/{model}
         [HttpGet("model/{model}")]
         public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByModel([FromRoute] string model)
         {
@@ -177,7 +177,7 @@ namespace api.engine_v2.Controllers
             return await drivers.ToListAsync();
         }
 
-        // GET: v1/DriversCore/productionyear/{productionyear:int}
+        // GET: v1//DriversCore/productionyear/{productionyear:int}
         [HttpGet("productionyear/{productionyear:int}")]
         public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByProductionYear([FromRoute] int productionyear)
         {
@@ -191,7 +191,7 @@ namespace api.engine_v2.Controllers
             return await drivers.ToListAsync();
         }
 
-        // GET: v1/DriversCore/cpuarch/{cpuarch}
+        // GET: v1//DriversCore/cpuarch/{cpuarch}
         [HttpGet("cpuarch/{cpuarch}")]
         public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByCpuArch([FromRoute] string cpuarch)
         {
@@ -205,7 +205,7 @@ namespace api.engine_v2.Controllers
             return await drivers.ToListAsync();
         }
 
-        // GET: v1/DriversCore/windowsos/{windowsos}
+        // GET: v1//DriversCore/windowsos/{windowsos}
         [HttpGet("windowsos/{windowsos}")]
         public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByWindowsOS([FromRoute] string windowsos)
         {
@@ -219,7 +219,7 @@ namespace api.engine_v2.Controllers
             return await drivers.ToListAsync();
         }
 
-        // GET: v1/DriversCore/globalsearch/{searchterm}
+        // GET: v1//DriversCore/globalsearch/{searchterm}
         [HttpGet("globalsearch/{searchterm}")]
         public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByGlobalSearch([FromRoute] string searchterm)
         {
@@ -237,7 +237,7 @@ namespace api.engine_v2.Controllers
             return await drivers.ToListAsync();
         }
 
-        // GET: v1/DriversCore/page4/{windowsos}/{arch}
+        // GET: v1//DriversCore/page4/{windowsos}/{arch}
         [HttpGet("page4/{windowsos}/{arch}")]
         public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByPage4Search(
             [FromRoute] string windowsos,
@@ -257,6 +257,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

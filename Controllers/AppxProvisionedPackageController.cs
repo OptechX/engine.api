@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -10,7 +5,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("v1[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class AppxProvisionedPackageController : ControllerBase
     {
@@ -21,7 +16,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1AppxProvisionedPackage
+        // GET: v1/AppxProvisionedPackage
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackages()
         {
@@ -32,7 +27,7 @@ namespace api.engine_v2.Controllers
             return await _context.AppxProvisionedPackages.ToListAsync();
         }
 
-        // GET: v1AppxProvisionedPackage/5
+        // GET: v1/AppxProvisionedPackage/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<AppxProvisionedPackage>> GetAppxProvisionedPackage(int id)
         {
@@ -50,7 +45,7 @@ namespace api.engine_v2.Controllers
             return appxProvisionedPackage;
         }
 
-        // PUT: v1AppxProvisionedPackage/5
+        // PUT: v1/AppxProvisionedPackage/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutAppxProvisionedPackage(int id, AppxProvisionedPackage appxProvisionedPackage)
@@ -81,7 +76,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1AppxProvisionedPackage
+        // POST: v1/AppxProvisionedPackage
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<AppxProvisionedPackage>> PostAppxProvisionedPackage(AppxProvisionedPackage appxProvisionedPackage)
@@ -96,7 +91,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetAppxProvisionedPackage", new { id = appxProvisionedPackage.Id }, appxProvisionedPackage);
         }
 
-        // DELETE: v1AppxProvisionedPackage/5
+        // DELETE: v1/AppxProvisionedPackage/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteAppxProvisionedPackage(int id)
         {
@@ -121,7 +116,7 @@ namespace api.engine_v2.Controllers
             return (_context.AppxProvisionedPackages?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-        // GET: v1/AppxProvisionedPackage/displayname/{displayName}
+        // GET: v1//AppxProvisionedPackage/displayname/{displayName}
         [HttpGet("displayname/{displayname}")]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageByDisplayName([FromRoute]string displayname)
         {
@@ -135,7 +130,7 @@ namespace api.engine_v2.Controllers
             return await packages.ToListAsync();
         }
 
-        // GET: v1/AppxProvisionedPackage/arch/{arch}
+        // GET: v1//AppxProvisionedPackage/arch/{arch}
         [HttpGet("arch/{arch}")]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageByArch([FromRoute]string arch)
         {
@@ -149,7 +144,7 @@ namespace api.engine_v2.Controllers
             return await packages.ToListAsync();
         }
 
-        // GET: v1/AppxProvisionedPackage/lcid/{lcid}
+        // GET: v1//AppxProvisionedPackage/lcid/{lcid}
         [HttpGet("lcid/{lcid}")]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageByLcid([FromRoute]string lcid)
         {
@@ -163,7 +158,7 @@ namespace api.engine_v2.Controllers
             return await packages.ToListAsync();
         }
 
-        // GET: v1/AppxProvisionedPackage/supportedwindowsversions/{supportedwindowsversion}
+        // GET: v1//AppxProvisionedPackage/supportedwindowsversions/{supportedwindowsversion}
         [HttpGet("supportedwindowsversions/{supportedwindowsversion}")]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageBySupportedWindowsVersion([FromRoute]string supportedwindowsversion)
         {
@@ -177,7 +172,7 @@ namespace api.engine_v2.Controllers
             return await packages.ToListAsync();
         }
 
-        // GET: v1/AppxProvisionedPackage/supportedwindowseditions/{supportedwindowsedition}
+        // GET: v1//AppxProvisionedPackage/supportedwindowseditions/{supportedwindowsedition}
         [HttpGet("supportedwindowseditions/{supportedwindowsedition}")]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageBySupportedWindowsEditions([FromRoute]string supportedwindowsedition)
         {
@@ -191,7 +186,7 @@ namespace api.engine_v2.Controllers
             return await packages.ToListAsync();
         }
 
-        // GET: v1/AppxProvisionedPackage/supportedwindowsreleases/{supportedwindowsrelease}
+        // GET: v1//AppxProvisionedPackage/supportedwindowsreleases/{supportedwindowsrelease}
         [HttpGet("supportedwindowsreleases/{supportedwindowsrelease}")]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageBySupportedWindowsReleases([FromRoute]string supportedwindowsrelease)
         {
@@ -205,7 +200,7 @@ namespace api.engine_v2.Controllers
             return await packages.ToListAsync();
         }
 
-        // GET: v1/AppxProvisionedPackage/multisearch/{supportedwindowsversion}/{supportedwindowsedition}/{supportedwindowsrelease}
+        // GET: v1//AppxProvisionedPackage/multisearch/{supportedwindowsversion}/{supportedwindowsedition}/{supportedwindowsrelease}
         [HttpGet("multisearch/{supportedwindowsversion}/{supportedwindowsedition}/{supportedwindowsrelease}")]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageMultiSearch(
             [FromRoute]string supportedwindowsversion,
@@ -226,7 +221,7 @@ namespace api.engine_v2.Controllers
             return await packages.ToListAsync();
         }
 
-        // GET: v1/AppxProvisionedPackage/multiarchsearch/{version}/{edition}/{release}/{arch}
+        // GET: v1//AppxProvisionedPackage/multiarchsearch/{version}/{edition}/{release}/{arch}
         [HttpGet("multiarchsearch/{version}/{edition}/{release}/{arch}")]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageMultiArchSearch(
             [FromRoute]string version,
@@ -250,6 +245,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

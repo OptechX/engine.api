@@ -16,7 +16,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1/ApplicationCategoryIndex
+        // GET: v1//ApplicationCategoryIndex
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ApplicationCategoryIndex>>> GetApplicationCategoryIndices()
         {
@@ -27,7 +27,7 @@ namespace api.engine_v2.Controllers
             return await _context.ApplicationCategoryIndices.ToListAsync();
         }
 
-        // GET: v1/ApplicationCategoryIndex/5
+        // GET: v1//ApplicationCategoryIndex/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<ApplicationCategoryIndex>> GetApplicationCategoryIndex(int id)
         {
@@ -45,7 +45,7 @@ namespace api.engine_v2.Controllers
             return applicationCategoryIndex;
         }
 
-        // PUT: v1/ApplicationCategoryIndex/5
+        // PUT: v1//ApplicationCategoryIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutApplicationCategoryIndex(int id, ApplicationCategoryIndex applicationCategoryIndex)
@@ -76,7 +76,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1/ApplicationCategoryIndex
+        // POST: v1//ApplicationCategoryIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<ApplicationCategoryIndex>> PostApplicationCategoryIndex(ApplicationCategoryIndex applicationCategoryIndex)
@@ -91,7 +91,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetApplicationCategoryIndex", new { id = applicationCategoryIndex.Id }, applicationCategoryIndex);
         }
 
-        // DELETE: v1/ApplicationCategoryIndex/5
+        // DELETE: v1//ApplicationCategoryIndex/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteApplicationCategoryIndex(int id)
         {
@@ -117,6 +117,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

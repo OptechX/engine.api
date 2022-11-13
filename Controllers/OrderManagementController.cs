@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("v1[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class OrderManagementController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1/[controller]rderManagement
+        // GET: v1//[controller]rderManagement
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagements()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.OrderManagements.ToListAsync();
         }
 
-        // GET: v1/[controller]rderManagement/5
+        // GET: v1//[controller]rderManagement/5
         //[HttpGet("{id:int}")]
         //public async Task<ActionResult<OrderManagement>> GetOrderManagement(int id)
         //{
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
         //    return orderManagement;
         //}
 
-        // GET: v1/OrderManagement/5
+        // GET: v1//OrderManagement/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<OrderManagement>> GetOrderManagement(int id)
         {
@@ -91,7 +91,7 @@ namespace api.engine_v2.Controllers
             return OrderManagement;
         }
 
-        // PUT: v1/[controller]rderManagement/5
+        // PUT: v1//[controller]rderManagement/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutOrderManagement(int id, OrderManagement orderManagement)
@@ -122,7 +122,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1/[controller]rderManagement
+        // POST: v1//[controller]rderManagement
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<OrderManagement>> PostOrderManagement(OrderManagement orderManagement)
@@ -137,7 +137,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetOrderManagement", new { id = orderManagement.Id }, orderManagement);
         }
 
-        // DELETE: v1/[controller]rderManagement/5
+        // DELETE: v1//[controller]rderManagement/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteOrderManagement(int id)
         {
@@ -162,7 +162,7 @@ namespace api.engine_v2.Controllers
             return (_context.OrderManagements?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-        // GET: v1/OrderManagement/uuid/{uuid}
+        // GET: v1//OrderManagement/uuid/{uuid}
         [HttpGet("uuid/{uuid}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByUUID([FromRoute] string uuid)
         {
@@ -176,7 +176,7 @@ namespace api.engine_v2.Controllers
             return await orders.ToListAsync();
         }
 
-        // GET: v1/OrderManagement/byaccountid
+        // GET: v1//OrderManagement/byaccountid
         [HttpGet("byaccountid/{accountid:int}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByAccountId([FromRoute] int accountid)
         {
@@ -219,7 +219,7 @@ namespace api.engine_v2.Controllers
             return await orders.ToListAsync();
         }
 
-        // GET: v1/OrderManagement/orderstatus/{orderstatus}
+        // GET: v1//OrderManagement/orderstatus/{orderstatus}
         [HttpGet("orderstatus/{orderstatus}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByOrderStatus([FromRoute] string orderstatus)
         {
@@ -233,7 +233,7 @@ namespace api.engine_v2.Controllers
             return await orders.ToListAsync();
         }
 
-        // GET: v1/OrderManagement/ordername/{ordername}
+        // GET: v1//OrderManagement/ordername/{ordername}
         [HttpGet("ordername/{ordername}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByOrderName([FromRoute] string ordername)
         {
@@ -247,7 +247,7 @@ namespace api.engine_v2.Controllers
             return await orders.ToListAsync();
         }
 
-        // GET: v1/OrderManagement/release/{release}
+        // GET: v1//OrderManagement/release/{release}
         [HttpGet("release/{release}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByRelease([FromRoute] string release)
         {
@@ -262,7 +262,7 @@ namespace api.engine_v2.Controllers
             return await orders.ToListAsync();
         }
 
-        // GET: v1/OrderManagement/edition/{edition}
+        // GET: v1//OrderManagement/edition/{edition}
         [HttpGet("edition/{edition}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByEdition([FromRoute] string edition)
         {
@@ -277,7 +277,7 @@ namespace api.engine_v2.Controllers
             return await orders.ToListAsync();
         }
 
-        // GET: v1/OrderManagement/version/{version}
+        // GET: v1//OrderManagement/version/{version}
         [HttpGet("version/{version}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByVersion([FromRoute] string version)
         {
@@ -292,7 +292,7 @@ namespace api.engine_v2.Controllers
             return await orders.ToListAsync();
         }
 
-        // GET: v1/OrderManagement/arch/{arch}
+        // GET: v1//OrderManagement/arch/{arch}
         [HttpGet("arch/{arch}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByArch([FromRoute] string arch)
         {
@@ -307,7 +307,7 @@ namespace api.engine_v2.Controllers
             return await orders.ToListAsync();
         }
 
-        // GET: v1/OrderManagement/lcid/{lcid}
+        // GET: v1//OrderManagement/lcid/{lcid}
         [HttpGet("lcid/{lcid}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByLcid([FromRoute] string lcid)
         {
@@ -321,7 +321,7 @@ namespace api.engine_v2.Controllers
             return await orders.ToListAsync();
         }
 
-        // GET: v1/OrderManagement/usesapplicationuid/{applicationuid}
+        // GET: v1//OrderManagement/usesapplicationuid/{applicationuid}
         [HttpGet("usesapplicationuid/{applicationuid}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementUsingApplicationUID([FromRoute] string applicationuid)
         {
@@ -335,7 +335,7 @@ namespace api.engine_v2.Controllers
             return await orders.ToListAsync();
         }
 
-        // GET: v1/OrderManagement/usesdriversuid/{driversuid}
+        // GET: v1//OrderManagement/usesdriversuid/{driversuid}
         [HttpGet("usesdriversuid/{driversuid}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementUsingDriversUID([FromRoute] string driversuid)
         {
@@ -349,7 +349,7 @@ namespace api.engine_v2.Controllers
             return await orders.ToListAsync();
         }
 
-        // GET: v1/OrderManagement/cd-enabled
+        // GET: v1//OrderManagement/cd-enabled
         [HttpGet("cd-enabled")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementCDEnabled()
         {
@@ -363,7 +363,7 @@ namespace api.engine_v2.Controllers
             return await orders.ToListAsync();
         }
 
-        // GET: v1/OrderManagement/ci-enabled
+        // GET: v1//OrderManagement/ci-enabled
         [HttpGet("ci-enabled")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementCIEnabled()
         {
@@ -377,7 +377,7 @@ namespace api.engine_v2.Controllers
             return await orders.ToListAsync();
         }
 
-        // GET: v1/OrderManagement/ci-cd-enabled
+        // GET: v1//OrderManagement/ci-cd-enabled
         [HttpGet("ci-cd-enabled")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementCICDEnabled()
         {
@@ -393,7 +393,7 @@ namespace api.engine_v2.Controllers
             return await orders.ToListAsync();
         }
 
-        // GET: v1/OrderManagement/deleteorderbyid/5
+        // GET: v1//OrderManagement/deleteorderbyid/5
         [HttpGet("deleteorderbyid/{id:int}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> SetOrderManagementDeleted([FromRoute] int id)
         {
@@ -418,7 +418,7 @@ namespace api.engine_v2.Controllers
             return await orders.ToListAsync();
         }
 
-        // GET: v1/OrderManagement/byaccountid-last5/{accountid:int}
+        // GET: v1//OrderManagement/byaccountid-last5/{accountid:int}
         [HttpGet("byaccountid-last5/{accountid:int}")]
         public async Task<ActionResult<IEnumerable<OrderManagement5Items>>> GetOrderManagementByAccountIdLast5([FromRoute] int accountid)
         {
@@ -507,6 +507,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("v1[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class WindowsCoreIdentityController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1WindowsCoreIdentity
+        // GET: v1/WindowsCoreIdentity
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentities()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.WindowsCoreIdentities.ToListAsync();
         }
 
-        // // GET: v1WindowsCoreIdentity/5
+        // // GET: v1/WindowsCoreIdentity/5
         // [HttpGet("{id:int}")]
         // public async Task<ActionResult<WindowsCoreIdentity>> GetWindowsCoreIdentity(int id)
         // {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
         //     return windowsCoreIdentity;
         // }
 
-        // GET: v1/WindowsCoreIdentity/5
+        // GET: v1//WindowsCoreIdentity/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<WindowsCoreIdentity>> GetWindowsCoreIdentity(int id)
         {
@@ -79,7 +79,7 @@ namespace api.engine_v2.Controllers
             return windowsCoreIdentity;
         }
 
-        // PUT: v1WindowsCoreIdentity/5
+        // PUT: v1/WindowsCoreIdentity/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWindowsCoreIdentity(int id, WindowsCoreIdentity windowsCoreIdentity)
@@ -110,7 +110,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1WindowsCoreIdentity
+        // POST: v1/WindowsCoreIdentity
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<WindowsCoreIdentity>> PostWindowsCoreIdentity(WindowsCoreIdentity windowsCoreIdentity)
@@ -125,7 +125,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetWindowsCoreIdentity", new { id = windowsCoreIdentity.Id }, windowsCoreIdentity);
         }
 
-        // DELETE: v1WindowsCoreIdentity/5
+        // DELETE: v1/WindowsCoreIdentity/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWindowsCoreIdentity(int id)
         {
@@ -150,7 +150,7 @@ namespace api.engine_v2.Controllers
             return (_context.WindowsCoreIdentities?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-        // GET: v1/WindowsCoreIdentity/uuid/{uuid}
+        // GET: v1//WindowsCoreIdentity/uuid/{uuid}
         [HttpGet("uuid/{uuid}")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByUUid([FromRoute]string uuid)
         {
@@ -164,7 +164,7 @@ namespace api.engine_v2.Controllers
             return await windowscoreidentities.ToListAsync();
         }
 
-        // GET: v1/WindowsCoreIdentity/uid/{uid}
+        // GET: v1//WindowsCoreIdentity/uid/{uid}
         [HttpGet("uid/{uid}")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByUid([FromRoute]string uid)
         {
@@ -178,7 +178,7 @@ namespace api.engine_v2.Controllers
             return await windowscoreidentities.ToListAsync();
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Windows7
+        // GET: v1//WindowsCoreIdentity/release/Windows7
         [HttpGet("release/windows7")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseWindows7()
         {
@@ -207,7 +207,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Windows81
+        // GET: v1//WindowsCoreIdentity/release/Windows81
         [HttpGet("release/windows81")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseWindows81()
         {
@@ -236,7 +236,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Windows10
+        // GET: v1//WindowsCoreIdentity/release/Windows10
         [HttpGet("release/windows10")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseWindows10()
         {
@@ -265,7 +265,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Windows11
+        // GET: v1//WindowsCoreIdentity/release/Windows11
         [HttpGet("release/Windows11")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseWindows11()
         {
@@ -294,7 +294,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/arch/x86
+        // GET: v1//WindowsCoreIdentity/arch/x86
         [HttpGet("arch/x86")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByArchX86()
         {
@@ -323,7 +323,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/arch/x64
+        // GET: v1//WindowsCoreIdentity/arch/x64
         [HttpGet("arch/x64")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByArchX64()
         {
@@ -352,7 +352,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Arabic
+        // GET: v1//WindowsCoreIdentity/release/Arabic
         [HttpGet("lcid/Arabic")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseArabic()
         {
@@ -384,7 +384,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Brazilian
+        // GET: v1//WindowsCoreIdentity/release/Brazilian
         [HttpGet("lcid/Brazilian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseBrazilian()
         {
@@ -416,7 +416,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Bulgarian
+        // GET: v1//WindowsCoreIdentity/release/Bulgarian
         [HttpGet("lcid/Bulgarian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseBulgarian()
         {
@@ -448,7 +448,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Chinese
+        // GET: v1//WindowsCoreIdentity/release/Chinese
         [HttpGet("lcid/Chinese")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseChinese()
         {
@@ -480,7 +480,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Chinese Traditional
+        // GET: v1//WindowsCoreIdentity/release/Chinese Traditional
         [HttpGet("lcid/Chinese_Traditional")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseChineseTraditional()
         {
@@ -512,7 +512,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Croatian
+        // GET: v1//WindowsCoreIdentity/release/Croatian
         [HttpGet("lcid/Croatian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseCroatian()
         {
@@ -544,7 +544,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Czech
+        // GET: v1//WindowsCoreIdentity/release/Czech
         [HttpGet("lcid/Czech")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseCzech()
         {
@@ -576,7 +576,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Danish
+        // GET: v1//WindowsCoreIdentity/release/Danish
         [HttpGet("lcid/Danish")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseDanish()
         {
@@ -608,7 +608,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Dutch
+        // GET: v1//WindowsCoreIdentity/release/Dutch
         [HttpGet("lcid/Dutch")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseDutch()
         {
@@ -640,7 +640,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/English
+        // GET: v1//WindowsCoreIdentity/release/English
         [HttpGet("lcid/English")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseEnglish()
         {
@@ -669,7 +669,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/English International
+        // GET: v1//WindowsCoreIdentity/release/English International
         [HttpGet("lcid/English_International")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseEnglishInternational()
         {
@@ -698,7 +698,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Estonian
+        // GET: v1//WindowsCoreIdentity/release/Estonian
         [HttpGet("lcid/Estonian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseEstonian()
         {
@@ -730,7 +730,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Finnish
+        // GET: v1//WindowsCoreIdentity/release/Finnish
         [HttpGet("lcid/Finnish")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseFinnish()
         {
@@ -762,7 +762,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/French
+        // GET: v1//WindowsCoreIdentity/release/French
         [HttpGet("lcid/French")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseFrench()
         {
@@ -794,7 +794,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/French Canadian
+        // GET: v1//WindowsCoreIdentity/release/French Canadian
         [HttpGet("lcid/French_Canadian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseFrenchCanadian()
         {
@@ -826,7 +826,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/German
+        // GET: v1//WindowsCoreIdentity/release/German
         [HttpGet("lcid/German")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseGerman()
         {
@@ -858,7 +858,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Greek
+        // GET: v1//WindowsCoreIdentity/release/Greek
         [HttpGet("lcid/Greek")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseGreek()
         {
@@ -890,7 +890,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Hebrew
+        // GET: v1//WindowsCoreIdentity/release/Hebrew
         [HttpGet("lcid/Hebrew")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseHebrew()
         {
@@ -922,7 +922,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Hungarian
+        // GET: v1//WindowsCoreIdentity/release/Hungarian
         [HttpGet("lcid/Hungarian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseHungarian()
         {
@@ -954,7 +954,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Italian
+        // GET: v1//WindowsCoreIdentity/release/Italian
         [HttpGet("lcid/Italian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseItalian()
         {
@@ -986,7 +986,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Japanese
+        // GET: v1//WindowsCoreIdentity/release/Japanese
         [HttpGet("lcid/Japanese")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseJapanese()
         {
@@ -1018,7 +1018,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Korean
+        // GET: v1//WindowsCoreIdentity/release/Korean
         [HttpGet("lcid/Korean")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseKorean()
         {
@@ -1050,7 +1050,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Latvian
+        // GET: v1//WindowsCoreIdentity/release/Latvian
         [HttpGet("lcid/Latvian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseLatvian()
         {
@@ -1082,7 +1082,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Lithuanian
+        // GET: v1//WindowsCoreIdentity/release/Lithuanian
         [HttpGet("lcid/Lithuanian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseLithuanian()
         {
@@ -1114,7 +1114,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Norwegian
+        // GET: v1//WindowsCoreIdentity/release/Norwegian
         [HttpGet("lcid/Norwegian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseNorwegian()
         {
@@ -1146,7 +1146,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Polish
+        // GET: v1//WindowsCoreIdentity/release/Polish
         [HttpGet("lcid/Polish")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleasePolish()
         {
@@ -1178,7 +1178,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Portuguese
+        // GET: v1//WindowsCoreIdentity/release/Portuguese
         [HttpGet("lcid/Portuguese")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleasePortuguese()
         {
@@ -1210,7 +1210,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Romanian
+        // GET: v1//WindowsCoreIdentity/release/Romanian
         [HttpGet("lcid/Romanian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseRomanian()
         {
@@ -1242,7 +1242,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Russian
+        // GET: v1//WindowsCoreIdentity/release/Russian
         [HttpGet("lcid/Russian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseRussian()
         {
@@ -1274,7 +1274,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Serbian Latin
+        // GET: v1//WindowsCoreIdentity/release/Serbian Latin
         [HttpGet("lcid/Serbian_Latin")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseSerbianLatin()
         {
@@ -1306,7 +1306,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Slovak
+        // GET: v1//WindowsCoreIdentity/release/Slovak
         [HttpGet("lcid/Slovak")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseSlovak()
         {
@@ -1338,7 +1338,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Slovenian
+        // GET: v1//WindowsCoreIdentity/release/Slovenian
         [HttpGet("lcid/Slovenian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseSlovenian()
         {
@@ -1370,7 +1370,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Spanish
+        // GET: v1//WindowsCoreIdentity/release/Spanish
         [HttpGet("lcid/Spanish")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseSpanish()
         {
@@ -1402,7 +1402,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Spanish Latam
+        // GET: v1//WindowsCoreIdentity/release/Spanish Latam
         [HttpGet("lcid/Spanish_Latam")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseSpanishLatam()
         {
@@ -1434,7 +1434,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Swedish
+        // GET: v1//WindowsCoreIdentity/release/Swedish
         [HttpGet("lcid/Swedish")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseSwedish()
         {
@@ -1466,7 +1466,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Thai
+        // GET: v1//WindowsCoreIdentity/release/Thai
         [HttpGet("lcid/Thai")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseThai()
         {
@@ -1498,7 +1498,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Turkish
+        // GET: v1//WindowsCoreIdentity/release/Turkish
         [HttpGet("lcid/Turkish")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseTurkish()
         {
@@ -1530,7 +1530,7 @@ namespace api.engine_v2.Controllers
             }
         }
 
-        // GET: v1/WindowsCoreIdentity/release/Ukrainian
+        // GET: v1//WindowsCoreIdentity/release/Ukrainian
         [HttpGet("lcid/Ukrainian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseUkrainian()
         {
@@ -1563,6 +1563,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 
