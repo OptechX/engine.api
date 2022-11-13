@@ -19,7 +19,7 @@ public class Program
                                 policy =>
                                 {
                                     policy.AllowAnyOrigin()
-                                        .WithMethods("GET", "POST", "PUT", "DELETE", "GET")
+                                        .WithMethods("OPTIONS","HEAD","GET","POST","PUT","PATCH","DELETE")
                                         .AllowAnyHeader()
                                         .AllowAnyMethod();
                                 });
