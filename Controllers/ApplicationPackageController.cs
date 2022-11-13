@@ -194,7 +194,7 @@ namespace api.engine_v2.Controllers
         [HttpGet("executable/{executable}")]
         public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByExecutable([FromRoute] string executable)
         {
-            var applications = _context.ApplicationPackages.Where(a => a.Executable == EnumExtensions.GetValueFromEnumMember<Executable>(executable).ToString());
+            var applications = _context.ApplicationPackages.Where(a => a.Executable == EnumExtensions.GetValueFromEnumMember<Executable>(executable));
 
             if (applications.Count() == 0)
             {
