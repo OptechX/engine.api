@@ -29,24 +29,24 @@ namespace api.engine_v2.Controllers
             return await _context.OrderManagements.ToListAsync();
         }
 
-        //GET: v1/[controller]/OrderManagement/5
-        [EnableCors("MyAllowAllOrigins")]
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<OrderManagement>> GetOrderManagement(int id)
-        {
-            if (_context.OrderManagements == null)
-            {
-                return NotFound();
-            }
-            var orderManagement = await _context.OrderManagements.FindAsync(id);
+        // //GET: v1/[controller]/OrderManagement/5
+        // [EnableCors("MyAllowAllOrigins")]
+        // [HttpGet("{id:int}")]
+        // public async Task<ActionResult<OrderManagement>> GetOrderManagement(int id)
+        // {
+        //     if (_context.OrderManagements == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //     var orderManagement = await _context.OrderManagements.FindAsync(id);
 
-            if (orderManagement == null)
-            {
-                return NotFound();
-            }
+        //     if (orderManagement == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            return orderManagement;
-        }
+        //     return orderManagement;
+        // }
 
 
         // PUT: v1/[controller]/OrderManagement/5
