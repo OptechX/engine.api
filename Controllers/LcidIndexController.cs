@@ -1,0 +1,124 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using api.engine_v2.Data;
+using api.engine_v2.Models.Shared;
+
+namespace api.engine_v2.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class LcidIndexController : ControllerBase
+    {
+        private readonly DefaultDbContext _context;
+
+        public LcidIndexController(DefaultDbContext context)
+        {
+            _context = context;
+        }
+
+        // GET: api/LcidIndex
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<LcidIndex>>> GetLcidIndices()
+        {
+          if (_context.LcidIndices == null)
+          {
+              return NotFound();
+          }
+            return await _context.LcidIndices.ToListAsync();
+        }
+
+        // GET: api/LcidIndex/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<LcidIndex>> GetLcidIndex(int id)
+        {
+          if (_context.LcidIndices == null)
+          {
+              return NotFound();
+          }
+            var lcidIndex = await _context.LcidIndices.FindAsync(id);
+
+            if (lcidIndex == null)
+            {
+                return NotFound();
+            }
+
+            return lcidIndex;
+        }
+
+        // PUT: api/LcidIndex/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutLcidIndex(int id, LcidIndex lcidIndex)
+        {
+            if (id != lcidIndex.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(lcidIndex).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!LcidIndexExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // POST: api/LcidIndex
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<LcidIndex>> PostLcidIndex(LcidIndex lcidIndex)
+        {
+          if (_context.LcidIndices == null)
+          {
+              return Problem("Entity set 'DefaultDbContext.LcidIndices'  is null.");
+          }
+            _context.LcidIndices.Add(lcidIndex);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetLcidIndex", new { id = lcidIndex.Id }, lcidIndex);
+        }
+
+        // DELETE: api/LcidIndex/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteLcidIndex(int id)
+        {
+            if (_context.LcidIndices == null)
+            {
+                return NotFound();
+            }
+            var lcidIndex = await _context.LcidIndices.FindAsync(id);
+            if (lcidIndex == null)
+            {
+                return NotFound();
+            }
+
+            _context.LcidIndices.Remove(lcidIndex);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        private bool LcidIndexExists(int id)
+        {
+            return (_context.LcidIndices?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+    }
+}
