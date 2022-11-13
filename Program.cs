@@ -1,7 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using api.engine_v2.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
 
 namespace api.engine_v2;
 
@@ -9,7 +8,22 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        // cors with endpoint routing
+        var MyAllowAllOrigins = "_myAllowAllOrigins";
+
         var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy(name: MyAllowAllOrigins,
+                                policy =>
+                                {
+                                    policy.AllowAnyOrigin()
+                                        .WithMethods("GET", "POST", "PUT", "DELETE", "GET")
+                                        .AllowAnyHeader()
+                                        .AllowAnyMethod();
+                                });
+        });
 
         // Add services to the container.
 
@@ -44,11 +58,20 @@ public class Program
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "OptechX API Engine v2");
+            });
         }
 
-        app.UseAuthorization();
+        // add static servce pages
+        app.UseDefaultFiles();
+        app.UseStaticFiles();
 
+        // enable CORS
+        app.UseCors();
+
+        app.UseAuthorization();
 
         app.MapControllers();
 
