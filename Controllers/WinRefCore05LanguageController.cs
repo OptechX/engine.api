@@ -120,6 +120,28 @@ namespace api.engine_v2.Controllers
         {
             return (_context.WinRefCore05Languages?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        // GET: v1/WinRefCore05Language/{release}/{edition}/{version}/{arch}
+        [HttpGet("{release}/{edition}/{version}/{arch}")]
+        public async Task<ActionResult<IEnumerable<WinRefCore05Language>>> GetWinRefCore05MultiSearch(
+            [FromRoute]string release,
+            [FromRoute]string edition,
+            [FromRoute]string version,
+            [FromRoute]string arch)
+        {
+            var results = _context.WinRefCore05Languages.Where(a => 
+                a.Release == release &&
+                a.Edition == edition &&
+                a.Version == version &&
+                a.Arch == arch);
+            
+            if (results.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await results.ToListAsync();
+        }
     }
 }
 
