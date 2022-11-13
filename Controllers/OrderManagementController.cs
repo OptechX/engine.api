@@ -42,34 +42,7 @@ namespace api.engine_v2.Controllers
 
             if (orderManagement == null)
             {
-                OrderManagement orderManagement1 = new OrderManagement
-                {
-                    Id = 0,
-                    UUID = Guid.Empty,
-                    AccountId = 0,
-                    OrderDate = String.Empty,
-                    OrderStatus = String.Empty,
-                    OrderName = String.Empty,
-                    DownloadLink = null,
-                    ImageOutputFormat = "WIM",
-                    NotificationEmailAddress = "no_order@found.com",
-                    ContinuousIntegration = false,
-                    ContinuousDelivery = false,
-                    Release = String.Empty,
-                    Edition = String.Empty,
-                    Version = String.Empty,
-                    Arch = String.Empty,
-                    Lcid = String.Empty,
-                    OptionalFeatureString = String.Empty,
-                    AppxPackagesString = String.Empty,
-                    WindowsDefaultAccount = "ThisIsNoUser123",
-                    WindowsDefaultPassword = "P@ssw0rd123",
-                    CustomRegistryKeys = new string[] { },
-                    ApplicationUID = new string[] { },
-                    DriversUID = new string[] { },
-                };
-
-                return orderManagement1;
+                return NotFound();
             }
 
             return orderManagement;
