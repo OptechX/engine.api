@@ -31,7 +31,7 @@ namespace api.engine_v2.Controllers
 
         // GET: v1//[controller]rderManagement/5
         //[EnableCors("MyAllowAllOrigins")]
-        [HttpGet("{id:int}")]
+        //[HttpGet("{id:int}")]
         //public async Task<ActionResult<OrderManagement>> GetOrderManagement(int id)
         //{
         //  if (_context.OrderManagements == null)
