@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
 using api.engine_v2.Models.Engine;
+using Stackoverflow.Answers.Helpers;
+using api.engine_v2.Models.Shared.Enums;
+using api.engine_v2.Models.Engine.Enums;
 
 namespace api.engine_v2.Controllers
 {
@@ -119,6 +117,139 @@ namespace api.engine_v2.Controllers
         private bool BaseImageExists(int id)
         {
             return (_context.BaseImages?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+
+        // GET: v1/BaseImage/release/{release}
+        [HttpGet("release/{release}")]
+        public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByRelease([FromRoute]string release)
+        {
+            var images = _context.BaseImages.Where(a => a.Release == release);
+            // var images = _context.BaseImages.Where(a => a.Release == EnumExtensions.GetValueFromEnumMember<WindowsRelease>(release));
+
+            if (images.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await images.ToListAsync();
+        }
+
+        // GET: v1/BaseImage/edition/{edition}
+        [HttpGet("edition/{edition}")]
+        public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByEdition([FromRoute]string edition)
+        {
+            var images = _context.BaseImages.Where(a => a.Edition.Contains(edition));
+            // var images = _context.BaseImages.Where(a => a.Edition == EnumExtensions.GetValueFromEnumMember<WindowsEdition>(edition));
+
+            if (images.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await images.ToListAsync();
+        }
+
+        // GET: v1/BaseImage/version/{version}
+        [HttpGet("version/{version}")]
+        public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByVersion([FromRoute]string version)
+        {
+            var images = _context.BaseImages.Where(a => a.Version == version);
+            // var images = _context.BaseImages.Where(a => a.Version == EnumExtensions.GetValueFromEnumMember<WindowsVersion>(version));
+
+            if (images.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await images.ToListAsync();
+        }
+
+        // GET: v1/BaseImage/cpuarch/{cpuarch}
+        [HttpGet("cpuarch/{cpuarch}")]
+        public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByCpuArch([FromRoute]string cpuarch)
+        {
+            var images = _context.BaseImages.Where(a => a.CpuArch == cpuarch);
+
+            if (images.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await images.ToListAsync();
+        }
+
+        // GET: v1/BaseImage/baseimagefiletype/{filetype}
+        [HttpGet("baseimagefiletype/{filetype}")]
+        public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByBaseImageFileType([FromRoute]string filetype)
+        {
+            var images = _context.BaseImages.Where(a => a.BaseImageFileType == EnumExtensions.GetValueFromEnumMember<BaseImageFileType>(filetype).ToString());
+
+            if (images.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await images.ToListAsync();
+        }
+
+        // GET: v1/BaseImage/windowslcid/{windowslcid}
+        [HttpGet("windowslcid/{windowslcid}")]
+        public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByWindowsLcid([FromRoute]string windowslcid)
+        {
+            var images = _context.BaseImages.Where(a => a.WindowsLcid.Contains(windowslcid));
+
+            if (images.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await images.ToListAsync();
+        }
+
+        // GET: v1/BaseImage/locale/{locale}
+        [HttpGet("locale/{locale}")]
+        public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByLocale([FromRoute]string locale)
+        {
+            var images = _context.BaseImages.Where(a => a.Locale == locale);
+            // var images = _context.BaseImages.Where(a => a.Locale == EnumExtensions.GetValueFromEnumMember<Locale>(locale));
+
+            if (images.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await images.ToListAsync();
+        }
+
+        // GET: v1/BaseImage/transfermethod/{method}
+        [HttpGet("transfermethod/{method}")]
+        public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByTransferMethod([FromRoute]string method)
+        {
+            var images = _context.BaseImages.Where(a => a.TransferMethod == EnumExtensions.GetValueFromEnumMember<TransferMethod>(method).ToString());
+
+            if (images.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await images.ToListAsync();
+        }
+
+        //GET: v1/BaseImage/multisearch/{release}/{edition}/{version}/{cpuarch}/{windowslcid}
+        [HttpGet("multisearch/{release}/{edition}/{version}/{cpuarch}/{windowslcid}")]
+        public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByMultiSearch([FromRoute]string release, string edition, string version, string cpuarch, string windowslcid)
+        {
+            var images = _context.BaseImages.Where(a =>
+                a.Release.Contains(release) &&
+                a.Edition.Contains(edition) &&
+                a.Version.Contains(version) &&
+                a.CpuArch == cpuarch &&
+                a.WindowsLcid.Contains(windowslcid));
+            if (images.Count() == 0)
+            {
+                return NotFound();
+            }
+            return await images.ToListAsync();
         }
     }
 }

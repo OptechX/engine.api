@@ -120,6 +120,134 @@ namespace api.engine_v2.Controllers
         {
             return (_context.AppxProvisionedPackages?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        // GET: v1/AppxProvisionedPackage/displayname/{displayName}
+        [HttpGet("displayname/{displayname}")]
+        public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageByDisplayName([FromRoute]string displayname)
+        {
+            var packages = _context.AppxProvisionedPackages.Where(a => a.DisplayName == displayname);
+    
+            if (packages.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await packages.ToListAsync();
+        }
+
+        // GET: v1/AppxProvisionedPackage/arch/{arch}
+        [HttpGet("arch/{arch}")]
+        public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageByArch([FromRoute]string arch)
+        {
+            var packages = _context.AppxProvisionedPackages.Where(a => a.Arch.Contains(arch));
+            
+            if (packages.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await packages.ToListAsync();
+        }
+
+        // GET: v1/AppxProvisionedPackage/lcid/{lcid}
+        [HttpGet("lcid/{lcid}")]
+        public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageByLcid([FromRoute]string lcid)
+        {
+            var packages = _context.AppxProvisionedPackages.Where(a => a.Lcid.Contains(lcid));
+            
+            if (packages.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await packages.ToListAsync();
+        }
+
+        // GET: v1/AppxProvisionedPackage/supportedwindowsversions/{supportedwindowsversion}
+        [HttpGet("supportedwindowsversions/{supportedwindowsversion}")]
+        public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageBySupportedWindowsVersion([FromRoute]string supportedwindowsversion)
+        {
+            var packages = _context.AppxProvisionedPackages.Where(a => a.SupportedWindowsVersions.Contains(supportedwindowsversion));
+            
+            if (packages.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await packages.ToListAsync();
+        }
+
+        // GET: v1/AppxProvisionedPackage/supportedwindowseditions/{supportedwindowsedition}
+        [HttpGet("supportedwindowseditions/{supportedwindowsedition}")]
+        public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageBySupportedWindowsEditions([FromRoute]string supportedwindowsedition)
+        {
+            var packages = _context.AppxProvisionedPackages.Where(a => a.SupportedWindowsEditions.Contains(supportedwindowsedition));
+            
+            if (packages.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await packages.ToListAsync();
+        }
+
+        // GET: v1/AppxProvisionedPackage/supportedwindowsreleases/{supportedwindowsrelease}
+        [HttpGet("supportedwindowsreleases/{supportedwindowsrelease}")]
+        public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageBySupportedWindowsReleases([FromRoute]string supportedwindowsrelease)
+        {
+            var packages = _context.AppxProvisionedPackages.Where(a => a.SupportedWindowsReleases.Contains(supportedwindowsrelease));
+            
+            if (packages.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await packages.ToListAsync();
+        }
+
+        // GET: v1/AppxProvisionedPackage/multisearch/{supportedwindowsversion}/{supportedwindowsedition}/{supportedwindowsrelease}
+        [HttpGet("multisearch/{supportedwindowsversion}/{supportedwindowsedition}/{supportedwindowsrelease}")]
+        public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageMultiSearch(
+            [FromRoute]string supportedwindowsversion,
+            [FromRoute]string supportedwindowsedition,
+            [FromRoute]string supportedwindowsrelease)
+        {
+            var packages = _context.AppxProvisionedPackages.Where(a => 
+                                a.SupportedWindowsVersions.Contains(supportedwindowsversion) &&
+                                a.SupportedWindowsEditions.Contains(supportedwindowsedition) &&
+                                a.SupportedWindowsReleases.Contains(supportedwindowsrelease)
+                            );
+            
+            if (packages.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await packages.ToListAsync();
+        }
+
+        // GET: v1/AppxProvisionedPackage/multiarchsearch/{version}/{edition}/{release}/{arch}
+        [HttpGet("multiarchsearch/{version}/{edition}/{release}/{arch}")]
+        public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageMultiArchSearch(
+            [FromRoute]string version,
+            [FromRoute]string edition,
+            [FromRoute]string release,
+            [FromRoute]string arch)
+        {
+            var packages = _context.AppxProvisionedPackages.Where(a => 
+                                a.SupportedWindowsVersions.Contains(version) &&
+                                a.SupportedWindowsEditions.Contains(edition) &&
+                                a.SupportedWindowsReleases.Contains(release) &&
+                                a.Arch.Contains(arch)
+                            );
+            
+            if (packages.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await packages.ToListAsync();
+        }
     }
 }
 
