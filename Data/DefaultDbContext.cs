@@ -18,7 +18,6 @@ namespace api.engine_v2.Data
         public DbSet<LcidIndex> LcidIndices { get; set; }
         public DbSet<Locale> locales { get; set; }
         public DbSet<LocaleIndex> LocaleIndices { get; set; }
-        //public DbSet<OriginalEquipmentManufacturer> OriginalEquipmentManufacturers { get; set; }
         public DbSet<PackageDetectionIndex> PackageDetectionIndices { get; set; }
         public DbSet<TransferMethodIndex> TransferMethodIndices { get; set; }
 
@@ -37,7 +36,7 @@ namespace api.engine_v2.Data
         public DbSet<ExecutableIndex> ExecutableIndices { get; set; }
         public DbSet<ExploitReport> ExploitReports { get; set; }
         public DbSet<OrderManagement> OrderManagements { get; set; }
-        public DbSet<OrderManagement5Items> OrderManagement5Items { get; set; }
+        //public DbSet<OrderManagement5Items> OrderManagement5Items { get; set; }
         public DbSet<OriginalEquipmentManufacturerContact> OriginalEquipmentManufacturerContacts { get; set; }
         public DbSet<RegistryKey> RegistryKeys { get; set; }
         public DbSet<UninstallProcessIndex> UninstallProcessIndices { get; set; }
