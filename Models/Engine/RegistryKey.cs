@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using api.engine_v2.Models.Engine.Enums;
-using Microsoft.Win32;
 
 namespace api.engine_v2.Models.Engine
 {
@@ -10,7 +9,7 @@ namespace api.engine_v2.Models.Engine
         [Key]
         public int Id { get; set; }
 
-        public RegistryHive RegistryHive { get; set; }
+        public Enums.RegistryHive RegistryHive { get; set; }
         public string Key { get; set; } = null!;
         public string Subkey { get; set; } = null!;
         public string ValueName { get; set; } = null!;

@@ -15,11 +15,12 @@ namespace api.engine_v2.Models.Engine
 
         [Required]
         public string OriginalEquipmentManufacturer { get; set; } = null!;
+
         public string Make { get; set; } = null!;
         public string Model { get; set; } = null!;
         public int? ProductionYear { get; set; }
-        public string[] CpuArch { get; set; } = null!;
-        public string[] WindowsOS { get; set; } = null!;
+        public string[] CpuArch { get; set; } = new string[] { };
+        public string[] WindowsOS { get; set; } = new string[] { };
 
         public DriverCore()
         {

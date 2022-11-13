@@ -28,6 +28,7 @@
     <None Remove="Models\Shared\" />
     <None Remove="Models\Shared\Enums\" />
     <None Remove="Models\Engine\Enums\" />
+    <None Remove="Newtonsoft.Json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
