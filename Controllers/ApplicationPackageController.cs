@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
 using api.engine_v2.Models.Engine;
 using api.engine_v2.Models.Shared.Enums;
+using api.engine_v2.Models.Engine.Enums;
 using Stackoverflow.Answers.Helpers;
 
 namespace api.engine_v2.Controllers
