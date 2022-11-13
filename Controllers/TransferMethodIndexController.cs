@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1TransferMethodIndex
+        // GET: v1/[controller]ransferMethodIndex
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TransferMethodIndex>>> GetTransferMethodIndices()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.TransferMethodIndices.ToListAsync();
         }
 
-        // GET: v1TransferMethodIndex/5
+        // GET: v1/[controller]ransferMethodIndex/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<TransferMethodIndex>> GetTransferMethodIndex(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return transferMethodIndex;
         }
 
-        // PUT: v1TransferMethodIndex/5
+        // PUT: v1/[controller]ransferMethodIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutTransferMethodIndex(int id, TransferMethodIndex transferMethodIndex)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1TransferMethodIndex
+        // POST: v1/[controller]ransferMethodIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<TransferMethodIndex>> PostTransferMethodIndex(TransferMethodIndex transferMethodIndex)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetTransferMethodIndex", new { id = transferMethodIndex.Id }, transferMethodIndex);
         }
 
-        // DELETE: v1TransferMethodIndex/5
+        // DELETE: v1/[controller]ransferMethodIndex/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteTransferMethodIndex(int id)
         {
@@ -122,5 +122,6 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 

@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1ExecutableIndex
+        // GET: v1/[controller]xecutableIndex
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ExecutableIndex>>> GetExecutableIndices()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.ExecutableIndices.ToListAsync();
         }
 
-        // GET: v1ExecutableIndex/5
+        // GET: v1/[controller]xecutableIndex/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<ExecutableIndex>> GetExecutableIndex(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return executableIndex;
         }
 
-        // PUT: v1ExecutableIndex/5
+        // PUT: v1/[controller]xecutableIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutExecutableIndex(int id, ExecutableIndex executableIndex)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1ExecutableIndex
+        // POST: v1/[controller]xecutableIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<ExecutableIndex>> PostExecutableIndex(ExecutableIndex executableIndex)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetExecutableIndex", new { id = executableIndex.Id }, executableIndex);
         }
 
-        // DELETE: v1ExecutableIndex/5
+        // DELETE: v1/[controller]xecutableIndex/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteExecutableIndex(int id)
         {
@@ -122,5 +122,6 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 

@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1Locale
+        // GET: v1/[controller]ocale
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Locale>>> Getlocales()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.locales.ToListAsync();
         }
 
-        // GET: v1Locale/5
+        // GET: v1/[controller]ocale/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Locale>> GetLocale(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return locale;
         }
 
-        // PUT: v1Locale/5
+        // PUT: v1/[controller]ocale/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutLocale(int id, Locale locale)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1Locale
+        // POST: v1/[controller]ocale
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Locale>> PostLocale(Locale locale)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetLocale", new { id = locale.Id }, locale);
         }
 
-        // DELETE: v1Locale/5
+        // DELETE: v1/[controller]ocale/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteLocale(int id)
         {
@@ -122,5 +122,6 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 

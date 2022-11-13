@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1OriginalEquipmentManufacturerContact
+        // GET: v1/[controller]riginalEquipmentManufacturerContact
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OriginalEquipmentManufacturerContact>>> GetOriginalEquipmentManufacturerContacts()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.OriginalEquipmentManufacturerContacts.ToListAsync();
         }
 
-        // GET: v1OriginalEquipmentManufacturerContact/5
+        // GET: v1/[controller]riginalEquipmentManufacturerContact/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<OriginalEquipmentManufacturerContact>> GetOriginalEquipmentManufacturerContact(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return originalEquipmentManufacturerContact;
         }
 
-        // PUT: v1OriginalEquipmentManufacturerContact/5
+        // PUT: v1/[controller]riginalEquipmentManufacturerContact/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutOriginalEquipmentManufacturerContact(int id, OriginalEquipmentManufacturerContact originalEquipmentManufacturerContact)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1OriginalEquipmentManufacturerContact
+        // POST: v1/[controller]riginalEquipmentManufacturerContact
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<OriginalEquipmentManufacturerContact>> PostOriginalEquipmentManufacturerContact(OriginalEquipmentManufacturerContact originalEquipmentManufacturerContact)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetOriginalEquipmentManufacturerContact", new { id = originalEquipmentManufacturerContact.Id }, originalEquipmentManufacturerContact);
         }
 
-        // DELETE: v1OriginalEquipmentManufacturerContact/5
+        // DELETE: v1/[controller]riginalEquipmentManufacturerContact/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteOriginalEquipmentManufacturerContact(int id)
         {
@@ -122,5 +122,6 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 

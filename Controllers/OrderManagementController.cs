@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1OrderManagement
+        // GET: v1/[controller]rderManagement
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagements()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.OrderManagements.ToListAsync();
         }
 
-        // GET: v1OrderManagement/5
+        // GET: v1/[controller]rderManagement/5
         //[HttpGet("{id:int}")]
         //public async Task<ActionResult<OrderManagement>> GetOrderManagement(int id)
         //{
@@ -91,7 +91,7 @@ namespace api.engine_v2.Controllers
             return OrderManagement;
         }
 
-        // PUT: v1OrderManagement/5
+        // PUT: v1/[controller]rderManagement/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutOrderManagement(int id, OrderManagement orderManagement)
@@ -122,7 +122,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1OrderManagement
+        // POST: v1/[controller]rderManagement
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<OrderManagement>> PostOrderManagement(OrderManagement orderManagement)
@@ -137,7 +137,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetOrderManagement", new { id = orderManagement.Id }, orderManagement);
         }
 
-        // DELETE: v1OrderManagement/5
+        // DELETE: v1/[controller]rderManagement/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteOrderManagement(int id)
         {
@@ -507,5 +507,6 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 

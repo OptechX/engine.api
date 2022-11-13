@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1LocaleIndex
+        // GET: v1/[controller]ocaleIndex
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LocaleIndex>>> GetLocaleIndices()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.LocaleIndices.ToListAsync();
         }
 
-        // GET: v1LocaleIndex/5
+        // GET: v1/[controller]ocaleIndex/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<LocaleIndex>> GetLocaleIndex(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return localeIndex;
         }
 
-        // PUT: v1LocaleIndex/5
+        // PUT: v1/[controller]ocaleIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutLocaleIndex(int id, LocaleIndex localeIndex)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1LocaleIndex
+        // POST: v1/[controller]ocaleIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<LocaleIndex>> PostLocaleIndex(LocaleIndex localeIndex)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetLocaleIndex", new { id = localeIndex.Id }, localeIndex);
         }
 
-        // DELETE: v1LocaleIndex/5
+        // DELETE: v1/[controller]ocaleIndex/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteLocaleIndex(int id)
         {
@@ -122,5 +122,6 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 

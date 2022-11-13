@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1NewsUpdates
+        // GET: v1/[controller]ewsUpdates
         [HttpGet]
         public async Task<ActionResult<IEnumerable<NewsUpdate>>> GetNewsUpdates()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.NewsUpdates.ToListAsync();
         }
 
-        // GET: v1NewsUpdates/5
+        // GET: v1/[controller]ewsUpdates/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<NewsUpdate>> GetNewsUpdate(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return newsUpdate;
         }
 
-        // PUT: v1NewsUpdates/5
+        // PUT: v1/[controller]ewsUpdates/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutNewsUpdate(int id, NewsUpdate newsUpdate)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1NewsUpdates
+        // POST: v1/[controller]ewsUpdates
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<NewsUpdate>> PostNewsUpdate(NewsUpdate newsUpdate)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetNewsUpdate", new { id = newsUpdate.Id }, newsUpdate);
         }
 
-        // DELETE: v1NewsUpdates/5
+        // DELETE: v1/[controller]ewsUpdates/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteNewsUpdate(int id)
         {
@@ -122,5 +122,6 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 

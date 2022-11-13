@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1LcidIndex
+        // GET: v1/[controller]cidIndex
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LcidIndex>>> GetLcidIndices()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.LcidIndices.ToListAsync();
         }
 
-        // GET: v1LcidIndex/5
+        // GET: v1/[controller]cidIndex/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<LcidIndex>> GetLcidIndex(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return lcidIndex;
         }
 
-        // PUT: v1LcidIndex/5
+        // PUT: v1/[controller]cidIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutLcidIndex(int id, LcidIndex lcidIndex)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1LcidIndex
+        // POST: v1/[controller]cidIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<LcidIndex>> PostLcidIndex(LcidIndex lcidIndex)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetLcidIndex", new { id = lcidIndex.Id }, lcidIndex);
         }
 
-        // DELETE: v1LcidIndex/5
+        // DELETE: v1/[controller]cidIndex/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteLcidIndex(int id)
         {
@@ -122,5 +122,6 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 

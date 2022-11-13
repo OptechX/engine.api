@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1CountryIndex
+        // GET: v1/[controller]ountryIndex
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CountryIndex>>> GetCountryIndices()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.CountryIndices.ToListAsync();
         }
 
-        // GET: v1CountryIndex/5
+        // GET: v1/[controller]ountryIndex/5
         [HttpGet("{id:int}")]
         public async Task<ActionResult<CountryIndex>> GetCountryIndex(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return countryIndex;
         }
 
-        // PUT: v1CountryIndex/5
+        // PUT: v1/[controller]ountryIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutCountryIndex(int id, CountryIndex countryIndex)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1CountryIndex
+        // POST: v1/[controller]ountryIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<CountryIndex>> PostCountryIndex(CountryIndex countryIndex)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetCountryIndex", new { id = countryIndex.Id }, countryIndex);
         }
 
-        // DELETE: v1CountryIndex/5
+        // DELETE: v1/[controller]ountryIndex/5
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteCountryIndex(int id)
         {
@@ -122,5 +122,6 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
