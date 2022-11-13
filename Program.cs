@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using api.engine_v2.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -18,7 +19,14 @@ public class Program
         builder.Services.AddSwaggerGen();
 
         // SQL Connection
-        //builder.Services.AddDbContext<"DefaultDbContext">
+        builder.Services.AddDbContext<DefaultDbContext>(options =>
+        {
+            options
+                .UseNpgsql(builder.Configuration.GetConnectionString("DefaultDbContext"))
+                .UseSnakeCaseNamingConvention()
+                .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
+                .EnableSensitiveDataLogging();
+        });
 
         // serialize enums as strings in api responses (e.g. Role) (ref: https://stackoverflow.com/a/72155642/15157918)
         builder.Services.AddControllers().AddJsonOptions(options =>
