@@ -31,9 +31,8 @@ namespace api.enginev2.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ApplicationCategory")
-                        .IsRequired()
-                        .HasColumnType("text")
+                    b.Property<int>("ApplicationCategory")
+                        .HasColumnType("integer")
                         .HasColumnName("application_category");
 
                     b.Property<string>("Copyright")

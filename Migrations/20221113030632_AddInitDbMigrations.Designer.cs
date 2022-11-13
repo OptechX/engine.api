@@ -12,8 +12,8 @@ using api.engine_v2.Data;
 namespace api.enginev2.Migrations
 {
     [DbContext(typeof(DefaultDbContext))]
-    [Migration("20221113013449_AddLookupTables")]
-    partial class AddLookupTables
+    [Migration("20221113030632_AddInitDbMigrations")]
+    partial class AddInitDbMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,9 +34,8 @@ namespace api.enginev2.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ApplicationCategory")
-                        .IsRequired()
-                        .HasColumnType("text")
+                    b.Property<int>("ApplicationCategory")
+                        .HasColumnType("integer")
                         .HasColumnName("application_category");
 
                     b.Property<string>("Copyright")

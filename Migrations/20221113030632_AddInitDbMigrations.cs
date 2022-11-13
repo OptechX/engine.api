@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace api.enginev2.Migrations
 {
     /// <inheritdoc />
-    public partial class AddLookupTables : Migration
+    public partial class AddInitDbMigrations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -78,7 +78,7 @@ namespace api.enginev2.Migrations
                     uuid = table.Column<Guid>(type: "uuid", nullable: true),
                     uid = table.Column<string>(type: "text", nullable: false),
                     lastupdate = table.Column<string>(name: "last_update", type: "text", nullable: false),
-                    applicationcategory = table.Column<string>(name: "application_category", type: "text", nullable: false),
+                    applicationcategory = table.Column<int>(name: "application_category", type: "integer", nullable: false),
                     publisher = table.Column<string>(type: "text", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
                     version = table.Column<string>(type: "text", nullable: false),
