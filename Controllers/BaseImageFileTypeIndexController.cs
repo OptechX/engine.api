@@ -33,7 +33,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1BaseImageFileTypeIndex/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<BaseImageFileTypeIndex>> GetBaseImageFileTypeIndex(int id)
         {
           if (_context.BaseImageFileTypeIndices == null)
@@ -52,7 +52,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1BaseImageFileTypeIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutBaseImageFileTypeIndex(int id, BaseImageFileTypeIndex baseImageFileTypeIndex)
         {
             if (id != baseImageFileTypeIndex.Id)
@@ -97,7 +97,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1BaseImageFileTypeIndex/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteBaseImageFileTypeIndex(int id)
         {
             if (_context.BaseImageFileTypeIndices == null)
@@ -122,4 +122,5 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 

@@ -33,7 +33,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1WindowsCoreIdentity/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<WindowsCoreIdentity>> GetWindowsCoreIdentity(int id)
         {
           if (_context.WindowsCoreIdentities == null)
@@ -52,7 +52,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1WindowsCoreIdentity/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWindowsCoreIdentity(int id, WindowsCoreIdentity windowsCoreIdentity)
         {
             if (id != windowsCoreIdentity.Id)
@@ -97,7 +97,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1WindowsCoreIdentity/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWindowsCoreIdentity(int id)
         {
             if (_context.WindowsCoreIdentities == null)
@@ -122,4 +122,5 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 

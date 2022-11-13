@@ -33,7 +33,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1PackageDetectionIndex/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<PackageDetectionIndex>> GetPackageDetectionIndex(int id)
         {
           if (_context.PackageDetectionIndices == null)
@@ -52,7 +52,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1PackageDetectionIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutPackageDetectionIndex(int id, PackageDetectionIndex packageDetectionIndex)
         {
             if (id != packageDetectionIndex.Id)
@@ -97,7 +97,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1PackageDetectionIndex/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeletePackageDetectionIndex(int id)
         {
             if (_context.PackageDetectionIndices == null)
@@ -122,4 +122,5 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 

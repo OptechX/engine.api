@@ -33,7 +33,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1UninstallProcessIndex/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<UninstallProcessIndex>> GetUninstallProcessIndex(int id)
         {
           if (_context.UninstallProcessIndices == null)
@@ -52,7 +52,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1UninstallProcessIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutUninstallProcessIndex(int id, UninstallProcessIndex uninstallProcessIndex)
         {
             if (id != uninstallProcessIndex.Id)
@@ -97,7 +97,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1UninstallProcessIndex/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteUninstallProcessIndex(int id)
         {
             if (_context.UninstallProcessIndices == null)
@@ -122,4 +122,5 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 

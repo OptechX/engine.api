@@ -33,7 +33,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1WinRefCore04Arch/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<WinRefCore04Arch>> GetWinRefCore04Arch(int id)
         {
           if (_context.WinRefCore04Arches == null)
@@ -52,7 +52,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1WinRefCore04Arch/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWinRefCore04Arch(int id, WinRefCore04Arch winRefCore04Arch)
         {
             if (id != winRefCore04Arch.Id)
@@ -97,7 +97,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1WinRefCore04Arch/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWinRefCore04Arch(int id)
         {
             if (_context.WinRefCore04Arches == null)
@@ -122,4 +122,5 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 

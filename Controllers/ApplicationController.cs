@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
 using api.engine_v2.Models.Engine;
+using Stackoverflow.Answers.Helpers;
+using api.engine_v2.Models.Engine.Enums;
 
 namespace api.engine_v2.Controllers
 {
@@ -33,7 +30,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1Application/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<Application>> GetApplication(int id)
         {
           if (_context.Applications == null)
@@ -52,7 +49,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1Application/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutApplication(int id, Application application)
         {
             if (id != application.Id)
@@ -97,7 +94,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1Application/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteApplication(int id)
         {
             if (_context.Applications == null)
@@ -120,6 +117,112 @@ namespace api.engine_v2.Controllers
         {
             return (_context.Applications?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        // GET: v1/application/uid/{uid}
+        [HttpGet("uid/{uid}")]
+        public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByUid([FromRoute] string uid)
+        {
+            //var applications = _context.Applications.Where(a => a.UID.Contains(uid));  //<- partial match
+            var applications = _context.Applications.Where(a => a.UID == uid);           //<- exact match
+
+            if (applications.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await applications.ToListAsync();
+        }
+
+
+        // GET: v1/application/applicationcategory/{category}
+        [HttpGet("category/{category}")]
+        public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByCategory([FromRoute] string category)
+        {
+            //var applications = _context.Applications.Where(a => a.CpuArchId.Contains(cpuarchid));  //<- partial match
+            //var applications = _context.Applications.Where(a => a.ApplicationCategory.ToString() == category);  //<- exact match
+
+            var applications = _context.Applications.Where(a => a.ApplicationCategory == EnumExtensions.GetValueFromEnumMember<ApplicationCategory>(category));
+
+            if (applications.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await applications.ToListAsync();
+        }
+
+        // GET: v1/application/publisher/{publisher}
+        [HttpGet("publisher/{publisher}")]
+        public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByPublisher([FromRoute] string publisher)
+        {
+            var applications = _context.Applications.Where(a => a.Publisher.Contains(publisher));  //<- partial match
+            //var applications = _context.Applications.Where(a => a.Publisher == publisher);       //<- exact match
+
+            if (applications.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await applications.ToListAsync();
+        }
+
+        // GET: v1/application/name/{name}
+        [HttpGet("name/{name}")]
+        public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByName([FromRoute] string name)
+        {
+            var applications = _context.Applications.Where(a => a.Name.Contains(name));  //<- partial match
+            //var applications = _context.Applications.Where(a => a.Name == name);       //<- exact match
+
+            if (applications.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await applications.ToListAsync();
+        }
+
+        // GET: v1/application/cpuarch/{cpuarch}
+        [HttpGet("arch/{arch}")]
+        public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByCpuArch([FromRoute] string arch)
+        {
+            var applications = _context.Applications.Where(a => a.CpuArch.Contains(arch));
+
+            if (applications.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await applications.ToListAsync();
+        }
+
+        // GET: v1/application/lcid/{lcid}
+        [HttpGet("lcid/{lcid}")]
+        public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByLcid([FromRoute] string lcid)
+        {
+            var applications = _context.Applications.Where(a => a.Lcid.Contains(lcid));
+
+            if (applications.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await applications.ToListAsync();
+        }
+
+        // GET: v1/application/tags/{tags}
+        [HttpGet("tags/{tag}")]
+        public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByTags([FromRoute] string tag)
+        {
+            var applications = _context.Applications.Where(a => a.Tags.Contains(tag.ToLower()));
+
+            if (applications.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await applications.ToListAsync();
+        }
     }
 }
+
 

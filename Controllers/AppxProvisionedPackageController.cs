@@ -33,7 +33,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1AppxProvisionedPackage/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<AppxProvisionedPackage>> GetAppxProvisionedPackage(int id)
         {
           if (_context.AppxProvisionedPackages == null)
@@ -52,7 +52,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1AppxProvisionedPackage/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutAppxProvisionedPackage(int id, AppxProvisionedPackage appxProvisionedPackage)
         {
             if (id != appxProvisionedPackage.Id)
@@ -97,7 +97,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1AppxProvisionedPackage/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteAppxProvisionedPackage(int id)
         {
             if (_context.AppxProvisionedPackages == null)
@@ -122,4 +122,5 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 

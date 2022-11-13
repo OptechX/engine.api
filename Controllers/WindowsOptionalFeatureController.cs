@@ -33,7 +33,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1WindowsOptionalFeature/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<WindowsOptionalFeature>> GetWindowsOptionalFeature(int id)
         {
           if (_context.WindowsOptionalFeatures == null)
@@ -52,7 +52,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1WindowsOptionalFeature/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWindowsOptionalFeature(int id, WindowsOptionalFeature windowsOptionalFeature)
         {
             if (id != windowsOptionalFeature.Id)
@@ -97,7 +97,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1WindowsOptionalFeature/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWindowsOptionalFeature(int id)
         {
             if (_context.WindowsOptionalFeatures == null)
@@ -122,4 +122,5 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 

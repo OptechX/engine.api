@@ -29,6 +29,7 @@
     <None Remove="Models\Shared\Enums\" />
     <None Remove="Models\Engine\Enums\" />
     <None Remove="Newtonsoft.Json" />
+    <None Remove="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -38,5 +39,6 @@
     <Folder Include="Models\Shared\" />
     <Folder Include="Models\Shared\Enums\" />
     <Folder Include="Models\Engine\Enums\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
 </Project>

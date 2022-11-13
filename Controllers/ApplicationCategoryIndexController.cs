@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -33,7 +28,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/ApplicationCategoryIndex/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<ApplicationCategoryIndex>> GetApplicationCategoryIndex(int id)
         {
           if (_context.ApplicationCategoryIndices == null)
@@ -52,7 +47,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1/ApplicationCategoryIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutApplicationCategoryIndex(int id, ApplicationCategoryIndex applicationCategoryIndex)
         {
             if (id != applicationCategoryIndex.Id)
@@ -97,7 +92,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1/ApplicationCategoryIndex/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteApplicationCategoryIndex(int id)
         {
             if (_context.ApplicationCategoryIndices == null)
@@ -122,5 +117,6 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
