@@ -17,7 +17,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: v1//[controller]rderManagement
+        // GET: v1/[controller]/OrderManagement
         [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagements()
@@ -29,45 +29,30 @@ namespace api.engine_v2.Controllers
             return await _context.OrderManagements.ToListAsync();
         }
 
-        // GET: v1//[controller]rderManagement/5
-        //[EnableCors("MyAllowAllOrigins")]
-        //[HttpGet("{id:int}")]
-        //public async Task<ActionResult<OrderManagement>> GetOrderManagement(int id)
-        //{
-        //  if (_context.OrderManagements == null)
-        //  {
-        //      return NotFound();
-        //  }
-        //    var orderManagement = await _context.OrderManagements.FindAsync(id);
-
-        //    if (orderManagement == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return orderManagement;
-        //}
-
-        // GET: v1//OrderManagement/5
+        //GET: v1/[controller]/OrderManagement/5
         [EnableCors("MyAllowAllOrigins")]
         [HttpGet("{id:int}")]
         public async Task<ActionResult<OrderManagement>> GetOrderManagement(int id)
         {
-            var OrderManagement = await _context.OrderManagements.FindAsync(id);
-
-            if (OrderManagement == null)
+            if (_context.OrderManagements == null)
             {
-                var result = new OrderManagement
+                return NotFound();
+            }
+            var orderManagement = await _context.OrderManagements.FindAsync(id);
+
+            if (orderManagement == null)
+            {
+                OrderManagement orderManagement1 = new OrderManagement
                 {
                     Id = 0,
                     UUID = Guid.Empty,
                     AccountId = 0,
                     OrderDate = String.Empty,
-                    OrderStatus = "Deleted",
-                    OrderName = "Not Found",
+                    OrderStatus = String.Empty,
+                    OrderName = String.Empty,
                     DownloadLink = null,
-                    ImageOutputFormat = String.Empty,
-                    NotificationEmailAddress = String.Empty,
+                    ImageOutputFormat = "WIM",
+                    NotificationEmailAddress = "no_order@found.com",
                     ContinuousIntegration = false,
                     ContinuousDelivery = false,
                     Release = String.Empty,
@@ -77,20 +62,21 @@ namespace api.engine_v2.Controllers
                     Lcid = String.Empty,
                     OptionalFeatureString = String.Empty,
                     AppxPackagesString = String.Empty,
-                    WindowsDefaultAccount = String.Empty,
-                    WindowsDefaultPassword = "xxxxxxxx",
+                    WindowsDefaultAccount = "ThisIsNoUser123",
+                    WindowsDefaultPassword = "P@ssw0rd123",
                     CustomRegistryKeys = new string[] { },
                     ApplicationUID = new string[] { },
-                    DriversUID = new string[] { }
+                    DriversUID = new string[] { },
                 };
 
-                return result;
+                return orderManagement1;
             }
 
-            return OrderManagement;
+            return orderManagement;
         }
 
-        // PUT: v1//[controller]rderManagement/5
+
+        // PUT: v1/[controller]/OrderManagement/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [EnableCors("MyAllowAllOrigins")]
         [HttpPut("{id:int}")]
@@ -122,7 +108,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: v1//[controller]rderManagement
+        // POST: v1/[controller]/OrderManagement
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
@@ -138,7 +124,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetOrderManagement", new { id = orderManagement.Id }, orderManagement);
         }
 
-        // DELETE: v1//[controller]rderManagement/5
+        // DELETE: v1/[controller]/OrderManagement/5
         [EnableCors("MyAllowAllOrigins")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteOrderManagement(int id)
