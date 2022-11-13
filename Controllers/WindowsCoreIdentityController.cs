@@ -31,7 +31,7 @@ namespace api.engine_v2.Controllers
 
         // // GET: v1/WindowsCoreIdentity/5
         // [EnableCors("MyAllowAllOrigins")]
-        [HttpGet("{id:int}")]
+        //[HttpGet("{id:int}")]
         // public async Task<ActionResult<WindowsCoreIdentity>> GetWindowsCoreIdentity(int id)
         // {
         //   if (_context.WindowsCoreIdentities == null)
