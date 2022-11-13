@@ -11,6 +11,8 @@ autom4te.cache/
 tarballs/
 test-results/
 
+.github/workflows/publish.yml
+
 # Mac bundle stuff
 *.dmg
 *.app
