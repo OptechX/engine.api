@@ -17,7 +17,7 @@ namespace api.engine_v2.Models.Engine
         public string LastUpdate { get; set; } = String.Empty;
 
         [Required]
-        public string ApplicationCategory { get; set; } = null!;
+        public Enums.ApplicationCategory ApplicationCategory { get; set; }
 
         [Required]
         public string Publisher { get; set; } = null!;

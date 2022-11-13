@@ -15,7 +15,7 @@ namespace api.engine_v2.Models.Engine
         public string? LastUpdate { get; set; }  // yyyyMMdd
 
         [Required]
-        public string Version { get; set; }
+        public string Version { get; set; } = null!;
         public bool RebootRequired { get; set; } = false;
 
         [Required]
