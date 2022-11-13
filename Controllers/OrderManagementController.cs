@@ -29,24 +29,51 @@ namespace api.engine_v2.Controllers
             return await _context.OrderManagements.ToListAsync();
         }
 
-        // //GET: v1/[controller]/OrderManagement/5
-        // [EnableCors("MyAllowAllOrigins")]
-        // [HttpGet("{id:int}")]
-        // public async Task<ActionResult<OrderManagement>> GetOrderManagement(int id)
-        // {
-        //     if (_context.OrderManagements == null)
-        //     {
-        //         return NotFound();
-        //     }
-        //     var orderManagement = await _context.OrderManagements.FindAsync(id);
+        //GET: v1/[controller]/OrderManagement/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<OrderManagement>> GetOrderManagement(int id)
+        {
+            if (_context.OrderManagements == null)
+            {
+                return NotFound();
+            }
+            var orderManagement = await _context.OrderManagements.FindAsync(id);
 
-        //     if (orderManagement == null)
-        //     {
-        //         return NotFound();
-        //     }
+            if (orderManagement == null)
+            {
+                OrderManagement orderManagement1 = new OrderManagement
+                {
+                    Id = 0,
+                    UUID = Guid.Empty,
+                    AccountId = 0,
+                    OrderDate = String.Empty,
+                    OrderStatus = String.Empty,
+                    OrderName = String.Empty,
+                    DownloadLink = null,
+                    ImageOutputFormat = "WIM",
+                    NotificationEmailAddress = "no_order@found.com",
+                    ContinuousIntegration = false,
+                    ContinuousDelivery = false,
+                    Release = String.Empty,
+                    Edition = String.Empty,
+                    Version = String.Empty,
+                    Arch = String.Empty,
+                    Lcid = String.Empty,
+                    OptionalFeatureString = String.Empty,
+                    AppxPackagesString = String.Empty,
+                    WindowsDefaultAccount = "ThisIsNoUser123",
+                    WindowsDefaultPassword = "P@ssw0rd123",
+                    CustomRegistryKeys = new string[] { },
+                    ApplicationUID = new string[] { },
+                    DriversUID = new string[] { },
+                };
 
-        //     return orderManagement;
-        // }
+                return orderManagement1;
+            }
+
+            return orderManagement;
+        }
 
 
         // PUT: v1/[controller]/OrderManagement/5
