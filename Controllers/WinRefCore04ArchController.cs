@@ -120,6 +120,26 @@ namespace api.engine_v2.Controllers
         {
             return (_context.WinRefCore04Arches?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        // GET: v1/WinRefCore04Arch/{release}/{edition}/{version}
+        [HttpGet("{release}/{edition}/{version}")]
+        public async Task<ActionResult<IEnumerable<WinRefCore04Arch>>> GetWinRefCore04ArchIndexSearch(
+            [FromRoute]string release,
+            [FromRoute]string edition,
+            [FromRoute]string version)
+        {
+            var results = _context.WinRefCore04Arches.Where(a => 
+                a.Release == release &&
+                a.Edition == edition &&
+                a.Version == version);
+            
+            if (results.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await results.ToListAsync();
+        }
     }
 }
 
