@@ -120,6 +120,21 @@ namespace api.engine_v2.Controllers
         {
             return (_context.WinRefCore02Editions?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        // GET: v1/WinRefCore02Edition/{release}
+        [HttpGet("{release}")]
+        public async Task<ActionResult<IEnumerable<WinRefCore02Edition>>> GetWinRefCore02EditionsIndexSearch(
+            [FromRoute]string release)
+        {
+            var results = _context.WinRefCore02Editions.Where(a => a.Release == release);
+            
+            if (results.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await results.ToListAsync();
+        }
     }
 }
 
