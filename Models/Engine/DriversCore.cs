@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace api.engine_v2.Models.Engine
 {
-    public class DriverCore
+    public class DriversCore
     {
         [Key]
         public int Id { get; set; }
@@ -22,7 +22,7 @@ namespace api.engine_v2.Models.Engine
         public string[] CpuArch { get; set; } = new string[] { };
         public string[] WindowsOS { get; set; } = new string[] { };
 
-        public DriverCore()
+        public DriversCore()
         {
             this.UUID = Guid.NewGuid();
             this.ProductionYear = 1900;

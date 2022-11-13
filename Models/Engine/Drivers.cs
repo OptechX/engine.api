@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace api.engine_v2.Models.Engine
 {
-    public class Driver
+    public class Drivers
     {
         [Key]
         public int Id { get; set; }
@@ -21,7 +21,7 @@ namespace api.engine_v2.Models.Engine
         public string? CspVersion { get; set; } = String.Empty;  // used for Lenovo only
         public string? CspName { get; set; } = String.Empty;  // used for Lenovo only
 
-        public string Version { get; set; } = null!;  // current driver package version
+        public string Version { get; set; } = null!;  // current Drivers package version
         public string BiosVersion { get; set; } = null!;  // current BIOS version
 
         public int? ProductionYear { get; set; }   // when was the PC introduced to market?
@@ -59,7 +59,7 @@ namespace api.engine_v2.Models.Engine
 
         public string? Notes { get; set; } = String.Empty;
 
-        public Driver()
+        public Drivers()
         {
             this.UUID = Guid.NewGuid();
             this.ProductionYear = 1900;

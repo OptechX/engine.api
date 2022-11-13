@@ -12,55 +12,55 @@ namespace api.engine_v2.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DriverCoreController : ControllerBase
+    public class DriversController : ControllerBase
     {
         private readonly DefaultDbContext _context;
 
-        public DriverCoreController(DefaultDbContext context)
+        public DriversController(DefaultDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/DriverCore
+        // GET: api/Drivers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DriverCore>>> GetDriverCores()
+        public async Task<ActionResult<IEnumerable<Drivers>>> GetDrivers()
         {
-          if (_context.DriverCores == null)
+          if (_context.Drivers == null)
           {
               return NotFound();
           }
-            return await _context.DriverCores.ToListAsync();
+            return await _context.Drivers.ToListAsync();
         }
 
-        // GET: api/DriverCore/5
+        // GET: api/Drivers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<DriverCore>> GetDriverCore(int id)
+        public async Task<ActionResult<Drivers>> GetDrivers(int id)
         {
-          if (_context.DriverCores == null)
+          if (_context.Drivers == null)
           {
               return NotFound();
           }
-            var driverCore = await _context.DriverCores.FindAsync(id);
+            var drivers = await _context.Drivers.FindAsync(id);
 
-            if (driverCore == null)
+            if (drivers == null)
             {
                 return NotFound();
             }
 
-            return driverCore;
+            return drivers;
         }
 
-        // PUT: api/DriverCore/5
+        // PUT: api/Drivers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDriverCore(int id, DriverCore driverCore)
+        public async Task<IActionResult> PutDrivers(int id, Drivers drivers)
         {
-            if (id != driverCore.Id)
+            if (id != drivers.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(driverCore).State = EntityState.Modified;
+            _context.Entry(drivers).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace api.engine_v2.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DriverCoreExists(id))
+                if (!DriversExists(id))
                 {
                     return NotFound();
                 }
@@ -81,44 +81,44 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/DriverCore
+        // POST: api/Drivers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<DriverCore>> PostDriverCore(DriverCore driverCore)
+        public async Task<ActionResult<Drivers>> PostDrivers(Drivers drivers)
         {
-          if (_context.DriverCores == null)
+          if (_context.Drivers == null)
           {
-              return Problem("Entity set 'DefaultDbContext.DriverCores'  is null.");
+              return Problem("Entity set 'DefaultDbContext.Drivers'  is null.");
           }
-            _context.DriverCores.Add(driverCore);
+            _context.Drivers.Add(drivers);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDriverCore", new { id = driverCore.Id }, driverCore);
+            return CreatedAtAction("GetDrivers", new { id = drivers.Id }, drivers);
         }
 
-        // DELETE: api/DriverCore/5
+        // DELETE: api/Drivers/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDriverCore(int id)
+        public async Task<IActionResult> DeleteDrivers(int id)
         {
-            if (_context.DriverCores == null)
+            if (_context.Drivers == null)
             {
                 return NotFound();
             }
-            var driverCore = await _context.DriverCores.FindAsync(id);
-            if (driverCore == null)
+            var drivers = await _context.Drivers.FindAsync(id);
+            if (drivers == null)
             {
                 return NotFound();
             }
 
-            _context.DriverCores.Remove(driverCore);
+            _context.Drivers.Remove(drivers);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool DriverCoreExists(int id)
+        private bool DriversExists(int id)
         {
-            return (_context.DriverCores?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Drivers?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

@@ -31,8 +31,8 @@ namespace api.engine_v2.Data
         public DbSet<AppxProvisionedPackage> AppxProvisionedPackages { get; set; }
         public DbSet<BaseImage> BaseImages { get; set; }
         public DbSet<BaseImageFileTypeIndex> BaseImageFileTypeIndices { get; set; }
-        public DbSet<Driver> Drivers { get; set; }
-        public DbSet<DriverCore> DriverCores { get; set; }
+        public DbSet<Drivers> Drivers { get; set; }
+        public DbSet<DriversCore> DriverCores { get; set; }
         public DbSet<ExecutableIndex> ExecutableIndices { get; set; }
         public DbSet<ExploitReport> ExploitReports { get; set; }
         public DbSet<OrderManagement> OrderManagements { get; set; }
