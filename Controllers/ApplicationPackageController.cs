@@ -115,6 +115,105 @@ namespace api.engine_v2.Controllers
         {
             return (_context.ApplicationPackages?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        // GET: v1/ApplicationPackage/uid/{uid}
+        [HttpGet("uid/{uid}")]
+        public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByUid([FromRoute] string uid)
+        {
+            var applications = _context.ApplicationPackages.Where(a => a.UID == uid);
+
+            if (applications.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await applications.ToListAsync();
+        }
+
+        // GET: v1/ApplicationPackage/uid/{uid}
+        [HttpGet("uuid/{uuid}")]
+        public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByUuid([FromRoute] string uuid)
+        {
+            var applications = _context.ApplicationPackages.Where(a => a.UUID.ToString() == uuid);
+
+            if (applications.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await applications.ToListAsync();
+        }
+
+        // GET: v1/ApplicationPackage/rebootrequired/{rebootrequired}
+        [HttpGet("rebootrequired/{rebootrequired}")]
+        public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByRebootRequired([FromRoute] bool rebootrequired)
+        {
+            var applications = _context.ApplicationPackages.Where(a => a.RebootRequired == rebootrequired);
+
+            if (applications.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await applications.ToListAsync();
+        }
+
+        // GET: v1/ApplicationPackage/lcid/{lcid}
+        [HttpGet("lcid/{lcid}")]
+        public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByLcid([FromRoute] string lcid)
+        {
+            var applications = _context.ApplicationPackages.Where(a => a.Lcid == lcid);
+            //var applications = _context.ApplicationPackages.Where(a => a.Lcid == EnumExtensions.GetValueFromEnumMember<Lcid>(lcid));
+
+            if (applications.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await applications.ToListAsync();
+        }
+
+        // GET: v1/ApplicationPackage/cpuarch/{cpuarch}
+        [HttpGet("cpuarch/{cpuarch}")]
+        public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByCpuArch([FromRoute] string cpuarch)
+        {
+            var applications = _context.ApplicationPackages.Where(a => a.CpuArch == EnumExtensions.GetValueFromEnumMember<CpuArch>(cpuarch));
+
+            if (applications.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await applications.ToListAsync();
+        }
+
+        // GET: v1/ApplicationPackage/executable/{executable}
+        [HttpGet("executable/{executable}")]
+        public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByExecutable([FromRoute] string executable)
+        {
+            var applications = _context.ApplicationPackages.Where(a => a.Executable == EnumExtensions.GetValueFromEnumMember<Executable>(executable));
+
+            if (applications.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await applications.ToListAsync();
+        }
+
+        // GET: v1/ApplicationPackage/packagedetection/{packagedetection}
+        [HttpGet("packagedetection/{packagedetection}")]
+        public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByPackageDetection([FromRoute] string packagedetection)
+        {
+            var applications = _context.ApplicationPackages.Where(a => a.PackageDetection == EnumExtensions.GetValueFromEnumMember<PackageDetection>(packagedetection));
+
+            if (applications.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await applications.ToListAsync();
+        }
     }
 }
 
