@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1[controller]")]
     [ApiController]
     public class WindowsCoreIdentityController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/WindowsCoreIdentity
+        // GET: v1WindowsCoreIdentity
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentities()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.WindowsCoreIdentities.ToListAsync();
         }
 
-        // GET: api/WindowsCoreIdentity/5
+        // GET: v1WindowsCoreIdentity/5
         [HttpGet("{id}")]
         public async Task<ActionResult<WindowsCoreIdentity>> GetWindowsCoreIdentity(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return windowsCoreIdentity;
         }
 
-        // PUT: api/WindowsCoreIdentity/5
+        // PUT: v1WindowsCoreIdentity/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutWindowsCoreIdentity(int id, WindowsCoreIdentity windowsCoreIdentity)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/WindowsCoreIdentity
+        // POST: v1WindowsCoreIdentity
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<WindowsCoreIdentity>> PostWindowsCoreIdentity(WindowsCoreIdentity windowsCoreIdentity)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetWindowsCoreIdentity", new { id = windowsCoreIdentity.Id }, windowsCoreIdentity);
         }
 
-        // DELETE: api/WindowsCoreIdentity/5
+        // DELETE: v1WindowsCoreIdentity/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteWindowsCoreIdentity(int id)
         {
@@ -122,3 +122,4 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+

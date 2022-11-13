@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1[controller]")]
     [ApiController]
     public class WinRefCore02EditionController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/WinRefCore02Edition
+        // GET: v1WinRefCore02Edition
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WinRefCore02Edition>>> GetWinRefCore02Editions()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.WinRefCore02Editions.ToListAsync();
         }
 
-        // GET: api/WinRefCore02Edition/5
+        // GET: v1WinRefCore02Edition/5
         [HttpGet("{id}")]
         public async Task<ActionResult<WinRefCore02Edition>> GetWinRefCore02Edition(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return winRefCore02Edition;
         }
 
-        // PUT: api/WinRefCore02Edition/5
+        // PUT: v1WinRefCore02Edition/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutWinRefCore02Edition(int id, WinRefCore02Edition winRefCore02Edition)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/WinRefCore02Edition
+        // POST: v1WinRefCore02Edition
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<WinRefCore02Edition>> PostWinRefCore02Edition(WinRefCore02Edition winRefCore02Edition)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetWinRefCore02Edition", new { id = winRefCore02Edition.Id }, winRefCore02Edition);
         }
 
-        // DELETE: api/WinRefCore02Edition/5
+        // DELETE: v1WinRefCore02Edition/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteWinRefCore02Edition(int id)
         {
@@ -122,3 +122,4 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+

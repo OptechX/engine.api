@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1[controller]")]
     [ApiController]
     public class WinRefCore01ReleaseController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/WinRefCore01Release
+        // GET: v1WinRefCore01Release
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WinRefCore01Release>>> GetWinRefCore01Releases()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.WinRefCore01Releases.ToListAsync();
         }
 
-        // GET: api/WinRefCore01Release/5
+        // GET: v1WinRefCore01Release/5
         [HttpGet("{id}")]
         public async Task<ActionResult<WinRefCore01Release>> GetWinRefCore01Release(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return winRefCore01Release;
         }
 
-        // PUT: api/WinRefCore01Release/5
+        // PUT: v1WinRefCore01Release/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutWinRefCore01Release(int id, WinRefCore01Release winRefCore01Release)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/WinRefCore01Release
+        // POST: v1WinRefCore01Release
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<WinRefCore01Release>> PostWinRefCore01Release(WinRefCore01Release winRefCore01Release)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetWinRefCore01Release", new { id = winRefCore01Release.Id }, winRefCore01Release);
         }
 
-        // DELETE: api/WinRefCore01Release/5
+        // DELETE: v1WinRefCore01Release/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteWinRefCore01Release(int id)
         {
@@ -122,3 +122,4 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+

@@ -10,7 +10,7 @@ using api.engine_v2.Models.Generic;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1[controller]")]
     [ApiController]
     public class NewsUpdatesController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/NewsUpdates
+        // GET: v1NewsUpdates
         [HttpGet]
         public async Task<ActionResult<IEnumerable<NewsUpdate>>> GetNewsUpdates()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.NewsUpdates.ToListAsync();
         }
 
-        // GET: api/NewsUpdates/5
+        // GET: v1NewsUpdates/5
         [HttpGet("{id}")]
         public async Task<ActionResult<NewsUpdate>> GetNewsUpdate(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return newsUpdate;
         }
 
-        // PUT: api/NewsUpdates/5
+        // PUT: v1NewsUpdates/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutNewsUpdate(int id, NewsUpdate newsUpdate)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/NewsUpdates
+        // POST: v1NewsUpdates
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<NewsUpdate>> PostNewsUpdate(NewsUpdate newsUpdate)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetNewsUpdate", new { id = newsUpdate.Id }, newsUpdate);
         }
 
-        // DELETE: api/NewsUpdates/5
+        // DELETE: v1NewsUpdates/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteNewsUpdate(int id)
         {
@@ -122,3 +122,4 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+

@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1[controller]")]
     [ApiController]
     public class WindowsCapabilityController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/WindowsCapability
+        // GET: v1WindowsCapability
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilities()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.WindowsCapabilities.ToListAsync();
         }
 
-        // GET: api/WindowsCapability/5
+        // GET: v1WindowsCapability/5
         [HttpGet("{id}")]
         public async Task<ActionResult<WindowsCapability>> GetWindowsCapability(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return windowsCapability;
         }
 
-        // PUT: api/WindowsCapability/5
+        // PUT: v1WindowsCapability/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutWindowsCapability(int id, WindowsCapability windowsCapability)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/WindowsCapability
+        // POST: v1WindowsCapability
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<WindowsCapability>> PostWindowsCapability(WindowsCapability windowsCapability)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetWindowsCapability", new { id = windowsCapability.Id }, windowsCapability);
         }
 
-        // DELETE: api/WindowsCapability/5
+        // DELETE: v1WindowsCapability/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteWindowsCapability(int id)
         {
@@ -122,3 +122,4 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+

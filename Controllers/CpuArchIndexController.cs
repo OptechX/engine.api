@@ -10,7 +10,7 @@ using api.engine_v2.Models.Shared;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1[controller]")]
     [ApiController]
     public class CpuArchIndexController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/CpuArchIndex
+        // GET: v1CpuArchIndex
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CpuArchIndex>>> GetCpuArchIndices()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.CpuArchIndices.ToListAsync();
         }
 
-        // GET: api/CpuArchIndex/5
+        // GET: v1CpuArchIndex/5
         [HttpGet("{id}")]
         public async Task<ActionResult<CpuArchIndex>> GetCpuArchIndex(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return cpuArchIndex;
         }
 
-        // PUT: api/CpuArchIndex/5
+        // PUT: v1CpuArchIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCpuArchIndex(int id, CpuArchIndex cpuArchIndex)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/CpuArchIndex
+        // POST: v1CpuArchIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<CpuArchIndex>> PostCpuArchIndex(CpuArchIndex cpuArchIndex)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetCpuArchIndex", new { id = cpuArchIndex.Id }, cpuArchIndex);
         }
 
-        // DELETE: api/CpuArchIndex/5
+        // DELETE: v1CpuArchIndex/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCpuArchIndex(int id)
         {
@@ -122,3 +122,4 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+

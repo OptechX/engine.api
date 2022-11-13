@@ -10,7 +10,7 @@ using api.engine_v2.Models.Shared;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1[controller]")]
     [ApiController]
     public class CountryIndexController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/CountryIndex
+        // GET: v1CountryIndex
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CountryIndex>>> GetCountryIndices()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.CountryIndices.ToListAsync();
         }
 
-        // GET: api/CountryIndex/5
+        // GET: v1CountryIndex/5
         [HttpGet("{id}")]
         public async Task<ActionResult<CountryIndex>> GetCountryIndex(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return countryIndex;
         }
 
-        // PUT: api/CountryIndex/5
+        // PUT: v1CountryIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCountryIndex(int id, CountryIndex countryIndex)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/CountryIndex
+        // POST: v1CountryIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<CountryIndex>> PostCountryIndex(CountryIndex countryIndex)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetCountryIndex", new { id = countryIndex.Id }, countryIndex);
         }
 
-        // DELETE: api/CountryIndex/5
+        // DELETE: v1CountryIndex/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCountryIndex(int id)
         {
@@ -122,3 +122,4 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+

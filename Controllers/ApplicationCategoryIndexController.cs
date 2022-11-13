@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class ApplicationCategoryIndexController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/ApplicationCategoryIndex
+        // GET: v1/ApplicationCategoryIndex
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ApplicationCategoryIndex>>> GetApplicationCategoryIndices()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.ApplicationCategoryIndices.ToListAsync();
         }
 
-        // GET: api/ApplicationCategoryIndex/5
+        // GET: v1/ApplicationCategoryIndex/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ApplicationCategoryIndex>> GetApplicationCategoryIndex(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return applicationCategoryIndex;
         }
 
-        // PUT: api/ApplicationCategoryIndex/5
+        // PUT: v1/ApplicationCategoryIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutApplicationCategoryIndex(int id, ApplicationCategoryIndex applicationCategoryIndex)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/ApplicationCategoryIndex
+        // POST: v1/ApplicationCategoryIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<ApplicationCategoryIndex>> PostApplicationCategoryIndex(ApplicationCategoryIndex applicationCategoryIndex)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetApplicationCategoryIndex", new { id = applicationCategoryIndex.Id }, applicationCategoryIndex);
         }
 
-        // DELETE: api/ApplicationCategoryIndex/5
+        // DELETE: v1/ApplicationCategoryIndex/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteApplicationCategoryIndex(int id)
         {
@@ -122,3 +122,5 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
+

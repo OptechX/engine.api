@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1[controller]")]
     [ApiController]
     public class WindowsOptionalFeatureController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/WindowsOptionalFeature
+        // GET: v1WindowsOptionalFeature
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WindowsOptionalFeature>>> GetWindowsOptionalFeatures()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.WindowsOptionalFeatures.ToListAsync();
         }
 
-        // GET: api/WindowsOptionalFeature/5
+        // GET: v1WindowsOptionalFeature/5
         [HttpGet("{id}")]
         public async Task<ActionResult<WindowsOptionalFeature>> GetWindowsOptionalFeature(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return windowsOptionalFeature;
         }
 
-        // PUT: api/WindowsOptionalFeature/5
+        // PUT: v1WindowsOptionalFeature/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutWindowsOptionalFeature(int id, WindowsOptionalFeature windowsOptionalFeature)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/WindowsOptionalFeature
+        // POST: v1WindowsOptionalFeature
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<WindowsOptionalFeature>> PostWindowsOptionalFeature(WindowsOptionalFeature windowsOptionalFeature)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetWindowsOptionalFeature", new { id = windowsOptionalFeature.Id }, windowsOptionalFeature);
         }
 
-        // DELETE: api/WindowsOptionalFeature/5
+        // DELETE: v1WindowsOptionalFeature/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteWindowsOptionalFeature(int id)
         {
@@ -122,3 +122,4 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+

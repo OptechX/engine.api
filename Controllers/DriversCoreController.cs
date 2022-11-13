@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1[controller]")]
     [ApiController]
     public class DriversCoreController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/DriversCore
+        // GET: v1DriversCore
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriverCores()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.DriverCores.ToListAsync();
         }
 
-        // GET: api/DriversCore/5
+        // GET: v1DriversCore/5
         [HttpGet("{id}")]
         public async Task<ActionResult<DriversCore>> GetDriversCore(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return driversCore;
         }
 
-        // PUT: api/DriversCore/5
+        // PUT: v1DriversCore/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDriversCore(int id, DriversCore driversCore)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/DriversCore
+        // POST: v1DriversCore
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<DriversCore>> PostDriversCore(DriversCore driversCore)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetDriversCore", new { id = driversCore.Id }, driversCore);
         }
 
-        // DELETE: api/DriversCore/5
+        // DELETE: v1DriversCore/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDriversCore(int id)
         {
@@ -122,3 +122,4 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+

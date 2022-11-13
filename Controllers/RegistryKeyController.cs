@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1[controller]")]
     [ApiController]
     public class RegistryKeyController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/RegistryKey
+        // GET: v1RegistryKey
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RegistryKey>>> GetRegistryKeys()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.RegistryKeys.ToListAsync();
         }
 
-        // GET: api/RegistryKey/5
+        // GET: v1RegistryKey/5
         [HttpGet("{id}")]
         public async Task<ActionResult<RegistryKey>> GetRegistryKey(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return registryKey;
         }
 
-        // PUT: api/RegistryKey/5
+        // PUT: v1RegistryKey/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRegistryKey(int id, RegistryKey registryKey)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/RegistryKey
+        // POST: v1RegistryKey
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<RegistryKey>> PostRegistryKey(RegistryKey registryKey)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetRegistryKey", new { id = registryKey.Id }, registryKey);
         }
 
-        // DELETE: api/RegistryKey/5
+        // DELETE: v1RegistryKey/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRegistryKey(int id)
         {
@@ -122,3 +122,4 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+

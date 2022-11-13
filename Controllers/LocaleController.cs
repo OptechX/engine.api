@@ -10,7 +10,7 @@ using api.engine_v2.Models.Shared;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1[controller]")]
     [ApiController]
     public class LocaleController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/Locale
+        // GET: v1Locale
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Locale>>> Getlocales()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.locales.ToListAsync();
         }
 
-        // GET: api/Locale/5
+        // GET: v1Locale/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Locale>> GetLocale(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return locale;
         }
 
-        // PUT: api/Locale/5
+        // PUT: v1Locale/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutLocale(int id, Locale locale)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/Locale
+        // POST: v1Locale
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Locale>> PostLocale(Locale locale)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetLocale", new { id = locale.Id }, locale);
         }
 
-        // DELETE: api/Locale/5
+        // DELETE: v1Locale/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLocale(int id)
         {
@@ -122,3 +122,4 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+

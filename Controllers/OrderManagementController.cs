@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1[controller]")]
     [ApiController]
     public class OrderManagementController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/OrderManagement
+        // GET: v1OrderManagement
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagements()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.OrderManagements.ToListAsync();
         }
 
-        // GET: api/OrderManagement/5
+        // GET: v1OrderManagement/5
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderManagement>> GetOrderManagement(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return orderManagement;
         }
 
-        // PUT: api/OrderManagement/5
+        // PUT: v1OrderManagement/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOrderManagement(int id, OrderManagement orderManagement)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/OrderManagement
+        // POST: v1OrderManagement
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<OrderManagement>> PostOrderManagement(OrderManagement orderManagement)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetOrderManagement", new { id = orderManagement.Id }, orderManagement);
         }
 
-        // DELETE: api/OrderManagement/5
+        // DELETE: v1OrderManagement/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrderManagement(int id)
         {
@@ -122,3 +122,4 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+

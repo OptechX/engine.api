@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1[controller]")]
     [ApiController]
     public class ExecutableIndexController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/ExecutableIndex
+        // GET: v1ExecutableIndex
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ExecutableIndex>>> GetExecutableIndices()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.ExecutableIndices.ToListAsync();
         }
 
-        // GET: api/ExecutableIndex/5
+        // GET: v1ExecutableIndex/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ExecutableIndex>> GetExecutableIndex(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return executableIndex;
         }
 
-        // PUT: api/ExecutableIndex/5
+        // PUT: v1ExecutableIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutExecutableIndex(int id, ExecutableIndex executableIndex)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/ExecutableIndex
+        // POST: v1ExecutableIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<ExecutableIndex>> PostExecutableIndex(ExecutableIndex executableIndex)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetExecutableIndex", new { id = executableIndex.Id }, executableIndex);
         }
 
-        // DELETE: api/ExecutableIndex/5
+        // DELETE: v1ExecutableIndex/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteExecutableIndex(int id)
         {
@@ -122,3 +122,4 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+

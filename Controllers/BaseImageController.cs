@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1[controller]")]
     [ApiController]
     public class BaseImageController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/BaseImage
+        // GET: v1BaseImage
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BaseImage>>> GetBaseImages()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.BaseImages.ToListAsync();
         }
 
-        // GET: api/BaseImage/5
+        // GET: v1BaseImage/5
         [HttpGet("{id}")]
         public async Task<ActionResult<BaseImage>> GetBaseImage(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return baseImage;
         }
 
-        // PUT: api/BaseImage/5
+        // PUT: v1BaseImage/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBaseImage(int id, BaseImage baseImage)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/BaseImage
+        // POST: v1BaseImage
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<BaseImage>> PostBaseImage(BaseImage baseImage)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetBaseImage", new { id = baseImage.Id }, baseImage);
         }
 
-        // DELETE: api/BaseImage/5
+        // DELETE: v1BaseImage/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBaseImage(int id)
         {
@@ -122,3 +122,4 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+

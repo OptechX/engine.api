@@ -10,7 +10,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1[controller]")]
     [ApiController]
     public class AppxProvisionedPackageController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/AppxProvisionedPackage
+        // GET: v1AppxProvisionedPackage
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackages()
         {
@@ -32,7 +32,7 @@ namespace api.engine_v2.Controllers
             return await _context.AppxProvisionedPackages.ToListAsync();
         }
 
-        // GET: api/AppxProvisionedPackage/5
+        // GET: v1AppxProvisionedPackage/5
         [HttpGet("{id}")]
         public async Task<ActionResult<AppxProvisionedPackage>> GetAppxProvisionedPackage(int id)
         {
@@ -50,7 +50,7 @@ namespace api.engine_v2.Controllers
             return appxProvisionedPackage;
         }
 
-        // PUT: api/AppxProvisionedPackage/5
+        // PUT: v1AppxProvisionedPackage/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAppxProvisionedPackage(int id, AppxProvisionedPackage appxProvisionedPackage)
@@ -81,7 +81,7 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/AppxProvisionedPackage
+        // POST: v1AppxProvisionedPackage
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<AppxProvisionedPackage>> PostAppxProvisionedPackage(AppxProvisionedPackage appxProvisionedPackage)
@@ -96,7 +96,7 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetAppxProvisionedPackage", new { id = appxProvisionedPackage.Id }, appxProvisionedPackage);
         }
 
-        // DELETE: api/AppxProvisionedPackage/5
+        // DELETE: v1AppxProvisionedPackage/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAppxProvisionedPackage(int id)
         {
@@ -122,3 +122,4 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
