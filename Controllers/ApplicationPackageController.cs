@@ -179,7 +179,7 @@ namespace api.engine_v2.Controllers
         [HttpGet("cpuarch/{cpuarch}")]
         public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByCpuArch([FromRoute] string cpuarch)
         {
-            var applications = _context.ApplicationPackages.Where(a => a.CpuArch == EnumExtensions.GetValueFromEnumMember<CpuArch>(cpuarch));
+            var applications = _context.ApplicationPackages.Where(a => a.CpuArch == EnumExtensions.GetValueFromEnumMember<CpuArch>(cpuarch).ToString());
 
             if (applications.Count() == 0)
             {
@@ -193,7 +193,7 @@ namespace api.engine_v2.Controllers
         [HttpGet("executable/{executable}")]
         public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByExecutable([FromRoute] string executable)
         {
-            var applications = _context.ApplicationPackages.Where(a => a.Executable == EnumExtensions.GetValueFromEnumMember<Executable>(executable));
+            var applications = _context.ApplicationPackages.Where(a => a.Executable == EnumExtensions.GetValueFromEnumMember<Executable>(executable).ToString());
 
             if (applications.Count() == 0)
             {
@@ -207,7 +207,7 @@ namespace api.engine_v2.Controllers
         [HttpGet("packagedetection/{packagedetection}")]
         public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByPackageDetection([FromRoute] string packagedetection)
         {
-            var applications = _context.ApplicationPackages.Where(a => a.PackageDetection == EnumExtensions.GetValueFromEnumMember<PackageDetection>(packagedetection));
+            var applications = _context.ApplicationPackages.Where(a => a.PackageDetection == EnumExtensions.GetValueFromEnumMember<PackageDetection>(packagedetection).ToString());
 
             if (applications.Count() == 0)
             {
