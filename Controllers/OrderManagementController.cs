@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -190,26 +185,26 @@ namespace api.engine_v2.Controllers
                         Id = 0,
                         UUID = Guid.Empty,
                         AccountId = 0,
-                        OrderDate = null,
+                        OrderDate = String.Empty,
                         OrderStatus = "Deleted",
                         OrderName = "Not Found",
                         DownloadLink = null,
                         ImageOutputFormat = null,
-                        NotificationEmailAddress = null,
+                        NotificationEmailAddress = string.Empty,
                         ContinuousIntegration = false,
                         ContinuousDelivery = false,
-                        Release = null,
-                        Edition = null,
-                        Version = null,
-                        Arch = null,
-                        Lcid = null,
-                        OptionalFeatureString = null,
-                        AppxPackagesString = null,
-                        WindowsDefaultAccount = null,
+                        Release = String.Empty,
+                        Edition = String.Empty,
+                        Version = String.Empty,
+                        Arch = String.Empty,
+                        Lcid = String.Empty,
+                        OptionalFeatureString = String.Empty,
+                        AppxPackagesString = String.Empty,
+                        WindowsDefaultAccount = String.Empty,
                         WindowsDefaultPassword = "xxxxxxxx",
-                        CustomRegistryKeys = null,
-                        ApplicationUID = null,
-                        DriversUID = null,
+                        CustomRegistryKeys = new string[] { },
+                        ApplicationUID = new string[] { },
+                        DriversUID = new string[] { }
                     },
                 };
 
