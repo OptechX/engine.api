@@ -14,12 +14,20 @@ public static class EnumExtensions
             if (attribute != null)
             {
                 if (attribute.Value == value)
+#pragma warning disable CS8600 // Possible null reference return.
+#pragma warning disable CS8603 // Possible null reference return.
                     return (T)field.GetValue(null);
+#pragma warning restore CS8603 // Possible null reference return.
+#pragma warning restore CS8600 // Possible null reference return.
             }
             else
             {
                 if (field.Name == value)
+#pragma warning disable CS8600 // Possible null reference return.
+#pragma warning disable CS8603 // Possible null reference return.
                     return (T)field.GetValue(null);
+#pragma warning restore CS8603 // Possible null reference return.
+#pragma warning restore CS8600 // Possible null reference return.
             }
         }
         throw new ArgumentException($"unknow value: {value}");

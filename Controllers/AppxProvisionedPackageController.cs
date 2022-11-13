@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
 using api.engine_v2.Models.Engine;
+using Microsoft.AspNetCore.Cors;
 
 namespace api.engine_v2.Controllers
 {
@@ -17,6 +18,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/AppxProvisionedPackage
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackages()
         {
@@ -28,6 +30,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/AppxProvisionedPackage/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("{id:int}")]
         public async Task<ActionResult<AppxProvisionedPackage>> GetAppxProvisionedPackage(int id)
         {
@@ -47,6 +50,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1/AppxProvisionedPackage/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutAppxProvisionedPackage(int id, AppxProvisionedPackage appxProvisionedPackage)
         {
@@ -78,6 +82,7 @@ namespace api.engine_v2.Controllers
 
         // POST: v1/AppxProvisionedPackage
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<AppxProvisionedPackage>> PostAppxProvisionedPackage(AppxProvisionedPackage appxProvisionedPackage)
         {
@@ -92,6 +97,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1/AppxProvisionedPackage/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteAppxProvisionedPackage(int id)
         {
@@ -117,6 +123,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//AppxProvisionedPackage/displayname/{displayName}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("displayname/{displayname}")]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageByDisplayName([FromRoute]string displayname)
         {
@@ -131,6 +138,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//AppxProvisionedPackage/arch/{arch}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("arch/{arch}")]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageByArch([FromRoute]string arch)
         {
@@ -145,6 +153,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//AppxProvisionedPackage/lcid/{lcid}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/{lcid}")]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageByLcid([FromRoute]string lcid)
         {
@@ -159,6 +168,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//AppxProvisionedPackage/supportedwindowsversions/{supportedwindowsversion}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("supportedwindowsversions/{supportedwindowsversion}")]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageBySupportedWindowsVersion([FromRoute]string supportedwindowsversion)
         {
@@ -173,6 +183,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//AppxProvisionedPackage/supportedwindowseditions/{supportedwindowsedition}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("supportedwindowseditions/{supportedwindowsedition}")]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageBySupportedWindowsEditions([FromRoute]string supportedwindowsedition)
         {
@@ -187,6 +198,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//AppxProvisionedPackage/supportedwindowsreleases/{supportedwindowsrelease}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("supportedwindowsreleases/{supportedwindowsrelease}")]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageBySupportedWindowsReleases([FromRoute]string supportedwindowsrelease)
         {
@@ -201,6 +213,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//AppxProvisionedPackage/multisearch/{supportedwindowsversion}/{supportedwindowsedition}/{supportedwindowsrelease}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("multisearch/{supportedwindowsversion}/{supportedwindowsedition}/{supportedwindowsrelease}")]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageMultiSearch(
             [FromRoute]string supportedwindowsversion,
@@ -222,6 +235,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//AppxProvisionedPackage/multiarchsearch/{version}/{edition}/{release}/{arch}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("multiarchsearch/{version}/{edition}/{release}/{arch}")]
         public async Task<ActionResult<IEnumerable<AppxProvisionedPackage>>> GetAppxProvisionedPackageMultiArchSearch(
             [FromRoute]string version,
@@ -245,6 +259,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

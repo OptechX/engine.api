@@ -5,6 +5,7 @@ using api.engine_v2.Models.Engine;
 using Stackoverflow.Answers.Helpers;
 using api.engine_v2.Models.Shared.Enums;
 using api.engine_v2.Models.Engine.Enums;
+using Microsoft.AspNetCore.Cors;
 
 namespace api.engine_v2.Controllers
 {
@@ -20,6 +21,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/BaseImage
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BaseImage>>> GetBaseImages()
         {
@@ -31,6 +33,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/BaseImage/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("{id:int}")]
         public async Task<ActionResult<BaseImage>> GetBaseImage(int id)
         {
@@ -50,6 +53,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1/BaseImage/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutBaseImage(int id, BaseImage baseImage)
         {
@@ -81,6 +85,7 @@ namespace api.engine_v2.Controllers
 
         // POST: v1/BaseImage
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<BaseImage>> PostBaseImage(BaseImage baseImage)
         {
@@ -95,6 +100,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1/BaseImage/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteBaseImage(int id)
         {
@@ -120,6 +126,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//BaseImage/release/{release}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("release/{release}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByRelease([FromRoute]string release)
         {
@@ -135,6 +142,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//BaseImage/edition/{edition}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("edition/{edition}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByEdition([FromRoute]string edition)
         {
@@ -150,6 +158,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//BaseImage/version/{version}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("version/{version}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByVersion([FromRoute]string version)
         {
@@ -165,6 +174,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//BaseImage/cpuarch/{cpuarch}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("cpuarch/{cpuarch}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByCpuArch([FromRoute]string cpuarch)
         {
@@ -179,6 +189,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//BaseImage/baseimagefiletype/{filetype}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("baseimagefiletype/{filetype}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByBaseImageFileType([FromRoute]string filetype)
         {
@@ -193,6 +204,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//BaseImage/windowslcid/{windowslcid}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("windowslcid/{windowslcid}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByWindowsLcid([FromRoute]string windowslcid)
         {
@@ -207,6 +219,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//BaseImage/locale/{locale}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("locale/{locale}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByLocale([FromRoute]string locale)
         {
@@ -222,6 +235,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//BaseImage/transfermethod/{method}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("transfermethod/{method}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByTransferMethod([FromRoute]string method)
         {
@@ -236,6 +250,7 @@ namespace api.engine_v2.Controllers
         }
 
         //GET: v1//BaseImage/multisearch/{release}/{edition}/{version}/{cpuarch}/{windowslcid}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("multisearch/{release}/{edition}/{version}/{cpuarch}/{windowslcid}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByMultiSearch([FromRoute]string release, string edition, string version, string cpuarch, string windowslcid)
         {
@@ -253,6 +268,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

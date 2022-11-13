@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -22,6 +18,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/WinRefCore02Edition
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WinRefCore02Edition>>> GetWinRefCore02Editions()
         {
@@ -33,6 +30,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/WinRefCore02Edition/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("{id:int}")]
         public async Task<ActionResult<WinRefCore02Edition>> GetWinRefCore02Edition(int id)
         {
@@ -52,6 +50,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1/WinRefCore02Edition/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWinRefCore02Edition(int id, WinRefCore02Edition winRefCore02Edition)
         {
@@ -83,6 +82,7 @@ namespace api.engine_v2.Controllers
 
         // POST: v1/WinRefCore02Edition
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<WinRefCore02Edition>> PostWinRefCore02Edition(WinRefCore02Edition winRefCore02Edition)
         {
@@ -97,6 +97,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1/WinRefCore02Edition/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWinRefCore02Edition(int id)
         {
@@ -122,6 +123,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/WinRefCore02Edition/{release}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("{release}")]
         public async Task<ActionResult<IEnumerable<WinRefCore02Edition>>> GetWinRefCore02EditionsIndexSearch(
             [FromRoute]string release)
@@ -137,6 +139,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

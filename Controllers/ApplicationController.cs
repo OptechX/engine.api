@@ -4,6 +4,7 @@ using api.engine_v2.Data;
 using api.engine_v2.Models.Engine;
 using Stackoverflow.Answers.Helpers;
 using api.engine_v2.Models.Engine.Enums;
+using Microsoft.AspNetCore.Cors;
 
 namespace api.engine_v2.Controllers
 {
@@ -19,6 +20,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/Application
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplications()
         {
@@ -30,6 +32,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/Application/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Application>> GetApplication(int id)
         {
@@ -49,6 +52,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1/Application/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutApplication(int id, Application application)
         {
@@ -80,6 +84,7 @@ namespace api.engine_v2.Controllers
 
         // POST: v1/Application
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<Application>> PostApplication(Application application)
         {
@@ -94,6 +99,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1/Application/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteApplication(int id)
         {
@@ -119,6 +125,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//application/uid/{uid}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("uid/{uid}")]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByUid([FromRoute] string uid)
         {
@@ -135,6 +142,7 @@ namespace api.engine_v2.Controllers
 
 
         // GET: v1//application/applicationcategory/{category}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("category/{category}")]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByCategory([FromRoute] string category)
         {
@@ -152,6 +160,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//application/publisher/{publisher}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("publisher/{publisher}")]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByPublisher([FromRoute] string publisher)
         {
@@ -167,6 +176,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//application/name/{name}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("name/{name}")]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByName([FromRoute] string name)
         {
@@ -182,6 +192,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//application/cpuarch/{cpuarch}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("arch/{arch}")]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByCpuArch([FromRoute] string arch)
         {
@@ -196,6 +207,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//application/lcid/{lcid}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/{lcid}")]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByLcid([FromRoute] string lcid)
         {
@@ -210,6 +222,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//application/tags/{tags}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("tags/{tag}")]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByTags([FromRoute] string tag)
         {
@@ -224,6 +237,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/Application/last5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("last5")]
         public async Task<ActionResult<IEnumerable<ApplicationLast5>>> Get5Applications()
         {
@@ -247,6 +261,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

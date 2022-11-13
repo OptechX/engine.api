@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -22,6 +18,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//[controller]ocaleIndex
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LocaleIndex>>> GetLocaleIndices()
         {
@@ -33,6 +30,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//[controller]ocaleIndex/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("{id:int}")]
         public async Task<ActionResult<LocaleIndex>> GetLocaleIndex(int id)
         {
@@ -52,6 +50,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1//[controller]ocaleIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutLocaleIndex(int id, LocaleIndex localeIndex)
         {
@@ -83,6 +82,7 @@ namespace api.engine_v2.Controllers
 
         // POST: v1//[controller]ocaleIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<LocaleIndex>> PostLocaleIndex(LocaleIndex localeIndex)
         {
@@ -97,6 +97,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1//[controller]ocaleIndex/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteLocaleIndex(int id)
         {
@@ -122,6 +123,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

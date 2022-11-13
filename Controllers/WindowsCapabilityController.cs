@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -22,6 +18,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/WindowsCapability
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilities()
         {
@@ -33,6 +30,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/WindowsCapability/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("{id:int}")]
         public async Task<ActionResult<WindowsCapability>> GetWindowsCapability(int id)
         {
@@ -52,6 +50,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1/WindowsCapability/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWindowsCapability(int id, WindowsCapability windowsCapability)
         {
@@ -83,6 +82,7 @@ namespace api.engine_v2.Controllers
 
         // POST: v1/WindowsCapability
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<WindowsCapability>> PostWindowsCapability(WindowsCapability windowsCapability)
         {
@@ -97,6 +97,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1/WindowsCapability/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWindowsCapability(int id)
         {
@@ -122,6 +123,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCapability/name/{name}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("name/{name}")]
         public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilityByName([FromRoute]string name)
         {
@@ -136,6 +138,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCapability/supportedwindowsversions/{version}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("supportedwindowsversions/{version}")]
         public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilityBySupportedWindowsVersions([FromRoute]string version)
         {
@@ -150,6 +153,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCapability/supportedwindowseditions/{supportedwindowsedition}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("supportedwindowseditions/{edition}")]
         public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilityBySupportedWindowsEditions([FromRoute]string edition)
         {
@@ -164,6 +168,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCapability/supportedwindowsreleases/{supportedwindowsrelease}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("supportedwindowsreleases/{release}")]
         public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilityBySupportedWindowsReleases([FromRoute]string release)
         {
@@ -178,6 +183,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCapability/multisearch/{supportedwindowsversion}/{supportedwindowsedition}/{supportedwindowsrelease}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("multisearch/{version}/{edition}/{release}")]
         public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilityMultiSearch(
             [FromRoute]string version,
@@ -198,6 +204,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

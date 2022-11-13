@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -22,6 +18,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/Drivers
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDrivers()
         {
@@ -33,6 +30,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/Drivers/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Drivers>> GetDrivers(int id)
         {
@@ -52,6 +50,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1/Drivers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutDrivers(int id, Drivers drivers)
         {
@@ -83,6 +82,7 @@ namespace api.engine_v2.Controllers
 
         // POST: v1/Drivers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<Drivers>> PostDrivers(Drivers drivers)
         {
@@ -97,6 +97,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1/Drivers/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteDrivers(int id)
         {
@@ -122,6 +123,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//Drivers/uid/{uid}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("uid/{uid}")]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDriversByUid([FromRoute] string uid)
         {
@@ -136,6 +138,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//Drivers/make/{make}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("make/{make}")]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDriversBymake([FromRoute] string make)
         {
@@ -150,6 +153,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//Drivers/model/{model}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("model/{model}")]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDriversBymodel([FromRoute] string model)
         {
@@ -164,6 +168,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//Drivers/cspversion/{cspversion}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("cspversion/{cspversion}")]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDriversBycspversion([FromRoute] string cspversion)
         {
@@ -178,6 +183,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//Drivers/cspname/{cspname}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("cspname/{cspname}")]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDriversBycspname([FromRoute] string cspname)
         {
@@ -192,6 +198,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//Drivers/productionyear/{year}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("productionyear/{year:int}")]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDriversByYear([FromRoute] int year)
         {
@@ -206,6 +213,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//Drivers/x64
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("x64")]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDriversByX64()
         {
@@ -220,6 +228,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//Drivers/x86
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("x86")]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDriversByX86()
         {
@@ -234,6 +243,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//Drivers/arm64
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("arm64")]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDriversByArm64()
         {
@@ -248,6 +258,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//Drivers/aarch32
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("aarch32")]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDriversByAarch32()
         {
@@ -262,6 +273,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//Drivers/latest
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("latest")]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDriversByLatest()
         {
@@ -276,6 +288,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//Drivers/cpuarch/{arch}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("cpuarch/{arch}")]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDriversByCpuArch([FromRoute] string arch)
         {
@@ -290,6 +303,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//Drivers/supportedwinver/{supportedwinver}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("supportedwinver/{supportedwinver}")]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDriversBysupportedwinver([FromRoute] string supportedwinver)
         {
@@ -304,6 +318,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//Drivers/oem/{oem}}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("oem/{oem}")]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDriversByOem([FromRoute] string oem)
         {
@@ -319,6 +334,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//Drivers/CloudDeploySupport
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("clouddeploysupport")]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDriversByCloudDeploySupport()
         {
@@ -333,6 +349,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//Drivers/windowsrelease/{winrelease}}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("windowsrelease/{winrelease}")]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDriversByWindowsRelease([FromRoute] string winrelease)
         {
@@ -348,6 +365,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//Drivers/multisearch/{oem}/{arch}/{windowsrelease}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("multisearch/{oem}/{arch}/{windowsrelease}")]
         public async Task<ActionResult<IEnumerable<Drivers>>> GetDriversMultiSearch(
             [FromRoute] string oem,
@@ -370,6 +388,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

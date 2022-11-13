@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
 using api.engine_v2.Models.Engine;
+using Microsoft.AspNetCore.Cors;
 
 namespace api.engine_v2.Controllers
 {
@@ -22,6 +18,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/WinRefCore05Language
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WinRefCore05Language>>> GetWinRefCore05Languages()
         {
@@ -33,6 +30,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/WinRefCore05Language/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("{id:int}")]
         public async Task<ActionResult<WinRefCore05Language>> GetWinRefCore05Language(int id)
         {
@@ -52,6 +50,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1/WinRefCore05Language/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWinRefCore05Language(int id, WinRefCore05Language winRefCore05Language)
         {
@@ -83,6 +82,7 @@ namespace api.engine_v2.Controllers
 
         // POST: v1/WinRefCore05Language
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<WinRefCore05Language>> PostWinRefCore05Language(WinRefCore05Language winRefCore05Language)
         {
@@ -97,6 +97,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1/WinRefCore05Language/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWinRefCore05Language(int id)
         {
@@ -122,6 +123,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WinRefCore05Language/{release}/{edition}/{version}/{arch}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("{release}/{edition}/{version}/{arch}")]
         public async Task<ActionResult<IEnumerable<WinRefCore05Language>>> GetWinRefCore05MultiSearch(
             [FromRoute]string release,
@@ -144,6 +146,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

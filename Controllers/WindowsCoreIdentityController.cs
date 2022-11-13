@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -22,6 +18,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/WindowsCoreIdentity
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentities()
         {
@@ -33,7 +30,8 @@ namespace api.engine_v2.Controllers
         }
 
         // // GET: v1/WindowsCoreIdentity/5
-        // [HttpGet("{id:int}")]
+        // [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{id:int}")]
         // public async Task<ActionResult<WindowsCoreIdentity>> GetWindowsCoreIdentity(int id)
         // {
         //   if (_context.WindowsCoreIdentities == null)
@@ -51,6 +49,7 @@ namespace api.engine_v2.Controllers
         // }
 
         // GET: v1//WindowsCoreIdentity/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("{id:int}")]
         public async Task<ActionResult<WindowsCoreIdentity>> GetWindowsCoreIdentity(int id)
         {
@@ -81,6 +80,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1/WindowsCoreIdentity/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWindowsCoreIdentity(int id, WindowsCoreIdentity windowsCoreIdentity)
         {
@@ -112,6 +112,7 @@ namespace api.engine_v2.Controllers
 
         // POST: v1/WindowsCoreIdentity
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<WindowsCoreIdentity>> PostWindowsCoreIdentity(WindowsCoreIdentity windowsCoreIdentity)
         {
@@ -126,6 +127,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1/WindowsCoreIdentity/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWindowsCoreIdentity(int id)
         {
@@ -151,6 +153,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/uuid/{uuid}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("uuid/{uuid}")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByUUid([FromRoute]string uuid)
         {
@@ -165,6 +168,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/uid/{uid}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("uid/{uid}")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByUid([FromRoute]string uid)
         {
@@ -179,6 +183,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Windows7
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("release/windows7")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseWindows7()
         {
@@ -208,6 +213,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Windows81
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("release/windows81")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseWindows81()
         {
@@ -237,6 +243,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Windows10
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("release/windows10")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseWindows10()
         {
@@ -266,6 +273,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Windows11
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("release/Windows11")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseWindows11()
         {
@@ -295,6 +303,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/arch/x86
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("arch/x86")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByArchX86()
         {
@@ -324,6 +333,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/arch/x64
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("arch/x64")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByArchX64()
         {
@@ -353,6 +363,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Arabic
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Arabic")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseArabic()
         {
@@ -385,6 +396,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Brazilian
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Brazilian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseBrazilian()
         {
@@ -417,6 +429,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Bulgarian
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Bulgarian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseBulgarian()
         {
@@ -449,6 +462,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Chinese
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Chinese")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseChinese()
         {
@@ -481,6 +495,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Chinese Traditional
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Chinese_Traditional")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseChineseTraditional()
         {
@@ -513,6 +528,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Croatian
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Croatian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseCroatian()
         {
@@ -545,6 +561,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Czech
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Czech")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseCzech()
         {
@@ -577,6 +594,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Danish
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Danish")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseDanish()
         {
@@ -609,6 +627,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Dutch
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Dutch")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseDutch()
         {
@@ -641,6 +660,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/English
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/English")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseEnglish()
         {
@@ -670,6 +690,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/English International
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/English_International")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseEnglishInternational()
         {
@@ -699,6 +720,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Estonian
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Estonian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseEstonian()
         {
@@ -731,6 +753,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Finnish
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Finnish")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseFinnish()
         {
@@ -763,6 +786,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/French
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/French")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseFrench()
         {
@@ -795,6 +819,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/French Canadian
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/French_Canadian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseFrenchCanadian()
         {
@@ -827,6 +852,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/German
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/German")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseGerman()
         {
@@ -859,6 +885,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Greek
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Greek")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseGreek()
         {
@@ -891,6 +918,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Hebrew
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Hebrew")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseHebrew()
         {
@@ -923,6 +951,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Hungarian
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Hungarian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseHungarian()
         {
@@ -955,6 +984,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Italian
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Italian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseItalian()
         {
@@ -987,6 +1017,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Japanese
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Japanese")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseJapanese()
         {
@@ -1019,6 +1050,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Korean
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Korean")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseKorean()
         {
@@ -1051,6 +1083,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Latvian
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Latvian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseLatvian()
         {
@@ -1083,6 +1116,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Lithuanian
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Lithuanian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseLithuanian()
         {
@@ -1115,6 +1149,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Norwegian
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Norwegian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseNorwegian()
         {
@@ -1147,6 +1182,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Polish
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Polish")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleasePolish()
         {
@@ -1179,6 +1215,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Portuguese
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Portuguese")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleasePortuguese()
         {
@@ -1211,6 +1248,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Romanian
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Romanian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseRomanian()
         {
@@ -1243,6 +1281,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Russian
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Russian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseRussian()
         {
@@ -1275,6 +1314,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Serbian Latin
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Serbian_Latin")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseSerbianLatin()
         {
@@ -1307,6 +1347,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Slovak
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Slovak")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseSlovak()
         {
@@ -1339,6 +1380,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Slovenian
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Slovenian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseSlovenian()
         {
@@ -1371,6 +1413,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Spanish
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Spanish")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseSpanish()
         {
@@ -1403,6 +1446,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Spanish Latam
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Spanish_Latam")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseSpanishLatam()
         {
@@ -1435,6 +1479,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Swedish
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Swedish")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseSwedish()
         {
@@ -1467,6 +1512,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Thai
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Thai")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseThai()
         {
@@ -1499,6 +1545,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Turkish
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Turkish")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseTurkish()
         {
@@ -1531,6 +1578,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsCoreIdentity/release/Ukrainian
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/Ukrainian")]
         public async Task<ActionResult<IEnumerable<WindowsCoreIdentity>>> GetWindowsCoreIdentityByReleaseUkrainian()
         {
@@ -1563,6 +1611,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
 using api.engine_v2.Models.Engine;
+using Microsoft.AspNetCore.Cors;
 
 namespace api.engine_v2.Controllers
 {
@@ -17,6 +18,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//[controller]rderManagement
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagements()
         {
@@ -28,7 +30,8 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//[controller]rderManagement/5
-        //[HttpGet("{id:int}")]
+        //[EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{id:int}")]
         //public async Task<ActionResult<OrderManagement>> GetOrderManagement(int id)
         //{
         //  if (_context.OrderManagements == null)
@@ -46,6 +49,7 @@ namespace api.engine_v2.Controllers
         //}
 
         // GET: v1//OrderManagement/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("{id:int}")]
         public async Task<ActionResult<OrderManagement>> GetOrderManagement(int id)
         {
@@ -58,26 +62,26 @@ namespace api.engine_v2.Controllers
                     Id = 0,
                     UUID = Guid.Empty,
                     AccountId = 0,
-                    OrderDate = null,
+                    OrderDate = String.Empty,
                     OrderStatus = "Deleted",
                     OrderName = "Not Found",
                     DownloadLink = null,
-                    ImageOutputFormat = null,
-                    NotificationEmailAddress = null,
+                    ImageOutputFormat = String.Empty,
+                    NotificationEmailAddress = String.Empty,
                     ContinuousIntegration = false,
                     ContinuousDelivery = false,
-                    Release = null,
-                    Edition = null,
-                    Version = null,
-                    Arch = null,
-                    Lcid = null,
-                    OptionalFeatureString = null,
-                    AppxPackagesString = null,
-                    WindowsDefaultAccount = null,
+                    Release = String.Empty,
+                    Edition = String.Empty,
+                    Version = String.Empty,
+                    Arch = String.Empty,
+                    Lcid = String.Empty,
+                    OptionalFeatureString = String.Empty,
+                    AppxPackagesString = String.Empty,
+                    WindowsDefaultAccount = String.Empty,
                     WindowsDefaultPassword = "xxxxxxxx",
-                    CustomRegistryKeys = null,
-                    ApplicationUID = null,
-                    DriversUID = null,
+                    CustomRegistryKeys = new string[] { },
+                    ApplicationUID = new string[] { },
+                    DriversUID = new string[] { }
                 };
 
                 return result;
@@ -88,6 +92,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1//[controller]rderManagement/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutOrderManagement(int id, OrderManagement orderManagement)
         {
@@ -119,6 +124,7 @@ namespace api.engine_v2.Controllers
 
         // POST: v1//[controller]rderManagement
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<OrderManagement>> PostOrderManagement(OrderManagement orderManagement)
         {
@@ -133,6 +139,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1//[controller]rderManagement/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteOrderManagement(int id)
         {
@@ -158,6 +165,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//OrderManagement/uuid/{uuid}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("uuid/{uuid}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByUUID([FromRoute] string uuid)
         {
@@ -172,6 +180,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//OrderManagement/byaccountid
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("byaccountid/{accountid:int}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByAccountId([FromRoute] int accountid)
         {
@@ -215,6 +224,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//OrderManagement/orderstatus/{orderstatus}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("orderstatus/{orderstatus}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByOrderStatus([FromRoute] string orderstatus)
         {
@@ -229,6 +239,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//OrderManagement/ordername/{ordername}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("ordername/{ordername}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByOrderName([FromRoute] string ordername)
         {
@@ -243,6 +254,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//OrderManagement/release/{release}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("release/{release}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByRelease([FromRoute] string release)
         {
@@ -258,6 +270,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//OrderManagement/edition/{edition}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("edition/{edition}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByEdition([FromRoute] string edition)
         {
@@ -273,6 +286,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//OrderManagement/version/{version}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("version/{version}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByVersion([FromRoute] string version)
         {
@@ -288,6 +302,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//OrderManagement/arch/{arch}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("arch/{arch}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByArch([FromRoute] string arch)
         {
@@ -303,6 +318,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//OrderManagement/lcid/{lcid}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/{lcid}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementByLcid([FromRoute] string lcid)
         {
@@ -317,6 +333,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//OrderManagement/usesapplicationuid/{applicationuid}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("usesapplicationuid/{applicationuid}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementUsingApplicationUID([FromRoute] string applicationuid)
         {
@@ -331,6 +348,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//OrderManagement/usesdriversuid/{driversuid}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("usesdriversuid/{driversuid}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementUsingDriversUID([FromRoute] string driversuid)
         {
@@ -345,6 +363,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//OrderManagement/cd-enabled
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("cd-enabled")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementCDEnabled()
         {
@@ -359,6 +378,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//OrderManagement/ci-enabled
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("ci-enabled")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementCIEnabled()
         {
@@ -373,6 +393,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//OrderManagement/ci-cd-enabled
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("ci-cd-enabled")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> GetOrderManagementCICDEnabled()
         {
@@ -389,6 +410,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//OrderManagement/deleteorderbyid/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("deleteorderbyid/{id:int}")]
         public async Task<ActionResult<IEnumerable<OrderManagement>>> SetOrderManagementDeleted([FromRoute] int id)
         {
@@ -414,6 +436,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//OrderManagement/byaccountid-last5/{accountid:int}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("byaccountid-last5/{accountid:int}")]
         public async Task<ActionResult<IEnumerable<OrderManagement5Items>>> GetOrderManagementByAccountIdLast5([FromRoute] int accountid)
         {
@@ -502,6 +525,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

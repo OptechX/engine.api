@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -22,6 +18,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/WindowsOptionalFeature
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WindowsOptionalFeature>>> GetWindowsOptionalFeatures()
         {
@@ -33,6 +30,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/WindowsOptionalFeature/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("{id:int}")]
         public async Task<ActionResult<WindowsOptionalFeature>> GetWindowsOptionalFeature(int id)
         {
@@ -52,6 +50,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1/WindowsOptionalFeature/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWindowsOptionalFeature(int id, WindowsOptionalFeature windowsOptionalFeature)
         {
@@ -83,6 +82,7 @@ namespace api.engine_v2.Controllers
 
         // POST: v1/WindowsOptionalFeature
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<WindowsOptionalFeature>> PostWindowsOptionalFeature(WindowsOptionalFeature windowsOptionalFeature)
         {
@@ -97,6 +97,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1/WindowsOptionalFeature/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWindowsOptionalFeature(int id)
         {
@@ -122,6 +123,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsOptionalFeature/featurename/{featurename}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("featurename/{featurename}")]
         public async Task<ActionResult<IEnumerable<WindowsOptionalFeature>>> GetWindowsOptionalFeatureByFeatureName([FromRoute]string featurename)
         {
@@ -136,6 +138,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsOptionalFeature/supportedwindowsversions/{version}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("supportedwindowsversions/{version}")]
         public async Task<ActionResult<IEnumerable<WindowsOptionalFeature>>> GetWindowsOptionalFeatureBySupportedWindowsVersions([FromRoute]string version)
         {
@@ -150,6 +153,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsOptionalFeature/supportedwindowseditions/{edition}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("supportedwindowseditions/{edition}")]
         public async Task<ActionResult<IEnumerable<WindowsOptionalFeature>>> GetWindowsOptionalFeatureBySupportedWindowsEditions([FromRoute]string edition)
         {
@@ -164,6 +168,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsOptionalFeature/supportedwindowsreleases/{releases}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("supportedwindowsreleases/{release}")]
         public async Task<ActionResult<IEnumerable<WindowsOptionalFeature>>> GetWindowsOptionalFeatureBySupportedWindowsReleases([FromRoute]string release)
         {
@@ -178,6 +183,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1//WindowsOptionalFeature/multisearch/{version}/{edition}/{release}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("multisearch/{version}/{edition}/{release}")]
         public async Task<ActionResult<IEnumerable<WindowsOptionalFeature>>> GetWindowsOptionalFeatureMultiSearch(
             [FromRoute]string version,
@@ -199,6 +205,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 

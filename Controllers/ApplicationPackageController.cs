@@ -5,6 +5,7 @@ using api.engine_v2.Models.Engine;
 using api.engine_v2.Models.Shared.Enums;
 using api.engine_v2.Models.Engine.Enums;
 using Stackoverflow.Answers.Helpers;
+using Microsoft.AspNetCore.Cors;
 
 namespace api.engine_v2.Controllers
 {
@@ -20,6 +21,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/ApplicationPackage
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ApplicationPackage>>> GetApplicationPackages()
         {
@@ -31,6 +33,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/ApplicationPackage/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("{id:int}")]
         public async Task<ActionResult<ApplicationPackage>> GetApplicationPackage(int id)
         {
@@ -50,6 +53,7 @@ namespace api.engine_v2.Controllers
 
         // PUT: v1/ApplicationPackage/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> PutApplicationPackage(int id, ApplicationPackage applicationPackage)
         {
@@ -81,6 +85,7 @@ namespace api.engine_v2.Controllers
 
         // POST: v1/ApplicationPackage
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<ApplicationPackage>> PostApplicationPackage(ApplicationPackage applicationPackage)
         {
@@ -95,6 +100,7 @@ namespace api.engine_v2.Controllers
         }
 
         // DELETE: v1/ApplicationPackage/5
+        [EnableCors("MyAllowAllOrigins")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteApplicationPackage(int id)
         {
@@ -120,6 +126,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/ApplicationPackage/uid/{uid}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("uid/{uid}")]
         public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByUid([FromRoute] string uid)
         {
@@ -134,6 +141,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/ApplicationPackage/uid/{uid}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("uuid/{uuid}")]
         public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByUuid([FromRoute] string uuid)
         {
@@ -148,6 +156,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/ApplicationPackage/rebootrequired/{rebootrequired}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("rebootrequired/{rebootrequired}")]
         public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByRebootRequired([FromRoute] bool rebootrequired)
         {
@@ -162,6 +171,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/ApplicationPackage/lcid/{lcid}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("lcid/{lcid}")]
         public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByLcid([FromRoute] string lcid)
         {
@@ -177,6 +187,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/ApplicationPackage/cpuarch/{cpuarch}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("cpuarch/{cpuarch}")]
         public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByCpuArch([FromRoute] string cpuarch)
         {
@@ -191,6 +202,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/ApplicationPackage/executable/{executable}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("executable/{executable}")]
         public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByExecutable([FromRoute] string executable)
         {
@@ -205,6 +217,7 @@ namespace api.engine_v2.Controllers
         }
 
         // GET: v1/ApplicationPackage/packagedetection/{packagedetection}
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet("packagedetection/{packagedetection}")]
         public async Task<ActionResult<IEnumerable<ApplicationPackage>>> ApplicationPackageByPackageDetection([FromRoute] string packagedetection)
         {
@@ -219,6 +232,7 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
 
 
 
