@@ -40,7 +40,7 @@ jobs:
         echo -e "3sFVrUGxt7HbrbBUbB2kX9UBQWcA" | docker login -u danijeljw --password-stdin
     - name: Build docker image
       run: |
-        docker build --rm --tag repasscloud/optechx.api.engine:v2 .
+        docker build --rm --tag repasscloud/optechx.api.engine:v2 --file Dockerfile.local .
     - name: Push to Dockerhub
       run: |
         docker image push repasscloud/optechx.api.engine:v2
