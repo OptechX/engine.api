@@ -120,6 +120,83 @@ namespace api.engine_v2.Controllers
         {
             return (_context.WindowsOptionalFeatures?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        // GET: v1/WindowsOptionalFeature/featurename/{featurename}
+        [HttpGet("featurename/{featurename}")]
+        public async Task<ActionResult<IEnumerable<WindowsOptionalFeature>>> GetWindowsOptionalFeatureByFeatureName([FromRoute]string featurename)
+        {
+            var features = _context.WindowsOptionalFeatures.Where(a => a.FeatureName.ToLower().Contains(featurename.ToLower()));
+
+            if (features.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await features.ToListAsync();
+        }
+
+        // GET: v1/WindowsOptionalFeature/supportedwindowsversions/{version}
+        [HttpGet("supportedwindowsversions/{version}")]
+        public async Task<ActionResult<IEnumerable<WindowsOptionalFeature>>> GetWindowsOptionalFeatureBySupportedWindowsVersions([FromRoute]string version)
+        {
+            var features = _context.WindowsOptionalFeatures.Where(a => a.SupportedWindowsVersions.Contains(version));
+
+            if (features.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await features.ToListAsync();
+        }
+
+        // GET: v1/WindowsOptionalFeature/supportedwindowseditions/{edition}
+        [HttpGet("supportedwindowseditions/{edition}")]
+        public async Task<ActionResult<IEnumerable<WindowsOptionalFeature>>> GetWindowsOptionalFeatureBySupportedWindowsEditions([FromRoute]string edition)
+        {
+            var features = _context.WindowsOptionalFeatures.Where(a => a.SupportedWindowsEditions.Contains(edition));
+
+            if (features.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await features.ToListAsync();
+        }
+
+        // GET: v1/WindowsOptionalFeature/supportedwindowsreleases/{releases}
+        [HttpGet("supportedwindowsreleases/{release}")]
+        public async Task<ActionResult<IEnumerable<WindowsOptionalFeature>>> GetWindowsOptionalFeatureBySupportedWindowsReleases([FromRoute]string release)
+        {
+            var features = _context.WindowsOptionalFeatures.Where(a => a.SupportedWindowsReleases.Contains(release));
+
+            if (features.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await features.ToListAsync();
+        }
+
+        // GET: v1/WindowsOptionalFeature/multisearch/{version}/{edition}/{release}
+        [HttpGet("multisearch/{version}/{edition}/{release}")]
+        public async Task<ActionResult<IEnumerable<WindowsOptionalFeature>>> GetWindowsOptionalFeatureMultiSearch(
+            [FromRoute]string version,
+            [FromRoute]string edition,
+            [FromRoute]string release)
+        {
+            var features = _context.WindowsOptionalFeatures.Where(a => 
+                                a.SupportedWindowsVersions.Contains(version) &&
+                                a.SupportedWindowsEditions.Contains(edition) &&
+                                a.SupportedWindowsReleases.Contains(release)
+                            );
+            
+            if (features.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await features.ToListAsync();
+        }
     }
 }
 
