@@ -119,8 +119,143 @@ namespace api.engine_v2.Controllers
         private bool DriversCoreExists(int id)
         {
             return (_context.DriverCores?.Any(e => e.Id == id)).GetValueOrDefault();
+
+
+            // GET: v1/DriversCore/uid/{uid}
+            [HttpGet("uid/{uid}")]
+            public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByUID([FromRoute] string uid)
+            {
+                var drivers = _context.DriversCores.Where(a => a.UID.ToLower() == uid.ToLower());
+
+                if (drivers.Count() == 0)
+                {
+                    return NotFound();
+                }
+
+                return await drivers.ToListAsync();
+            }
+
+            // GET: v1/DriversCore/oem/{oem}
+            [HttpGet("oem/{oem}")]
+            public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByOriginalEquipmentManufacturer([FromRoute] string oem)
+            {
+                var drivers = _context.DriversCores.Where(a => a.OriginalEquipmentManufacturer.ToLower() == oem.ToLower());
+
+                if (drivers.Count() == 0)
+                {
+                    return NotFound();
+                }
+
+                return await drivers.ToListAsync();
+            }
+
+            // GET: v1/DriversCore/make/{make}
+            [HttpGet("make/{make}")]
+            public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByMake([FromRoute] string make)
+            {
+                var drivers = _context.DriversCores.Where(a => a.Make.ToLower() == make.ToLower());
+
+                if (drivers.Count() == 0)
+                {
+                    return NotFound();
+                }
+
+                return await drivers.ToListAsync();
+            }
+
+            // GET: v1/DriversCore/model/{model}
+            [HttpGet("model/{model}")]
+            public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByModel([FromRoute] string model)
+            {
+                var drivers = _context.DriversCores.Where(a => a.Model.ToLower() == model.ToLower());
+
+                if (drivers.Count() == 0)
+                {
+                    return NotFound();
+                }
+
+                return await drivers.ToListAsync();
+            }
+
+            // GET: v1/DriversCore/productionyear/{productionyear:int}
+            [HttpGet("productionyear/{productionyear:int}")]
+            public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByProductionYear([FromRoute] int productionyear)
+            {
+                var drivers = _context.DriversCores.Where(a => a.ProductionYear == productionyear);
+
+                if (drivers.Count() == 0)
+                {
+                    return NotFound();
+                }
+
+                return await drivers.ToListAsync();
+            }
+
+            // GET: v1/DriversCore/cpuarch/{cpuarch}
+            [HttpGet("cpuarch/{cpuarch}")]
+            public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByCpuArch([FromRoute] string cpuarch)
+            {
+                var drivers = _context.DriversCores.Where(a => a.CpuArch.Contains(cpuarch.ToLower()));
+
+                if (drivers.Count() == 0)
+                {
+                    return NotFound();
+                }
+
+                return await drivers.ToListAsync();
+            }
+
+            // GET: v1/DriversCore/windowsos/{windowsos}
+            [HttpGet("windowsos/{windowsos}")]
+            public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByWindowsOS([FromRoute] string windowsos)
+            {
+                var drivers = _context.DriversCores.Where(a => a.WindowsOS.Contains(windowsos));
+
+                if (drivers.Count() == 0)
+                {
+                    return NotFound();
+                }
+
+                return await drivers.ToListAsync();
+            }
+
+            // GET: v1/DriversCore/globalsearch/{searchterm}
+            [HttpGet("globalsearch/{searchterm}")]
+            public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByGlobalSearch([FromRoute] string searchterm)
+            {
+                var drivers = _context.DriversCores.Where(a =>
+                    a.Make.ToLower().Contains(searchterm.ToLower()) ||
+                    a.Model.ToLower().Contains(searchterm.ToLower()) ||
+                    a.OriginalEquipmentManufacturer.ToLower().Contains(searchterm.ToLower())
+                );
+
+                if (drivers.Count() == 0)
+                {
+                    return NotFound();
+                }
+
+                return await drivers.ToListAsync();
+            }
+
+            // GET: v1/DriversCore/page4/{windowsos}/{arch}
+            [HttpGet("page4/{windowsos}/{arch}")]
+            public async Task<ActionResult<IEnumerable<DriversCore>>> GetDriversCoreByPage4Search(
+                [FromRoute] string windowsos,
+                [FromRoute] string arch)
+            {
+                var drivers = _context.DriversCores.Where(a =>
+                    a.WindowsOS.Contains(windowsos) &&
+                    a.CpuArch.Contains(arch)
+                );
+
+                if (drivers.Count() == 0)
+                {
+                    return NotFound();
+                }
+
+                return await drivers.ToListAsync();
+            }
         }
-    }
 }
 
 
