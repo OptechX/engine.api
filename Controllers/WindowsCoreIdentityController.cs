@@ -62,13 +62,13 @@ namespace api.engine_v2.Controllers
                     Id = 0,
                     UUID = Guid.Empty,
                     UID = "No Results",
-                    Release = "",
-                    Edition = "",
-                    Version = "",
-                    Build = "",
-                    Arch = "",
-                    WindowsLcid = "",
-                    SupportedUntil = "",
+                    Release = String.Empty,
+                    Edition = String.Empty,
+                    Version = String.Empty,
+                    Build = String.Empty,
+                    Arch = String.Empty,
+                    WindowsLcid = String.Empty,
+                    SupportedUntil = String.Empty,
                 };
                 
                 //return NotFound();
