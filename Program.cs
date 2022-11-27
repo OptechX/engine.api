@@ -71,6 +71,24 @@ public class Program
         app.UseDefaultFiles();
         app.UseStaticFiles();
 
+        // add OPTIONS=200.OK middleware
+        app.Use(async (context, next) =>
+        {
+            var methodvalue = context.Request.Method;
+            if (!string.IsNullOrEmpty(methodvalue))
+            {
+ 
+                if (methodvalue == HttpMethods.Options || methodvalue == HttpMethods.Head)
+                {
+                    await context.Response.WriteAsync("Option Request");
+                }
+                else
+                {
+                    await next();
+                }
+            }
+        });
+
         // enable CORS
         app.UseCors();
 
