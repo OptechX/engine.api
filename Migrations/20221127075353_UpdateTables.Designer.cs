@@ -12,7 +12,7 @@ using api.engine_v2.Data;
 namespace api.enginev2.Migrations
 {
     [DbContext(typeof(DefaultDbContext))]
-    [Migration("20221127074042_UpdateTables")]
+    [Migration("20221127075353_UpdateTables")]
     partial class UpdateTables
     {
         /// <inheritdoc />

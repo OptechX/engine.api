@@ -2,7 +2,7 @@ using System.Runtime.Serialization;
 
 namespace api.engine_v2.Models.Engine.Enums
 {
-    public enum TransferMethod
+    public enum TransferMethodId
     {
         [EnumMember(Value = "mc")]mc,
         [EnumMember(Value = "ftp")]ftp,

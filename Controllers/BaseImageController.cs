@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
 using api.engine_v2.Models.Engine;
 using Stackoverflow.Answers.Helpers;
-using api.engine_v2.Models.Shared.Enums;
-using api.engine_v2.Models.Engine.Enums;
 using Microsoft.AspNetCore.Cors;
 
 namespace api.engine_v2.Controllers
@@ -193,7 +191,7 @@ namespace api.engine_v2.Controllers
         [HttpGet("baseimagefiletype/{filetype}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByBaseImageFileType([FromRoute]string filetype)
         {
-            var images = _context.BaseImages.Where(a => a.BaseImageFileType.ToString() == EnumExtensions.GetValueFromEnumMember<BaseImageFileType>(filetype).ToString());
+            var images = _context.BaseImages.Where(a => a.BaseImageFileType.ToString() == EnumExtensions.GetValueFromEnumMember<api.engine_v2.Models.Engine.Enums.BaseImageFileType>(filetype).ToString());
 
             if (images.Count() == 0)
             {
@@ -239,7 +237,7 @@ namespace api.engine_v2.Controllers
         [HttpGet("transfermethod/{method}")]
         public async Task<ActionResult<IEnumerable<BaseImage>>> BaseImageByTransferMethod([FromRoute]string method)
         {
-            var images = _context.BaseImages.Where(a => a.TransferMethod.ToString() == EnumExtensions.GetValueFromEnumMember<api.engine_v2.Models.Engine.Enums.TransferMethod>(method).ToString());
+            var images = _context.BaseImages.Where(a => a.TransferMethod.ToString() == EnumExtensions.GetValueFromEnumMember<api.engine_v2.Models.Engine.Enums.TransferMethodId>(method).ToString());
 
             if (images.Count() == 0)
             {
