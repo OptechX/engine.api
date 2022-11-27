@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace api.enginev2.Migrations
 {
     /// <inheritdoc />
-    public partial class AddLookupTables : Migration
+    public partial class UpdateTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -145,9 +145,9 @@ namespace api.enginev2.Migrations
                     cpuarch = table.Column<string>(name: "cpu_arch", type: "text", nullable: true),
                     windowslcid = table.Column<string[]>(name: "windows_lcid", type: "text[]", nullable: false),
                     fido = table.Column<bool>(type: "boolean", nullable: false),
-                    baseimagefiletype = table.Column<string>(name: "base_image_file_type", type: "text", nullable: true),
+                    baseimagefiletype = table.Column<int>(name: "base_image_file_type", type: "integer", nullable: false),
                     locale = table.Column<string>(type: "text", nullable: true),
-                    transfermethod = table.Column<string>(name: "transfer_method", type: "text", nullable: true),
+                    transfermethod = table.Column<int>(name: "transfer_method", type: "integer", nullable: false),
                     sha256 = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>

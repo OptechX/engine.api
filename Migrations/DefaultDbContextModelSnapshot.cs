@@ -350,8 +350,8 @@ namespace api.enginev2.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("BaseImageFileType")
-                        .HasColumnType("text")
+                    b.Property<int>("BaseImageFileType")
+                        .HasColumnType("integer")
                         .HasColumnName("base_image_file_type");
 
                     b.Property<string>("CpuArch")
@@ -384,8 +384,8 @@ namespace api.enginev2.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("size_mb");
 
-                    b.Property<string>("TransferMethod")
-                        .HasColumnType("text")
+                    b.Property<int>("TransferMethod")
+                        .HasColumnType("integer")
                         .HasColumnName("transfer_method");
 
                     b.Property<Guid?>("UUID")

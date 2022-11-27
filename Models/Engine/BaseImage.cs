@@ -1,5 +1,5 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using api.engine_v2.Models.Engine.Enums;
 
 namespace api.engine_v2.Models.Engine
 {
@@ -23,9 +23,9 @@ namespace api.engine_v2.Models.Engine
         public string? CpuArch { get; set; }
         public string[] WindowsLcid { get; set; } = new string[] { };
         public bool Fido { get; set; } = false;
-        public string? BaseImageFileType { get; set; }
+        public BaseImageFileType BaseImageFileType { get; set; }
         public string? Locale { get; set; }
-        public string? TransferMethod { get; set; }
+        public TransferMethod TransferMethod { get; set; }
         public string? Sha256 { get; set; }
 
         public BaseImage()

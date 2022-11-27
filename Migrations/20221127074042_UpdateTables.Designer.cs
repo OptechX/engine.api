@@ -12,8 +12,8 @@ using api.engine_v2.Data;
 namespace api.enginev2.Migrations
 {
     [DbContext(typeof(DefaultDbContext))]
-    [Migration("20221127053654_AddLookupTables")]
-    partial class AddLookupTables
+    [Migration("20221127074042_UpdateTables")]
+    partial class UpdateTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -353,8 +353,8 @@ namespace api.enginev2.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("BaseImageFileType")
-                        .HasColumnType("text")
+                    b.Property<int>("BaseImageFileType")
+                        .HasColumnType("integer")
                         .HasColumnName("base_image_file_type");
 
                     b.Property<string>("CpuArch")
@@ -387,8 +387,8 @@ namespace api.enginev2.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("size_mb");
 
-                    b.Property<string>("TransferMethod")
-                        .HasColumnType("text")
+                    b.Property<int>("TransferMethod")
+                        .HasColumnType("integer")
                         .HasColumnName("transfer_method");
 
                     b.Property<Guid?>("UUID")
