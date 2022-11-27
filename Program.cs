@@ -18,15 +18,18 @@ public class Program
             options.AddPolicy(name: MyAllowAllOrigins,
                                 policy =>
                                 {
-                                    policy.AllowAnyOrigin()
-                                        .WithMethods("OPTIONS", "HEAD", "GET", "POST", "PUT", "PATCH", "DELETE")
+                                    policy.AllowAnyMethod()
                                         .AllowAnyHeader()
-                                        .AllowAnyMethod();
+                                        .SetIsOriginAllowed(origin => true)
+                                        .AllowCredentials();
+                                    // policy.AllowAnyOrigin()
+                                    //     .WithMethods("OPTIONS", "HEAD", "GET", "POST", "PUT", "PATCH", "DELETE")
+                                    //     .AllowAnyHeader()
+                                    //     .AllowAnyMethod();
                                 });
         });
 
         // Add services to the container.
-
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
