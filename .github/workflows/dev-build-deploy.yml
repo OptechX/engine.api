@@ -57,12 +57,9 @@ jobs:
       run: |
         chmod 700 ./secrets
         chmod 400 ./secrets/user_host_rsa
-    - name: Update pub-dev server
-      run: |
-        ssh -o "StrictHostKeyChecking=no" -i ./secrets/user_host_rsa admin-rpc@nyc-01.2qid.com 'docker compose down; docker network prune --force; docker network create web; docker network create --internal caddy_internal; docker rmi repasscloud/optechx.api.engine; docker compose up -d'
     - name: Update dev server
       run: |
-        ssh -o "StrictHostKeyChecking=no" -i ./secrets/user_host_rsa admin-rpc@nyc-01.2qid.com 'docker compose down; docker network prune --force; docker network create web; docker network create --internal caddy_internal; docker rmi repasscloud/optechx.api.engine; docker compose up -d'
+        ssh -o "StrictHostKeyChecking=no" -i ./secrets/user_host_rsa admin-rpc@engine.api.dev.optechx-data.com 'docker compose down; docker network prune --force; docker network create web; docker network create --internal caddy_internal; docker rmi repasscloud/optechx.api.engine; docker compose up -d'
 
   pull-request:
     needs: [ "docker-build" ]
@@ -79,3 +76,13 @@ jobs:
           body: "**Automated pull request**"
           label: auto-pull
           ignore_users: "dependabot"
+
+  mini-pull-request:
+    needs: [ "docker-build" ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: create pull request
+        run: gh pr create -B main -H dev --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
