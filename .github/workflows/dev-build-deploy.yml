@@ -14,9 +14,7 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
@@ -39,7 +37,6 @@ jobs:
       run: |
         docker build --rm --no-cache --tag repasscloud/optechx.api.engine:test --file Dockerfile.local .
 
-
   deploy:
     needs: [ "build", "docker-build" ]
     runs-on: ubuntu-latest
@@ -60,6 +57,9 @@ jobs:
       run: |
         chmod 700 ./secrets
         chmod 400 ./secrets/user_host_rsa
-    - name: Update public server
+    - name: Update dumb server
+      run: |
+        ssh -o "StrictHostKeyChecking=no" -i ./secrets/user_host_rsa admin-rpc@nyc-01.2qid.com 'docker compose down; docker network prune --force; docker network create web; docker network create --internal caddy_internal; docker rmi repasscloud/optechx.api.engine; docker compose up -d'
+    - name: Update dev server]
       run: |
         ssh -o "StrictHostKeyChecking=no" -i ./secrets/user_host_rsa admin-rpc@nyc-01.2qid.com 'docker compose down; docker network prune --force; docker network create web; docker network create --internal caddy_internal; docker rmi repasscloud/optechx.api.engine; docker compose up -d'
