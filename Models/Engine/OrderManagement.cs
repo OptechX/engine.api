@@ -21,9 +21,9 @@ namespace api.engine_v2.Models.Engine
         public string? DownloadLink { get; set; }
         public string? ImageOutputFormat { get; set; }
 
-        [DataType(DataType.EmailAddress)]
-        [EmailAddress]
-        public string NotificationEmailAddress { get; set; } = String.Empty;
+        //[DataType(DataType.EmailAddress)]
+        //[EmailAddress]
+        //public string NotificationEmailAddress { get; set; } = String.Empty;
         public bool ContinuousIntegration { get; set; }
         public bool ContinuousDelivery { get; set; }
 
@@ -39,8 +39,9 @@ namespace api.engine_v2.Models.Engine
         [StringLength(20), RegularExpression(@"[a-zA-Z0-9_.-]{1,20}", ErrorMessage = "Username must contain A-Z, a-z, 0-9, '.', '-', '_' characters up to length of 20 only.")]
         public string WindowsDefaultAccount { get; set; } = String.Empty;
 
+        [StringLength(40)]
         [Required, RegularExpression(@".{8,40}", ErrorMessage = "Password must have min, max of 8,40 characters.")]
-        public string WindowsDefaultPassword { get; set; } = null!;
+        public string WindowsDefaultPassword { get; set; } = String.Empty;
 
         public string[] CustomRegistryKeys { get; set; } = new string[] { };
 

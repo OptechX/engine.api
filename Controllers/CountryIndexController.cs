@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
 using api.engine_v2.Models.Shared;
+using Microsoft.AspNetCore.Cors;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class CountryIndexController : ControllerBase
     {
@@ -21,7 +17,8 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/CountryIndex
+        // GET: v1//[controller]ountryIndex
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CountryIndex>>> GetCountryIndices()
         {
@@ -32,8 +29,9 @@ namespace api.engine_v2.Controllers
             return await _context.CountryIndices.ToListAsync();
         }
 
-        // GET: api/CountryIndex/5
-        [HttpGet("{id}")]
+        // GET: v1//[controller]ountryIndex/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<CountryIndex>> GetCountryIndex(int id)
         {
           if (_context.CountryIndices == null)
@@ -50,9 +48,10 @@ namespace api.engine_v2.Controllers
             return countryIndex;
         }
 
-        // PUT: api/CountryIndex/5
+        // PUT: v1//[controller]ountryIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutCountryIndex(int id, CountryIndex countryIndex)
         {
             if (id != countryIndex.Id)
@@ -81,8 +80,9 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/CountryIndex
+        // POST: v1//[controller]ountryIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<CountryIndex>> PostCountryIndex(CountryIndex countryIndex)
         {
@@ -96,8 +96,9 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetCountryIndex", new { id = countryIndex.Id }, countryIndex);
         }
 
-        // DELETE: api/CountryIndex/5
-        [HttpDelete("{id}")]
+        // DELETE: v1//[controller]ountryIndex/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteCountryIndex(int id)
         {
             if (_context.CountryIndices == null)
@@ -122,3 +123,8 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
+
+
+
+

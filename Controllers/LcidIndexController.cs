@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
 using api.engine_v2.Models.Shared;
+using Microsoft.AspNetCore.Cors;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class LcidIndexController : ControllerBase
     {
@@ -21,7 +17,8 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/LcidIndex
+        // GET: v1//[controller]cidIndex
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LcidIndex>>> GetLcidIndices()
         {
@@ -32,8 +29,9 @@ namespace api.engine_v2.Controllers
             return await _context.LcidIndices.ToListAsync();
         }
 
-        // GET: api/LcidIndex/5
-        [HttpGet("{id}")]
+        // GET: v1//[controller]cidIndex/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<LcidIndex>> GetLcidIndex(int id)
         {
           if (_context.LcidIndices == null)
@@ -50,9 +48,10 @@ namespace api.engine_v2.Controllers
             return lcidIndex;
         }
 
-        // PUT: api/LcidIndex/5
+        // PUT: v1//[controller]cidIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutLcidIndex(int id, LcidIndex lcidIndex)
         {
             if (id != lcidIndex.Id)
@@ -81,8 +80,9 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/LcidIndex
+        // POST: v1//[controller]cidIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<LcidIndex>> PostLcidIndex(LcidIndex lcidIndex)
         {
@@ -96,8 +96,9 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetLcidIndex", new { id = lcidIndex.Id }, lcidIndex);
         }
 
-        // DELETE: api/LcidIndex/5
-        [HttpDelete("{id}")]
+        // DELETE: v1//[controller]cidIndex/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteLcidIndex(int id)
         {
             if (_context.LcidIndices == null)
@@ -122,3 +123,8 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
+
+
+
+

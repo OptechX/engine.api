@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -10,7 +6,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class WinRefCore02EditionController : ControllerBase
     {
@@ -21,7 +17,8 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/WinRefCore02Edition
+        // GET: v1/WinRefCore02Edition
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WinRefCore02Edition>>> GetWinRefCore02Editions()
         {
@@ -32,8 +29,9 @@ namespace api.engine_v2.Controllers
             return await _context.WinRefCore02Editions.ToListAsync();
         }
 
-        // GET: api/WinRefCore02Edition/5
-        [HttpGet("{id}")]
+        // GET: v1/WinRefCore02Edition/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<WinRefCore02Edition>> GetWinRefCore02Edition(int id)
         {
           if (_context.WinRefCore02Editions == null)
@@ -50,9 +48,10 @@ namespace api.engine_v2.Controllers
             return winRefCore02Edition;
         }
 
-        // PUT: api/WinRefCore02Edition/5
+        // PUT: v1/WinRefCore02Edition/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWinRefCore02Edition(int id, WinRefCore02Edition winRefCore02Edition)
         {
             if (id != winRefCore02Edition.Id)
@@ -81,8 +80,9 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/WinRefCore02Edition
+        // POST: v1/WinRefCore02Edition
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<WinRefCore02Edition>> PostWinRefCore02Edition(WinRefCore02Edition winRefCore02Edition)
         {
@@ -96,8 +96,9 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetWinRefCore02Edition", new { id = winRefCore02Edition.Id }, winRefCore02Edition);
         }
 
-        // DELETE: api/WinRefCore02Edition/5
-        [HttpDelete("{id}")]
+        // DELETE: v1/WinRefCore02Edition/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWinRefCore02Edition(int id)
         {
             if (_context.WinRefCore02Editions == null)
@@ -120,5 +121,26 @@ namespace api.engine_v2.Controllers
         {
             return (_context.WinRefCore02Editions?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        // GET: v1/WinRefCore02Edition/{release}
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{release}")]
+        public async Task<ActionResult<IEnumerable<WinRefCore02Edition>>> GetWinRefCore02EditionsIndexSearch(
+            [FromRoute]string release)
+        {
+            var results = _context.WinRefCore02Editions.Where(a => a.Release == release);
+            
+            if (results.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await results.ToListAsync();
+        }
     }
 }
+
+
+
+
+

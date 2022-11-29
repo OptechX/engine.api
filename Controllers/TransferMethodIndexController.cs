@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -10,7 +6,7 @@ using api.engine_v2.Models.Shared;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class TransferMethodIndexController : ControllerBase
     {
@@ -21,7 +17,8 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/TransferMethodIndex
+        // GET: v1//[controller]ransferMethodIndex
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TransferMethodIndex>>> GetTransferMethodIndices()
         {
@@ -32,8 +29,9 @@ namespace api.engine_v2.Controllers
             return await _context.TransferMethodIndices.ToListAsync();
         }
 
-        // GET: api/TransferMethodIndex/5
-        [HttpGet("{id}")]
+        // GET: v1//[controller]ransferMethodIndex/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<TransferMethodIndex>> GetTransferMethodIndex(int id)
         {
           if (_context.TransferMethodIndices == null)
@@ -50,9 +48,10 @@ namespace api.engine_v2.Controllers
             return transferMethodIndex;
         }
 
-        // PUT: api/TransferMethodIndex/5
+        // PUT: v1//[controller]ransferMethodIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutTransferMethodIndex(int id, TransferMethodIndex transferMethodIndex)
         {
             if (id != transferMethodIndex.Id)
@@ -81,8 +80,9 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/TransferMethodIndex
+        // POST: v1//[controller]ransferMethodIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<TransferMethodIndex>> PostTransferMethodIndex(TransferMethodIndex transferMethodIndex)
         {
@@ -96,8 +96,9 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetTransferMethodIndex", new { id = transferMethodIndex.Id }, transferMethodIndex);
         }
 
-        // DELETE: api/TransferMethodIndex/5
-        [HttpDelete("{id}")]
+        // DELETE: v1//[controller]ransferMethodIndex/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteTransferMethodIndex(int id)
         {
             if (_context.TransferMethodIndices == null)
@@ -122,3 +123,8 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
+
+
+
+

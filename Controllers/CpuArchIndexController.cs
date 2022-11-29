@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -10,7 +6,7 @@ using api.engine_v2.Models.Shared;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class CpuArchIndexController : ControllerBase
     {
@@ -21,7 +17,8 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/CpuArchIndex
+        // GET: v1//[controller]puArchIndex
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CpuArchIndex>>> GetCpuArchIndices()
         {
@@ -32,8 +29,9 @@ namespace api.engine_v2.Controllers
             return await _context.CpuArchIndices.ToListAsync();
         }
 
-        // GET: api/CpuArchIndex/5
-        [HttpGet("{id}")]
+        // GET: v1//[controller]puArchIndex/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<CpuArchIndex>> GetCpuArchIndex(int id)
         {
           if (_context.CpuArchIndices == null)
@@ -50,9 +48,10 @@ namespace api.engine_v2.Controllers
             return cpuArchIndex;
         }
 
-        // PUT: api/CpuArchIndex/5
+        // PUT: v1//[controller]puArchIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutCpuArchIndex(int id, CpuArchIndex cpuArchIndex)
         {
             if (id != cpuArchIndex.Id)
@@ -81,8 +80,9 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/CpuArchIndex
+        // POST: v1//[controller]puArchIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<CpuArchIndex>> PostCpuArchIndex(CpuArchIndex cpuArchIndex)
         {
@@ -96,8 +96,9 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetCpuArchIndex", new { id = cpuArchIndex.Id }, cpuArchIndex);
         }
 
-        // DELETE: api/CpuArchIndex/5
-        [HttpDelete("{id}")]
+        // DELETE: v1//[controller]puArchIndex/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteCpuArchIndex(int id)
         {
             if (_context.CpuArchIndices == null)
@@ -122,3 +123,8 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
+
+
+
+

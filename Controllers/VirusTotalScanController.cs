@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -10,7 +6,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class VirusTotalScanController : ControllerBase
     {
@@ -21,7 +17,8 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/VirusTotalScan
+        // GET: v1/VirusTotalScan
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<VirusTotalScan>>> GetVirusTotalScans()
         {
@@ -32,8 +29,9 @@ namespace api.engine_v2.Controllers
             return await _context.VirusTotalScans.ToListAsync();
         }
 
-        // GET: api/VirusTotalScan/5
-        [HttpGet("{id}")]
+        // GET: v1/VirusTotalScan/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<VirusTotalScan>> GetVirusTotalScan(int id)
         {
           if (_context.VirusTotalScans == null)
@@ -50,9 +48,10 @@ namespace api.engine_v2.Controllers
             return virusTotalScan;
         }
 
-        // PUT: api/VirusTotalScan/5
+        // PUT: v1/VirusTotalScan/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutVirusTotalScan(int id, VirusTotalScan virusTotalScan)
         {
             if (id != virusTotalScan.Id)
@@ -81,8 +80,9 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/VirusTotalScan
+        // POST: v1/VirusTotalScan
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<VirusTotalScan>> PostVirusTotalScan(VirusTotalScan virusTotalScan)
         {
@@ -96,8 +96,9 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetVirusTotalScan", new { id = virusTotalScan.Id }, virusTotalScan);
         }
 
-        // DELETE: api/VirusTotalScan/5
-        [HttpDelete("{id}")]
+        // DELETE: v1/VirusTotalScan/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteVirusTotalScan(int id)
         {
             if (_context.VirusTotalScans == null)
@@ -122,3 +123,8 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
+
+
+
+

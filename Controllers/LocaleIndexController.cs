@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -10,7 +6,7 @@ using api.engine_v2.Models.Shared;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class LocaleIndexController : ControllerBase
     {
@@ -21,7 +17,8 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/LocaleIndex
+        // GET: v1//[controller]ocaleIndex
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LocaleIndex>>> GetLocaleIndices()
         {
@@ -32,8 +29,9 @@ namespace api.engine_v2.Controllers
             return await _context.LocaleIndices.ToListAsync();
         }
 
-        // GET: api/LocaleIndex/5
-        [HttpGet("{id}")]
+        // GET: v1//[controller]ocaleIndex/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<LocaleIndex>> GetLocaleIndex(int id)
         {
           if (_context.LocaleIndices == null)
@@ -50,9 +48,10 @@ namespace api.engine_v2.Controllers
             return localeIndex;
         }
 
-        // PUT: api/LocaleIndex/5
+        // PUT: v1//[controller]ocaleIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutLocaleIndex(int id, LocaleIndex localeIndex)
         {
             if (id != localeIndex.Id)
@@ -81,8 +80,9 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/LocaleIndex
+        // POST: v1//[controller]ocaleIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<LocaleIndex>> PostLocaleIndex(LocaleIndex localeIndex)
         {
@@ -96,8 +96,9 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetLocaleIndex", new { id = localeIndex.Id }, localeIndex);
         }
 
-        // DELETE: api/LocaleIndex/5
-        [HttpDelete("{id}")]
+        // DELETE: v1//[controller]ocaleIndex/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteLocaleIndex(int id)
         {
             if (_context.LocaleIndices == null)
@@ -122,3 +123,8 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
+
+
+
+

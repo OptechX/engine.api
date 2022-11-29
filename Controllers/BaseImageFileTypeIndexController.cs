@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
 using api.engine_v2.Models.Engine;
+using Microsoft.AspNetCore.Cors;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class BaseImageFileTypeIndexController : ControllerBase
     {
@@ -21,7 +17,8 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/BaseImageFileTypeIndex
+        // GET: v1/BaseImageFileTypeIndex
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BaseImageFileTypeIndex>>> GetBaseImageFileTypeIndices()
         {
@@ -32,8 +29,9 @@ namespace api.engine_v2.Controllers
             return await _context.BaseImageFileTypeIndices.ToListAsync();
         }
 
-        // GET: api/BaseImageFileTypeIndex/5
-        [HttpGet("{id}")]
+        // GET: v1/BaseImageFileTypeIndex/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<BaseImageFileTypeIndex>> GetBaseImageFileTypeIndex(int id)
         {
           if (_context.BaseImageFileTypeIndices == null)
@@ -50,9 +48,10 @@ namespace api.engine_v2.Controllers
             return baseImageFileTypeIndex;
         }
 
-        // PUT: api/BaseImageFileTypeIndex/5
+        // PUT: v1/BaseImageFileTypeIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutBaseImageFileTypeIndex(int id, BaseImageFileTypeIndex baseImageFileTypeIndex)
         {
             if (id != baseImageFileTypeIndex.Id)
@@ -81,8 +80,9 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/BaseImageFileTypeIndex
+        // POST: v1/BaseImageFileTypeIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<BaseImageFileTypeIndex>> PostBaseImageFileTypeIndex(BaseImageFileTypeIndex baseImageFileTypeIndex)
         {
@@ -96,8 +96,9 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetBaseImageFileTypeIndex", new { id = baseImageFileTypeIndex.Id }, baseImageFileTypeIndex);
         }
 
-        // DELETE: api/BaseImageFileTypeIndex/5
-        [HttpDelete("{id}")]
+        // DELETE: v1/BaseImageFileTypeIndex/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteBaseImageFileTypeIndex(int id)
         {
             if (_context.BaseImageFileTypeIndices == null)
@@ -122,3 +123,8 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
+
+
+
+

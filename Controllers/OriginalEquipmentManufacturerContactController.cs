@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -10,7 +6,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class OriginalEquipmentManufacturerContactController : ControllerBase
     {
@@ -21,7 +17,8 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/OriginalEquipmentManufacturerContact
+        // GET: v1//[controller]riginalEquipmentManufacturerContact
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OriginalEquipmentManufacturerContact>>> GetOriginalEquipmentManufacturerContacts()
         {
@@ -32,8 +29,9 @@ namespace api.engine_v2.Controllers
             return await _context.OriginalEquipmentManufacturerContacts.ToListAsync();
         }
 
-        // GET: api/OriginalEquipmentManufacturerContact/5
-        [HttpGet("{id}")]
+        // GET: v1//[controller]riginalEquipmentManufacturerContact/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<OriginalEquipmentManufacturerContact>> GetOriginalEquipmentManufacturerContact(int id)
         {
           if (_context.OriginalEquipmentManufacturerContacts == null)
@@ -50,9 +48,10 @@ namespace api.engine_v2.Controllers
             return originalEquipmentManufacturerContact;
         }
 
-        // PUT: api/OriginalEquipmentManufacturerContact/5
+        // PUT: v1//[controller]riginalEquipmentManufacturerContact/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutOriginalEquipmentManufacturerContact(int id, OriginalEquipmentManufacturerContact originalEquipmentManufacturerContact)
         {
             if (id != originalEquipmentManufacturerContact.Id)
@@ -81,8 +80,9 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/OriginalEquipmentManufacturerContact
+        // POST: v1//[controller]riginalEquipmentManufacturerContact
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<OriginalEquipmentManufacturerContact>> PostOriginalEquipmentManufacturerContact(OriginalEquipmentManufacturerContact originalEquipmentManufacturerContact)
         {
@@ -96,8 +96,9 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetOriginalEquipmentManufacturerContact", new { id = originalEquipmentManufacturerContact.Id }, originalEquipmentManufacturerContact);
         }
 
-        // DELETE: api/OriginalEquipmentManufacturerContact/5
-        [HttpDelete("{id}")]
+        // DELETE: v1//[controller]riginalEquipmentManufacturerContact/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteOriginalEquipmentManufacturerContact(int id)
         {
             if (_context.OriginalEquipmentManufacturerContacts == null)
@@ -122,3 +123,8 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
+
+
+
+

@@ -1,0 +1,53 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: DEV Publish
+
+on:
+  push:
+    branches: [ "3-extend-api-routes" ]
+  pull_request:
+    branches: [ "3-extend-api-routes" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore ./api.engine-v2.sln
+    - name: Build
+      run: dotnet build --no-restore ./api.engine-v2.sln
+    - name: Test
+      run: dotnet test --no-build --verbosity normal ./api.engine-v2.sln
+
+  deploy:
+
+    needs: [ "build" ]
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Login to Dockerhub
+      run: |
+        echo -e "3sFVrUGxt7HbrbBUbB2kX9UBQWcA" | docker login -u danijeljw --password-stdin
+    - name: Build docker image
+      run: |
+        docker build --rm --tag repasscloud/optechx.api.engine:v2 --file Dockerfile.local .
+    - name: Push to Dockerhub
+      run: |
+        docker image push repasscloud/optechx.api.engine:v2
+    - name: Setup SSH
+      run: |
+        chmod 700 ./secrets
+        chmod 400 ./secrets/user_host_rsa
+    - name: Update public server
+      run: |
+        ssh -o "StrictHostKeyChecking=no" -i ./secrets/user_host_rsa admin-rpc@nyc-01.2qid.com 'docker compose down; docker network prune --force; docker network create web; docker network create --internal caddy_internal; docker rmi repasscloud/optechx.api.engine:v2; docker compose up -d'

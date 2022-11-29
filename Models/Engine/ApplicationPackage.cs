@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using api.engine_v2.Models.Engine.Enums;
 
 namespace api.engine_v2.Models.Engine
 {
@@ -27,7 +28,7 @@ namespace api.engine_v2.Models.Engine
         public string? FollowUri { get; set; }
         public string? AbsoluteUri { get; set; }
 
-        public string? Executable { get; set; }
+        public Executable Executable { get; set; }
         public string? InstallCmd { get; set; }
         public string? InstallArgs { get; set; }
         public string? InstallScript { get; set; }         // ie - adobe that requires an install script to be passed to the pre-requirements first

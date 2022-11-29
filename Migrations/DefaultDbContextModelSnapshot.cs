@@ -189,8 +189,8 @@ namespace api.enginev2.Migrations
                         .HasColumnType("boolean")
                         .HasColumnName("enabled");
 
-                    b.Property<string>("Executable")
-                        .HasColumnType("text")
+                    b.Property<int>("Executable")
+                        .HasColumnType("integer")
                         .HasColumnName("executable");
 
                     b.Property<int?>("ExploitReportId")
@@ -350,8 +350,8 @@ namespace api.enginev2.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("BaseImageFileType")
-                        .HasColumnType("text")
+                    b.Property<int>("BaseImageFileType")
+                        .HasColumnType("integer")
                         .HasColumnName("base_image_file_type");
 
                     b.Property<string>("CpuArch")
@@ -384,8 +384,8 @@ namespace api.enginev2.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("size_mb");
 
-                    b.Property<string>("TransferMethod")
-                        .HasColumnType("text")
+                    b.Property<int>("TransferMethod")
+                        .HasColumnType("integer")
                         .HasColumnName("transfer_method");
 
                     b.Property<Guid?>("UUID")
@@ -428,7 +428,7 @@ namespace api.enginev2.Migrations
                     b.ToTable("base_image_file_type_indices", (string)null);
                 });
 
-            modelBuilder.Entity("api.engine_v2.Models.Engine.Driver", b =>
+            modelBuilder.Entity("api.engine_v2.Models.Engine.Drivers", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -583,7 +583,7 @@ namespace api.enginev2.Migrations
                     b.ToTable("drivers", (string)null);
                 });
 
-            modelBuilder.Entity("api.engine_v2.Models.Engine.DriverCore", b =>
+            modelBuilder.Entity("api.engine_v2.Models.Engine.DriversCore", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -763,11 +763,6 @@ namespace api.enginev2.Migrations
                         .HasColumnType("text")
                         .HasColumnName("lcid");
 
-                    b.Property<string>("NotificationEmailAddress")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("notification_email_address");
-
                     b.Property<string>("OptionalFeatureString")
                         .HasColumnType("text")
                         .HasColumnName("optional_feature_string");
@@ -810,7 +805,8 @@ namespace api.enginev2.Migrations
 
                     b.Property<string>("WindowsDefaultPassword")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(40)
+                        .HasColumnType("character varying(40)")
                         .HasColumnName("windows_default_password");
 
                     b.HasKey("Id")

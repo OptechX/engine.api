@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -10,7 +6,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class WinRefCore04ArchController : ControllerBase
     {
@@ -21,7 +17,8 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/WinRefCore04Arch
+        // GET: v1/WinRefCore04Arch
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WinRefCore04Arch>>> GetWinRefCore04Arches()
         {
@@ -32,8 +29,9 @@ namespace api.engine_v2.Controllers
             return await _context.WinRefCore04Arches.ToListAsync();
         }
 
-        // GET: api/WinRefCore04Arch/5
-        [HttpGet("{id}")]
+        // GET: v1/WinRefCore04Arch/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<WinRefCore04Arch>> GetWinRefCore04Arch(int id)
         {
           if (_context.WinRefCore04Arches == null)
@@ -50,9 +48,10 @@ namespace api.engine_v2.Controllers
             return winRefCore04Arch;
         }
 
-        // PUT: api/WinRefCore04Arch/5
+        // PUT: v1/WinRefCore04Arch/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWinRefCore04Arch(int id, WinRefCore04Arch winRefCore04Arch)
         {
             if (id != winRefCore04Arch.Id)
@@ -81,8 +80,9 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/WinRefCore04Arch
+        // POST: v1/WinRefCore04Arch
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<WinRefCore04Arch>> PostWinRefCore04Arch(WinRefCore04Arch winRefCore04Arch)
         {
@@ -96,8 +96,9 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetWinRefCore04Arch", new { id = winRefCore04Arch.Id }, winRefCore04Arch);
         }
 
-        // DELETE: api/WinRefCore04Arch/5
-        [HttpDelete("{id}")]
+        // DELETE: v1/WinRefCore04Arch/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWinRefCore04Arch(int id)
         {
             if (_context.WinRefCore04Arches == null)
@@ -120,5 +121,31 @@ namespace api.engine_v2.Controllers
         {
             return (_context.WinRefCore04Arches?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        // GET: v1//WinRefCore04Arch/{release}/{edition}/{version}
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{release}/{edition}/{version}")]
+        public async Task<ActionResult<IEnumerable<WinRefCore04Arch>>> GetWinRefCore04ArchIndexSearch(
+            [FromRoute]string release,
+            [FromRoute]string edition,
+            [FromRoute]string version)
+        {
+            var results = _context.WinRefCore04Arches.Where(a => 
+                a.Release == release &&
+                a.Edition == edition &&
+                a.Version == version);
+            
+            if (results.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await results.ToListAsync();
+        }
     }
 }
+
+
+
+
+

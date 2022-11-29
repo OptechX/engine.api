@@ -1,7 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using api.engine_v2.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
 
 namespace api.engine_v2;
 
@@ -9,10 +8,28 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        // cors with endpoint routing
+        var MyAllowAllOrigins = "_myAllowAllOrigins";
+
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy(name: MyAllowAllOrigins,
+                                policy =>
+                                {
+                                    policy.AllowAnyMethod()
+                                        .AllowAnyHeader()
+                                        .SetIsOriginAllowed(origin => true)
+                                        .AllowCredentials();
+                                    // policy.AllowAnyOrigin()
+                                    //     .WithMethods("OPTIONS", "HEAD", "GET", "POST", "PUT", "PATCH", "DELETE")
+                                    //     .AllowAnyHeader()
+                                    //     .AllowAnyMethod();
+                                });
+        });
 
+        // Add services to the container.
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
@@ -44,11 +61,38 @@ public class Program
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "OptechX API Engine v2");
+            });
         }
 
-        app.UseAuthorization();
+        // add static servce pages
+        app.UseDefaultFiles();
+        app.UseStaticFiles();
 
+        // add OPTIONS=200.OK middleware
+        app.Use(async (context, next) =>
+        {
+            var methodvalue = context.Request.Method;
+            if (!string.IsNullOrEmpty(methodvalue))
+            {
+ 
+                if (methodvalue == HttpMethods.Options || methodvalue == HttpMethods.Head)
+                {
+                    await context.Response.WriteAsync("Option Request");
+                }
+                else
+                {
+                    await next();
+                }
+            }
+        });
+
+        // enable CORS
+        app.UseCors();
+
+        app.UseAuthorization();
 
         app.MapControllers();
 

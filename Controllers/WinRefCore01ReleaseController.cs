@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -10,7 +6,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class WinRefCore01ReleaseController : ControllerBase
     {
@@ -21,7 +17,8 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/WinRefCore01Release
+        // GET: v1/WinRefCore01Release
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WinRefCore01Release>>> GetWinRefCore01Releases()
         {
@@ -32,8 +29,9 @@ namespace api.engine_v2.Controllers
             return await _context.WinRefCore01Releases.ToListAsync();
         }
 
-        // GET: api/WinRefCore01Release/5
-        [HttpGet("{id}")]
+        // GET: v1/WinRefCore01Release/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<WinRefCore01Release>> GetWinRefCore01Release(int id)
         {
           if (_context.WinRefCore01Releases == null)
@@ -50,9 +48,10 @@ namespace api.engine_v2.Controllers
             return winRefCore01Release;
         }
 
-        // PUT: api/WinRefCore01Release/5
+        // PUT: v1/WinRefCore01Release/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWinRefCore01Release(int id, WinRefCore01Release winRefCore01Release)
         {
             if (id != winRefCore01Release.Id)
@@ -81,8 +80,9 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/WinRefCore01Release
+        // POST: v1/WinRefCore01Release
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<WinRefCore01Release>> PostWinRefCore01Release(WinRefCore01Release winRefCore01Release)
         {
@@ -96,8 +96,9 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetWinRefCore01Release", new { id = winRefCore01Release.Id }, winRefCore01Release);
         }
 
-        // DELETE: api/WinRefCore01Release/5
-        [HttpDelete("{id}")]
+        // DELETE: v1/WinRefCore01Release/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWinRefCore01Release(int id)
         {
             if (_context.WinRefCore01Releases == null)
@@ -122,3 +123,8 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
+
+
+
+

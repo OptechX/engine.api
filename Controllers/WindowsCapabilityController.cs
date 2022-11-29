@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
@@ -10,7 +6,7 @@ using api.engine_v2.Models.Engine;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class WindowsCapabilityController : ControllerBase
     {
@@ -21,7 +17,8 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/WindowsCapability
+        // GET: v1/WindowsCapability
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilities()
         {
@@ -32,8 +29,9 @@ namespace api.engine_v2.Controllers
             return await _context.WindowsCapabilities.ToListAsync();
         }
 
-        // GET: api/WindowsCapability/5
-        [HttpGet("{id}")]
+        // GET: v1/WindowsCapability/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<WindowsCapability>> GetWindowsCapability(int id)
         {
           if (_context.WindowsCapabilities == null)
@@ -50,9 +48,10 @@ namespace api.engine_v2.Controllers
             return windowsCapability;
         }
 
-        // PUT: api/WindowsCapability/5
+        // PUT: v1/WindowsCapability/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWindowsCapability(int id, WindowsCapability windowsCapability)
         {
             if (id != windowsCapability.Id)
@@ -81,8 +80,9 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/WindowsCapability
+        // POST: v1/WindowsCapability
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<WindowsCapability>> PostWindowsCapability(WindowsCapability windowsCapability)
         {
@@ -96,8 +96,9 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetWindowsCapability", new { id = windowsCapability.Id }, windowsCapability);
         }
 
-        // DELETE: api/WindowsCapability/5
-        [HttpDelete("{id}")]
+        // DELETE: v1/WindowsCapability/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWindowsCapability(int id)
         {
             if (_context.WindowsCapabilities == null)
@@ -120,5 +121,91 @@ namespace api.engine_v2.Controllers
         {
             return (_context.WindowsCapabilities?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        // GET: v1//WindowsCapability/name/{name}
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("name/{name}")]
+        public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilityByName([FromRoute]string name)
+        {
+            var capability = _context.WindowsCapabilities.Where(a => a.Name == name);
+            
+            if (capability.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await capability.ToListAsync();
+        }
+
+        // GET: v1//WindowsCapability/supportedwindowsversions/{version}
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("supportedwindowsversions/{version}")]
+        public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilityBySupportedWindowsVersions([FromRoute]string version)
+        {
+            var capability = _context.WindowsCapabilities.Where(a => a.SupportedWindowsVersions.Contains(version));
+
+            if (capability.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await capability.ToListAsync();
+        }
+
+        // GET: v1//WindowsCapability/supportedwindowseditions/{supportedwindowsedition}
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("supportedwindowseditions/{edition}")]
+        public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilityBySupportedWindowsEditions([FromRoute]string edition)
+        {
+            var capability = _context.WindowsCapabilities.Where(a => a.SupportedWindowsEditions.Contains(edition));
+
+            if (capability.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await capability.ToListAsync();
+        }
+
+        // GET: v1//WindowsCapability/supportedwindowsreleases/{supportedwindowsrelease}
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("supportedwindowsreleases/{release}")]
+        public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilityBySupportedWindowsReleases([FromRoute]string release)
+        {
+            var capability = _context.WindowsCapabilities.Where(a => a.SupportedWindowsReleases.Contains(release));
+
+            if (capability.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await capability.ToListAsync();
+        }
+
+        // GET: v1//WindowsCapability/multisearch/{supportedwindowsversion}/{supportedwindowsedition}/{supportedwindowsrelease}
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("multisearch/{version}/{edition}/{release}")]
+        public async Task<ActionResult<IEnumerable<WindowsCapability>>> GetWindowsCapabilityMultiSearch(
+            [FromRoute]string version,
+            [FromRoute]string edition,
+            [FromRoute]string release)
+        {
+            var capabilities = _context.WindowsCapabilities.Where(a =>
+                a.SupportedWindowsVersions.Contains(version) &&
+                a.SupportedWindowsEditions.Contains(edition) &&
+                a.SupportedWindowsReleases.Contains(release));
+            
+            if (capabilities.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await capabilities.ToListAsync();
+        }
     }
 }
+
+
+
+
+

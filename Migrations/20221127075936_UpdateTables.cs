@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace api.enginev2.Migrations
 {
     /// <inheritdoc />
-    public partial class AddInitDbMigrations : Migration
+    public partial class UpdateTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -42,7 +42,7 @@ namespace api.enginev2.Migrations
                     sha256 = table.Column<string>(type: "text", nullable: true),
                     followuri = table.Column<string>(name: "follow_uri", type: "text", nullable: true),
                     absoluteuri = table.Column<string>(name: "absolute_uri", type: "text", nullable: true),
-                    executable = table.Column<string>(type: "text", nullable: true),
+                    executable = table.Column<int>(type: "integer", nullable: false),
                     installcmd = table.Column<string>(name: "install_cmd", type: "text", nullable: true),
                     installargs = table.Column<string>(name: "install_args", type: "text", nullable: true),
                     installscript = table.Column<string>(name: "install_script", type: "text", nullable: true),
@@ -145,9 +145,9 @@ namespace api.enginev2.Migrations
                     cpuarch = table.Column<string>(name: "cpu_arch", type: "text", nullable: true),
                     windowslcid = table.Column<string[]>(name: "windows_lcid", type: "text[]", nullable: false),
                     fido = table.Column<bool>(type: "boolean", nullable: false),
-                    baseimagefiletype = table.Column<string>(name: "base_image_file_type", type: "text", nullable: true),
+                    baseimagefiletype = table.Column<int>(name: "base_image_file_type", type: "integer", nullable: false),
                     locale = table.Column<string>(type: "text", nullable: true),
-                    transfermethod = table.Column<string>(name: "transfer_method", type: "text", nullable: true),
+                    transfermethod = table.Column<int>(name: "transfer_method", type: "integer", nullable: false),
                     sha256 = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
@@ -358,7 +358,6 @@ namespace api.enginev2.Migrations
                     ordername = table.Column<string>(name: "order_name", type: "character varying(20)", maxLength: 20, nullable: false),
                     downloadlink = table.Column<string>(name: "download_link", type: "text", nullable: true),
                     imageoutputformat = table.Column<string>(name: "image_output_format", type: "text", nullable: true),
-                    notificationemailaddress = table.Column<string>(name: "notification_email_address", type: "text", nullable: false),
                     continuousintegration = table.Column<bool>(name: "continuous_integration", type: "boolean", nullable: false),
                     continuousdelivery = table.Column<bool>(name: "continuous_delivery", type: "boolean", nullable: false),
                     release = table.Column<string>(type: "text", nullable: false),
@@ -369,7 +368,7 @@ namespace api.enginev2.Migrations
                     optionalfeaturestring = table.Column<string>(name: "optional_feature_string", type: "text", nullable: true),
                     appxpackagesstring = table.Column<string>(name: "appx_packages_string", type: "text", nullable: true),
                     windowsdefaultaccount = table.Column<string>(name: "windows_default_account", type: "character varying(20)", maxLength: 20, nullable: false),
-                    windowsdefaultpassword = table.Column<string>(name: "windows_default_password", type: "text", nullable: false),
+                    windowsdefaultpassword = table.Column<string>(name: "windows_default_password", type: "character varying(40)", maxLength: 40, nullable: false),
                     customregistrykeys = table.Column<string[]>(name: "custom_registry_keys", type: "text[]", nullable: false),
                     applicationuid = table.Column<string[]>(name: "application_uid", type: "text[]", nullable: false),
                     driversuid = table.Column<string[]>(name: "drivers_uid", type: "text[]", nullable: false)

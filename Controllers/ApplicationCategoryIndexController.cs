@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
 using api.engine_v2.Models.Engine;
+using Microsoft.AspNetCore.Cors;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class ApplicationCategoryIndexController : ControllerBase
     {
@@ -21,7 +17,8 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/ApplicationCategoryIndex
+        // GET: v1//ApplicationCategoryIndex
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ApplicationCategoryIndex>>> GetApplicationCategoryIndices()
         {
@@ -32,8 +29,9 @@ namespace api.engine_v2.Controllers
             return await _context.ApplicationCategoryIndices.ToListAsync();
         }
 
-        // GET: api/ApplicationCategoryIndex/5
-        [HttpGet("{id}")]
+        // GET: v1//ApplicationCategoryIndex/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<ApplicationCategoryIndex>> GetApplicationCategoryIndex(int id)
         {
           if (_context.ApplicationCategoryIndices == null)
@@ -50,9 +48,10 @@ namespace api.engine_v2.Controllers
             return applicationCategoryIndex;
         }
 
-        // PUT: api/ApplicationCategoryIndex/5
+        // PUT: v1//ApplicationCategoryIndex/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutApplicationCategoryIndex(int id, ApplicationCategoryIndex applicationCategoryIndex)
         {
             if (id != applicationCategoryIndex.Id)
@@ -81,8 +80,9 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/ApplicationCategoryIndex
+        // POST: v1//ApplicationCategoryIndex
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<ApplicationCategoryIndex>> PostApplicationCategoryIndex(ApplicationCategoryIndex applicationCategoryIndex)
         {
@@ -96,8 +96,9 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetApplicationCategoryIndex", new { id = applicationCategoryIndex.Id }, applicationCategoryIndex);
         }
 
-        // DELETE: api/ApplicationCategoryIndex/5
-        [HttpDelete("{id}")]
+        // DELETE: v1//ApplicationCategoryIndex/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteApplicationCategoryIndex(int id)
         {
             if (_context.ApplicationCategoryIndices == null)
@@ -122,3 +123,9 @@ namespace api.engine_v2.Controllers
         }
     }
 }
+
+
+
+
+
+

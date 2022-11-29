@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.engine_v2.Data;
 using api.engine_v2.Models.Engine;
+using Microsoft.AspNetCore.Cors;
 
 namespace api.engine_v2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class WinRefCore05LanguageController : ControllerBase
     {
@@ -21,7 +17,8 @@ namespace api.engine_v2.Controllers
             _context = context;
         }
 
-        // GET: api/WinRefCore05Language
+        // GET: v1/WinRefCore05Language
+        [EnableCors("MyAllowAllOrigins")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WinRefCore05Language>>> GetWinRefCore05Languages()
         {
@@ -32,8 +29,9 @@ namespace api.engine_v2.Controllers
             return await _context.WinRefCore05Languages.ToListAsync();
         }
 
-        // GET: api/WinRefCore05Language/5
-        [HttpGet("{id}")]
+        // GET: v1/WinRefCore05Language/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<WinRefCore05Language>> GetWinRefCore05Language(int id)
         {
           if (_context.WinRefCore05Languages == null)
@@ -50,9 +48,10 @@ namespace api.engine_v2.Controllers
             return winRefCore05Language;
         }
 
-        // PUT: api/WinRefCore05Language/5
+        // PUT: v1/WinRefCore05Language/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutWinRefCore05Language(int id, WinRefCore05Language winRefCore05Language)
         {
             if (id != winRefCore05Language.Id)
@@ -81,8 +80,9 @@ namespace api.engine_v2.Controllers
             return NoContent();
         }
 
-        // POST: api/WinRefCore05Language
+        // POST: v1/WinRefCore05Language
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [EnableCors("MyAllowAllOrigins")]
         [HttpPost]
         public async Task<ActionResult<WinRefCore05Language>> PostWinRefCore05Language(WinRefCore05Language winRefCore05Language)
         {
@@ -96,8 +96,9 @@ namespace api.engine_v2.Controllers
             return CreatedAtAction("GetWinRefCore05Language", new { id = winRefCore05Language.Id }, winRefCore05Language);
         }
 
-        // DELETE: api/WinRefCore05Language/5
-        [HttpDelete("{id}")]
+        // DELETE: v1/WinRefCore05Language/5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteWinRefCore05Language(int id)
         {
             if (_context.WinRefCore05Languages == null)
@@ -120,5 +121,33 @@ namespace api.engine_v2.Controllers
         {
             return (_context.WinRefCore05Languages?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        // GET: v1//WinRefCore05Language/{release}/{edition}/{version}/{arch}
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{release}/{edition}/{version}/{arch}")]
+        public async Task<ActionResult<IEnumerable<WinRefCore05Language>>> GetWinRefCore05MultiSearch(
+            [FromRoute]string release,
+            [FromRoute]string edition,
+            [FromRoute]string version,
+            [FromRoute]string arch)
+        {
+            var results = _context.WinRefCore05Languages.Where(a => 
+                a.Release == release &&
+                a.Edition == edition &&
+                a.Version == version &&
+                a.Arch == arch);
+            
+            if (results.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await results.ToListAsync();
+        }
     }
 }
+
+
+
+
+
