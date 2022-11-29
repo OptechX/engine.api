@@ -1,13 +1,16 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: DEV Publish
+name: DEV BUILD DEPLOY
 
 on:
   push:
-    branches: [ "3-extend-api-routes" ]
+    branches: [ "dev" ]
   pull_request:
-    branches: [ "3-extend-api-routes" ]
+    branches: [ "dev" ]
+
+env:
+  DOCKER_BUILD_VERSION: 0.2-rc.1a
 
 jobs:
   build:
@@ -27,12 +30,19 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal ./api.engine-v2.sln
 
-  deploy:
-
+  docker-build:
     needs: [ "build" ]
-
     runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Docker Local Build
+      run: |
+        docker build --rm --no-cache --tag repasscloud/optechx.api.engine:test --file Dockerfile.local .
 
+
+  deploy:
+    needs: [ "build", "docker-build" ]
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Login to Dockerhub
@@ -40,14 +50,16 @@ jobs:
         echo -e "3sFVrUGxt7HbrbBUbB2kX9UBQWcA" | docker login -u danijeljw --password-stdin
     - name: Build docker image
       run: |
-        docker build --rm --tag repasscloud/optechx.api.engine:v2 --file Dockerfile.local .
+        docker build --rm --tag "repasscloud/optechx.api.engine:$DOCKER_BUILD_VERSION" --file Dockerfile.local .
+        docker tag "repasscloud/optechx.api.engine:$DOCKER_BUILD_VERSION" "repasscloud/optechx.api.engine"
     - name: Push to Dockerhub
       run: |
-        docker image push repasscloud/optechx.api.engine:v2
+        docker image push "repasscloud/optechx.api.engine:$DOCKER_BUILD_VERSION"
+        docker image push "repasscloud/optechx.api.engine"
     - name: Setup SSH
       run: |
         chmod 700 ./secrets
         chmod 400 ./secrets/user_host_rsa
     - name: Update public server
       run: |
-        ssh -o "StrictHostKeyChecking=no" -i ./secrets/user_host_rsa admin-rpc@nyc-01.2qid.com 'docker compose down; docker network prune --force; docker network create web; docker network create --internal caddy_internal; docker rmi repasscloud/optechx.api.engine:v2; docker compose up -d'
+        ssh -o "StrictHostKeyChecking=no" -i ./secrets/user_host_rsa admin-rpc@nyc-01.2qid.com 'docker compose down; docker network prune --force; docker network create web; docker network create --internal caddy_internal; docker rmi repasscloud/optechx.api.engine; docker compose up -d'
