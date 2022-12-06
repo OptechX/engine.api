@@ -259,10 +259,23 @@ namespace api.engine_v2.Controllers
 
             return tmpList;
         }
+
+        // GET: v1/Application/last5
+        [EnableCors("MyAllowAllOrigins")]
+        [HttpGet("{publisher}/{name}")]
+        public async Task<ActionResult<IEnumerable<Application>>> GetApplicationByPublisherName([FromRoute]string publisher, [FromRoute]string name)
+        {
+            var applications = _context.Applications.Where(a => 
+                                    a.Publisher.Contains(publisher) &&
+                                    a.Name.Contains(name)
+                                );  //<- partial match
+
+            if (applications.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return await applications.ToListAsync();
+        }
     }
 }
-
-
-
-
-
