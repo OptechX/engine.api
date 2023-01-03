@@ -10,7 +10,7 @@ env:
   DOCKER_IMAGE_NAME: "repasscloud/optechx.engine.api.prod"
 
 jobs:
-  deploy:
+  deploy-to-docker-hub:
     runs-on: ubuntu-latest
     steps:
 
@@ -42,19 +42,6 @@ jobs:
       run: |
         docker image push "$DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION"
         docker image push "$DOCKER_IMAGE_NAME"
-
-    - name: Decrypt SSH Key Using GPG
-      run: echo -e ${{ secrets.SSH_DECRYPT_KEY_REPO }} | gpg --batch --passphrase-fd 0 --decrypt-files secrets/user_host_rsa.gpg
-      shell: sh
-
-    - name: Setup SSH
-      run: |
-        chmod 700 ./secrets
-        chmod 400 ./secrets/user_host_rsa
-
-    - name: Deploy to PROD Environment
-      run: |
-        ssh -o "StrictHostKeyChecking=no" -i ./secrets/user_host_rsa $SSH_USER_REPO@$SSH_URI_REPO 'docker compose down; docker network prune --force; docker network create web; docker network create --internal caddy_internal; docker rmi $DOCKER_IMAGE_NAME; docker compose up -d'
 
   if_error_or_failure:
     runs-on: ubuntu-latest
