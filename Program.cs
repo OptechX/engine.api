@@ -63,7 +63,7 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "OptechX API Engine v2.0");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "OptechX API Engine v0.2-rc.1a");
             });
         }
 

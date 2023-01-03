@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using Newtonsoft.Json.Linq;
+using System.Runtime.Serialization;
+using System.ComponentModel.DataAnnotations;
 using api.engine_v2.Models.Shared.Enums;
 
 namespace api.engine_v2.Models.Shared
