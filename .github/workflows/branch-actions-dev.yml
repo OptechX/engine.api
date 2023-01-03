@@ -64,6 +64,16 @@ jobs:
         run: gh pr create -B main -H dev --title 'Auto PR dev into main' --body 'Automatically created by gh-actions.'
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
+  
+  auto-merge:
+    needs: [ "auto-pull-request" ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: merge pull request
+        run: gh pr merge --squash
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
 
         
   if_error_or_failure:
