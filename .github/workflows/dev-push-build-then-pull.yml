@@ -1,0 +1,78 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: Dev Push Build then Push to Main
+
+on:
+  push:
+    branches: [ "dev" ]
+
+env:
+  DOCKER_BUILD_VERSION: "2.0"
+  DOCKER_IMAGE_NAME: "repasscloud/optechx.engine.api.prod"
+
+jobs:
+  dotnet-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+      - name: Restore dependencies
+        run: dotnet restore ./api.engine-v2.sln
+      - name: DotNet Build
+        run: dotnet build --no-restore ./api.engine-v2.sln
+      - name: DotNet Test
+        run: dotnet test --no-build --verbosity normal ./api.engine-v2.sln
+
+  docker-build-local:
+    needs: [ "dotnet-build" ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Docker Local Build
+        run: |
+          docker build --rm --no-cache --tag $DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION --file Dockerfile.local .
+  
+  docker-build-prod:
+    needs: [ "dotnet-build" ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Remove Line 18 from launchSettings.json
+        run: sed -i.bak -e '18d' Properties/launchSettings.json
+    
+      - name: Remove backup of launchSettings.json
+        run: |
+          FILE=Properties/launchSettings.json
+          if [ -f "$FILE" ]; then
+            rm Properties/launchSettings.json.bak
+          fi
+
+      - name: Build Prod Docker image
+        run: docker build --rm --no-cache --tag "$DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION" --file Dockerfile.prod .
+
+  auto-pull-request:
+    needs: [ "docker-build-local","docker-build-prod" ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: create pull request
+        run: gh pr create -B main -H dev --title 'Auto PR dev into main' --body 'Automatically created by gh-actions.'
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+
+        
+  if_error_or_failure:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.state == 'error' ||
+      github.event.state == 'failure'
+    steps:
+      - env:
+          DESCRIPTION: ${{ github.event.description }}
+        run: |
+          echo The status is error or failed: $DESCRIPTION
