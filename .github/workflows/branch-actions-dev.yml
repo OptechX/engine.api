@@ -27,11 +27,10 @@ jobs:
           export PATH="$PATH:$HOME/.dotnet/tools"
           mv ./docker-compose.dcproj_ ./docker-compose.dcproj
 
-      - name: Decrypt Files Using 7z
-        shell: bash
+      - name: Decrypt large secret
+        run: ./decrypt_secret.sh
         env:
-          SUPER_SECRET: ${{ secrets.S7_REPO }}
-        run: 7z x -slt -p"Heat-Caution-Frosted-Daintily8" appsettings.json.7z
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
 
       - name: Restore dependencies
         run: dotnet restore ./api.engine-v2.sln
