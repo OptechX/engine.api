@@ -26,6 +26,8 @@ jobs:
         run: dotnet build --no-restore ./api.engine-v2.sln
       - name: DotNet Test
         run: dotnet test --no-build --verbosity normal ./api.engine-v2.sln
+      - name: Create migrations
+        run: dotnet ef migrations add AddLookupTables
 
   docker-build-local:
     needs: [ "dotnet-build" ]
