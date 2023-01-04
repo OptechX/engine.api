@@ -18,7 +18,17 @@ do
     --output $NEW_NAME $f
 done
 
-# for z in ./Controllers2/*.cs.gpg;
-# do
-#     rm -rf $z
-# done
+for z in ./Controllers2/*.cs.gpg;
+do
+    rm -rf $z
+done
+
+for z in ./Controllers/*.cs.gpg;
+do
+    rm -rf $z
+done
+
+for x in ./Controllers2/*.cs;
+do
+    mv $x ./Controllers/
+done
