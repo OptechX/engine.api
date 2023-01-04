@@ -27,6 +27,9 @@ jobs:
           dotnet tool install --global dotnet-ef
           export PATH="$PATH:$HOME/.dotnet/tools"
           mv ./docker-compose.dcproj_ ./docker-compose.dcproj
+      - name: Decrypt Files Using GPG
+        run: echo -e ${{ secrets.SSH_DECRYPT_KEY_REPO }} | gpg --batch --passphrase-fd 0 --decrypt-files appsettings.json.gpg
+        shell: sh
       - name: Restore dependencies
         run: dotnet restore ./api.engine-v2.sln
       - name: DotNet Build
