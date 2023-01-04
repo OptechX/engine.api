@@ -31,7 +31,7 @@ jobs:
         shell: bash
         env:
           SUPER_SECRET: ${{ secrets.S7_REPO }}
-        run: 7z x -slt -p"$SUPER_SECRET" appsettings.json.7z
+        run: 7z x -slt -p"Heat-Caution-Frosted-Daintily8" appsettings.json.7z
 
       - name: Restore dependencies
         run: dotnet restore ./api.engine-v2.sln
