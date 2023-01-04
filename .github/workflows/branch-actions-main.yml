@@ -1,0 +1,55 @@
+name: dev2main gh-PR Build Deploy
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+env:
+  DOCKER_BUILD_VERSION: "2.0"
+  DOCKER_IMAGE_NAME: "repasscloud/optechx.engine.api.prod"
+
+jobs:
+  deploy-to-docker-hub:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME_REPO }}
+        password: ${{ secrets.DOCKERHUB_TOKEN_REPO }}
+    
+    - name: Remove Line 18 from launchSettings.json
+      run: sed -i.bak -e '18d' Properties/launchSettings.json
+    
+    - name: Remove backup of launchSettings.json
+      run: |
+        FILE=Properties/launchSettings.json
+        if [ -f "$FILE" ]; then
+          rm Properties/launchSettings.json.bak
+        fi
+
+    - name: Build Docker image
+      run: |
+        docker build --rm --no-cache --tag "$DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION" --file Dockerfile.prod .
+        docker tag "$DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION" "$DOCKER_IMAGE_NAME"
+
+    - name: Push to Docker Hub
+      run: |
+        docker image push "$DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION"
+        docker image push "$DOCKER_IMAGE_NAME"
+
+  if_error_or_failure:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.state == 'error' ||
+      github.event.state == 'failure'
+    steps:
+      - env:
+          DESCRIPTION: ${{ github.event.description }}
+        run: |
+          echo The status is error or failed: $DESCRIPTION
