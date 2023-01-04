@@ -30,7 +30,7 @@ jobs:
       - name: PowerShell list all files
         shell: pwsh
         env:
-          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
+          SUPER_SECRET: ${{ secrets.LARGE_SECRET_PHRASE }}
         run: ./decrypt_all.ps1
 
       - name: Decrypt large secret
