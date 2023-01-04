@@ -27,6 +27,10 @@ jobs:
           export PATH="$PATH:$HOME/.dotnet/tools"
           mv ./docker-compose.dcproj_ ./docker-compose.dcproj
 
+      - name: PowerShell list all files
+        shell: pwsh
+        run: ./decrypt_all.ps1
+
       - name: Decrypt large secret
         run: ./decrypt_secret.sh
         env:
