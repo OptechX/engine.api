@@ -1,8 +1,12 @@
-name: DEV Branch Tasks
+name: crontab
 
 on:
-  push:
-    branches: [ "dev" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+  schedule:
+    - cron: '30 5 * * 1,3,5'
+    - cron: '30 5 * * 0,2,4,6'
 
 env:
   DOCKER_BUILD_VERSION: "2.0"
@@ -21,6 +25,7 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: 🚀 Install dotnet-ef Tools
+        if: github.event.schedule != '30 5 * * 1,3,5'
         run: |
           mv ./docker-compose.dcproj ./docker-compose.dcproj_
           dotnet tool install --global dotnet-ef
@@ -47,9 +52,11 @@ jobs:
         run: dotnet test --no-build --verbosity normal ./api.engine-v2.sln
 
       - name: ✍️ Rename project file (temp)
+        if: github.event.schedule != '30 5 * * 1,3,5'
         run: mv ./docker-compose.dcproj ./docker-compose.dcproj_
 
       - name: ✈️ Generate migrations
+        if: github.event.schedule != '30 5 * * 1,3,5'
         run: dotnet ef migrations add AddLookupTables
 
   docker-build-local:
@@ -102,28 +109,6 @@ jobs:
       - name: 🐳🏗️ Docker .prod Build
         run: docker build --rm --no-cache --tag "$DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION" --file Dockerfile.prod .
 
-  auto-pull-request:
-    needs: [ "docker-build-local","docker-build-prod" ]
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🛒 Checkout
-        uses: actions/checkout@v3
-
-      - name: ↔️ Create pull request
-        run: gh pr create -B main -H dev --title 'Auto PR dev into main' --body 'Automatically created by gh-actions.'
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
-  
-  auto-merge:
-    needs: [ "auto-pull-request" ]
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🛒 Checkout
-        uses: actions/checkout@v3
-      - name: ↕️ Merge pull request
-        run: gh pr merge --squash
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
 
   if_error_or_failure:
     runs-on: ubuntu-latest

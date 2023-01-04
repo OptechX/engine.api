@@ -2,6 +2,7 @@
 **/.dockerignore
 **/.env
 **/.git
+**/.github
 **/.gitignore
 **/.project
 **/.settings
@@ -28,3 +29,5 @@ secrets/**
 **/secrets
 **/.hintrc
 appsettings.Development.json
+**/_tmp_decrypt
+_tmp_decrypt
