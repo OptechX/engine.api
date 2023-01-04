@@ -40,7 +40,11 @@ jobs:
 
       - name: DotNet Test
         run: dotnet test --no-build --verbosity normal ./api.engine-v2.sln
-      - name: Create migrations
+
+      - name: Rename project file (temp)
+        run: mv ./docker-compose.dcproj ./docker-compose.dcproj_
+
+      - name: Generate dotnet migrations
         run: dotnet ef migrations add AddLookupTables
 
       - name: Rename project file (temp)
@@ -53,16 +57,28 @@ jobs:
     needs: [ "dotnet-build" ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: 🛒 Checkout
+        uses: actions/checkout@v3
+
+      - name: Decrypt large secret
+        run: ./decrypt_secret.sh
+        env:
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
+
       - name: Docker Local Build
-        run: |
-          docker build --rm --no-cache --tag $DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION --file Dockerfile.local .
+        run: docker build --rm --no-cache --tag $DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION --file Dockerfile.local .
   
   docker-build-prod:
     needs: [ "dotnet-build" ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: 🛒 Checkout
+        uses: actions/checkout@v3
+
+      - name: Decrypt large secret
+        run: ./decrypt_secret.sh
+        env:
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
 
       - name: Remove Line 18 from launchSettings.json
         run: sed -i.bak -e '18d' Properties/launchSettings.json
@@ -81,7 +97,9 @@ jobs:
     needs: [ "docker-build-local","docker-build-prod" ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: 🛒 Checkout
+        uses: actions/checkout@v3
+
       - name: create pull request
         run: gh pr create -B main -H dev --title 'Auto PR dev into main' --body 'Automatically created by gh-actions.'
         env:
@@ -91,7 +109,8 @@ jobs:
     needs: [ "auto-pull-request" ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: 🛒 Checkout
+        uses: actions/checkout@v3
       - name: merge pull request
         run: gh pr merge --squash
         env:
