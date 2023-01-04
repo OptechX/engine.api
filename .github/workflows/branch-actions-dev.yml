@@ -28,7 +28,7 @@ jobs:
           mv ./docker-compose.dcproj_ ./docker-compose.dcproj
 
       - name: Decrypt Files Using 7z
-        run: 7z x -slt -p'${{ secrets.S7_REPO }}' appsettings.json.7z
+        run: 7z x -slt -p"${{ secrets.S7_REPO }}" appsettings.json.7z
         shell: sh
 
       - name: Restore dependencies
