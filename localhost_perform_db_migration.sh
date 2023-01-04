@@ -35,6 +35,9 @@ mv ./docker-compose.dcproj ./docker-compose.dcproj_
 # Generate migrations
 dotnet ef migrations add AddLookupTables
 
+# run migrations
+dotnet ef migrations database update
+
 # Clean up
 rm -rf Controllers/ApplicationCategoryIndexController.cs
 rm -rf Controllers/ApplicationController.cs
@@ -103,3 +106,7 @@ rm -rf appsettings.json
 rm -rf bin/
 rm -rf docker-compose.dcproj_
 rm -rf obj/
+
+# clean up git repo locally
+git reset --hard
+git clean -fxd
