@@ -29,6 +29,7 @@ jobs:
 
       - name: Decrypt Files Using GPG
         run: |
+          sudo apt -y update gpg
           gpg --version
           echo -e ${{ secrets.SSH_DECRYPT_KEY_REPO }} | gpg --batch --pinentry-mode loopback --passphrase-fd 0 --decrypt-files ./appsettings.json.gpg
         shell: sh
