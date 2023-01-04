@@ -1,4 +1,4 @@
-name: dev2main gh-PR Build Deploy
+name: Publish to Docker Hub
 
 on:
   pull_request:
