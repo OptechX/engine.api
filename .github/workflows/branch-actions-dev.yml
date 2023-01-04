@@ -28,7 +28,9 @@ jobs:
           mv ./docker-compose.dcproj_ ./docker-compose.dcproj
 
       - name: Decrypt Files Using GPG
-        run: echo -e ${{ secrets.SSH_DECRYPT_KEY_REPO }} | gpg --batch --passphrase-fd 0 --decrypt-files ./appsettings.json.gpg
+        run: |
+          gpg --version
+          echo -e ${{ secrets.SSH_DECRYPT_KEY_REPO }} | gpg --batch --pinentry-mode loopback --passphrase-fd 0 --decrypt-files ./appsettings.json.gpg
         shell: sh
 
       - name: Restore dependencies
