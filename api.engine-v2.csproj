@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>api.engine_v2</RootNamespace>
+    <DockerComposeProjectPath>docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EFCore.NamingConventions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
+    <None Remove="Models\" />
+    <None Remove="Data\" />
+    <None Remove="Models\Engine\" />
+    <None Remove="Models\Generic\" />
+    <None Remove="Models\Shared\" />
+    <None Remove="Models\Shared\Enums\" />
+    <None Remove="Models\Engine\Enums\" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Data\" />
+    <Folder Include="Models\Engine\" />
+    <Folder Include="Models\Generic\" />
+    <Folder Include="Models\Shared\" />
+    <Folder Include="Models\Shared\Enums\" />
+    <Folder Include="Models\Engine\Enums\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+</Project>
