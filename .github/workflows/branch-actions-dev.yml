@@ -1,6 +1,3 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: Dev Push Build then Push to Main
 
 on:
@@ -17,30 +14,37 @@ jobs:
     steps:
       - name: 🛒 Checkout
         uses: actions/checkout@v3
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
+
       - name: Install dotnet-ef Tools
         run: |
           mv ./docker-compose.dcproj ./docker-compose.dcproj_
           dotnet tool install --global dotnet-ef
           export PATH="$PATH:$HOME/.dotnet/tools"
           mv ./docker-compose.dcproj_ ./docker-compose.dcproj
+
       - name: Decrypt Files Using GPG
-        run: echo -e ${{ secrets.SSH_DECRYPT_KEY_REPO }} | gpg --batch --passphrase-fd 0 --decrypt-files appsettings.json.gpg
+        run: echo -e ${{ secrets.SSH_DECRYPT_KEY_REPO }} | gpg --batch --passphrase-fd 0 --decrypt-files ./appsettings.json.gpg
         shell: sh
+
       - name: Restore dependencies
         run: dotnet restore ./api.engine-v2.sln
+
       - name: DotNet Build
         run: dotnet build --no-restore ./api.engine-v2.sln
+
       - name: DotNet Test
         run: dotnet test --no-build --verbosity normal ./api.engine-v2.sln
+
       - name: Rename project file (temp)
         run: mv ./docker-compose.dcproj ./docker-compose.dcproj_
+
       - name: Generate dotnet migrations
         run: dotnet ef migrations add AddLookupTables
-      
 
   docker-build-local:
     needs: [ "dotnet-build" ]
