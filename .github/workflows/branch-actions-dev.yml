@@ -1,4 +1,4 @@
-name: Dev Push Build then Push to Main
+name: DEV Branch Tasks
 
 on:
   push:
@@ -15,41 +15,41 @@ jobs:
       - name: 🛒 Checkout
         uses: actions/checkout@v3
 
-      - name: Setup .NET
+      - name: 🚀 Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
 
-      - name: Install dotnet-ef Tools
+      - name: 🚀 Install dotnet-ef Tools
         run: |
           mv ./docker-compose.dcproj ./docker-compose.dcproj_
           dotnet tool install --global dotnet-ef
           export PATH="$PATH:$HOME/.dotnet/tools"
           mv ./docker-compose.dcproj_ ./docker-compose.dcproj
 
-      - name: Decrypt large secret
-        run: ./decrypt_secret.sh
+      - name: 🔐 Decrypt appsettings.json
+        run: ./decrypt_appsettings.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
           
-      - name: Decrypt Controllers
+      - name: 🔐 Decrypt Controllers
         run: ./decrypt_Controllers.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
 
-      - name: Restore dependencies
+      - name: 🧶 Restore dependencies
         run: dotnet restore ./api.engine-v2.sln
 
-      - name: DotNet Build
+      - name: 🏗️ DotNet Build
         run: dotnet build --no-restore ./api.engine-v2.sln
 
-      - name: DotNet Test
+      - name: 🧪 DotNet Test
         run: dotnet test --no-build --verbosity normal ./api.engine-v2.sln
 
-      - name: Rename project file (temp)
+      - name: ✍️ Rename project file (temp)
         run: mv ./docker-compose.dcproj ./docker-compose.dcproj_
 
-      - name: Generate dotnet migrations
+      - name: ✈️ Generate migrations
         run: dotnet ef migrations add AddLookupTables
 
   docker-build-local:
@@ -59,17 +59,17 @@ jobs:
       - name: 🛒 Checkout
         uses: actions/checkout@v3
 
-      - name: Decrypt large secret
-        run: ./decrypt_secret.sh
+      - name: 🔐 Decrypt appsettings.json
+        run: ./decrypt_appsettings.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
-      
-      - name: Decrypt Controllers
+          
+      - name: 🔐 Decrypt Controllers
         run: ./decrypt_Controllers.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
 
-      - name: Docker Local Build
+      - name: 🐳🏗️ Docker .local Build
         run: docker build --rm --no-cache --tag $DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION --file Dockerfile.local .
   
   docker-build-prod:
@@ -79,27 +79,27 @@ jobs:
       - name: 🛒 Checkout
         uses: actions/checkout@v3
 
-      - name: Decrypt large secret
-        run: ./decrypt_secret.sh
+      - name: 🔐 Decrypt appsettings.json
+        run: ./decrypt_appsettings.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
-      
-      - name: Decrypt Controllers
+          
+      - name: 🔐 Decrypt Controllers
         run: ./decrypt_Controllers.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
 
-      - name: Remove Line 18 from launchSettings.json
+      - name: ✍️ Remove Line 18 from launchSettings.json
         run: sed -i.bak -e '18d' Properties/launchSettings.json
     
-      - name: Remove backup of launchSettings.json
+      - name: ❌ Remove backup of launchSettings.json
         run: |
           FILE=Properties/launchSettings.json
           if [ -f "$FILE" ]; then
             rm Properties/launchSettings.json.bak
           fi
 
-      - name: Build Prod Docker image
+      - name: 🐳🏗️ Docker .prod Build
         run: docker build --rm --no-cache --tag "$DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION" --file Dockerfile.prod .
 
   auto-pull-request:
@@ -109,7 +109,7 @@ jobs:
       - name: 🛒 Checkout
         uses: actions/checkout@v3
 
-      - name: create pull request
+      - name: ↔️ Create pull request
         run: gh pr create -B main -H dev --title 'Auto PR dev into main' --body 'Automatically created by gh-actions.'
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
@@ -120,7 +120,7 @@ jobs:
     steps:
       - name: 🛒 Checkout
         uses: actions/checkout@v3
-      - name: merge pull request
+      - name: ↕️ Merge pull request
         run: gh pr merge --squash
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
