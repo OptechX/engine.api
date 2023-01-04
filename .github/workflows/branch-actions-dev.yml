@@ -29,10 +29,10 @@ jobs:
 
       - name: Decrypt Files Using GPG
         run: |
-          sudo apt -y update
-          sudo apt -y install gpg
+          sudo apt-get -y update
+          sudo apt-get -y install gpg
           gpg --version
-          echo -e 'Heat-Caution-Frosted-Daintily8' | gpg --batch --pinentry-mode loopback --passphrase-fd 0 --decrypt-files ./appsettings.json.gpg
+          echo -e ${{ secrets.SSH_DECRYPT_KEY_REPO }} | gpg --batch --passphrase-fd 0 --decrypt-files appsettings.json.gpg
         shell: sh
 
       - name: Restore dependencies
