@@ -20,6 +20,8 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
+      - name: Rename project file (temp)
+        run: mv ./docker-compose.dcproj ./docker-compose.dcproj_
       - name: Restore dependencies
         run: dotnet restore ./api.engine-v2.sln
       - name: DotNet Build
@@ -27,9 +29,8 @@ jobs:
       - name: DotNet Test
         run: dotnet test --no-build --verbosity normal ./api.engine-v2.sln
       - name: Generate dotnet migrations
-        run: |
-          mv docker-compose.dcproj docker-compose.dcproj_
-          dotnet ef migrations add AddLookupTables
+        run: dotnet ef migrations add AddLookupTables
+      
 
   docker-build-local:
     needs: [ "dotnet-build" ]
