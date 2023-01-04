@@ -9,5 +9,6 @@ $files = Get-ChildItem -Path ./Controllers/*.cs.gpg
 foreach ($f in  $files)
 {
     $NewName = $($f.FullName).Replace('.gpg','')
+    $NewName
     gpg --quiet --batch --yes --decrypt --passphrase="$($env:SUPER_SECRET)" --output $NewName $f
 }
