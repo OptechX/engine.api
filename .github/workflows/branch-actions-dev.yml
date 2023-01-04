@@ -27,13 +27,13 @@ jobs:
           export PATH="$PATH:$HOME/.dotnet/tools"
           mv ./docker-compose.dcproj_ ./docker-compose.dcproj
 
-      - name: Decrypt all
-        run: ./decrypt_all.sh
-        env:
-          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
-
       - name: Decrypt large secret
         run: ./decrypt_secret.sh
+        env:
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
+          
+      - name: Decrypt all
+        run: ./decrypt_all.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
 
