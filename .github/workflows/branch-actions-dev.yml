@@ -47,12 +47,6 @@ jobs:
       - name: Generate dotnet migrations
         run: dotnet ef migrations add AddLookupTables
 
-      - name: Rename project file (temp)
-        run: mv ./docker-compose.dcproj ./docker-compose.dcproj_
-
-      - name: Generate dotnet migrations
-        run: dotnet ef migrations add AddLookupTables
-
   docker-build-local:
     needs: [ "dotnet-build" ]
     runs-on: ubuntu-latest
