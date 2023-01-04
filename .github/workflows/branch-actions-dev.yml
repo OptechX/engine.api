@@ -63,6 +63,11 @@ jobs:
         run: ./decrypt_secret.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
+      
+      - name: Decrypt Controllers
+        run: ./decrypt_Controllers.sh
+        env:
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
 
       - name: Docker Local Build
         run: docker build --rm --no-cache --tag $DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION --file Dockerfile.local .
@@ -76,6 +81,11 @@ jobs:
 
       - name: Decrypt large secret
         run: ./decrypt_secret.sh
+        env:
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
+      
+      - name: Decrypt Controllers
+        run: ./decrypt_Controllers.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
 
