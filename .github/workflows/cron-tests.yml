@@ -1,8 +1,6 @@
 name: crontab
 
 on:
-  pull_request:
-    branches: [ "main" ]
   workflow_dispatch:
   schedule:
     - cron: '30 5 * * 1,3,5'
