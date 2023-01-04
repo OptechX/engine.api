@@ -32,8 +32,8 @@ jobs:
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
           
-      - name: Decrypt all
-        run: ./decrypt_all.sh
+      - name: Decrypt Controllers
+        run: ./decrypt_Controllers.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
 
