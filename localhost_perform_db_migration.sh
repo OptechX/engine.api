@@ -36,7 +36,7 @@ mv ./docker-compose.dcproj ./docker-compose.dcproj_
 dotnet ef migrations add AddLookupTables
 
 # run migrations
-dotnet ef migrations database update
+dotnet ef database update
 
 # Clean up
 rm -rf Controllers/ApplicationCategoryIndexController.cs
