@@ -40,7 +40,7 @@ public class Program
         {
             options
                 .UseNpgsql(builder.Configuration.GetConnectionString("DefaultDbContext"))
-                .UseSnakeCaseNamingConvention()
+                .UseSnakeCaseNamingConvention();  //<-- need to remove the ';' if uncomment the following lines
                 // .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
                 // .EnableSensitiveDataLogging();
         });
