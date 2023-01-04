@@ -41,8 +41,8 @@ public class Program
             options
                 .UseNpgsql(builder.Configuration.GetConnectionString("DefaultDbContext"))
                 .UseSnakeCaseNamingConvention()
-                .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
-                .EnableSensitiveDataLogging();
+                // .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
+                // .EnableSensitiveDataLogging();
         });
 
         // serialize enums as strings in api responses (e.g. Role) (ref: https://stackoverflow.com/a/72155642/15157918)
