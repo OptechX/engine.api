@@ -8,6 +8,6 @@
 $files = Get-ChildItem -Path ./Controllers/*.cs.gpg
 foreach ($f in  $files)
 {
-    $f
+    $f.FullName
     #gpg --quiet --batch --yes --decrypt --passphrase="$LARGE_SECRET_PASSPHRASE" --output ./appsettings.json ./appsettings.json.gpg
 }
