@@ -10,5 +10,5 @@ foreach ($f in  $files)
 {
     $NewName = $($f.FullName).Replace('.gpg','')
     $NewName
-    gpg --quiet --batch --yes --decrypt --passphrase="$($env:SUPER_SECRET)" --output $NewName $f
+    gpg --quiet --batch --yes --decrypt --passphrase="$LARGE_SECRET_PASSPHRASE" --output $NewName $f
 }
