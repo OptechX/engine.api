@@ -40,6 +40,8 @@ jobs:
 
       - name: DotNet Test
         run: dotnet test --no-build --verbosity normal ./api.engine-v2.sln
+      - name: Create migrations
+        run: dotnet ef migrations add AddLookupTables
 
       - name: Rename project file (temp)
         run: mv ./docker-compose.dcproj ./docker-compose.dcproj_
