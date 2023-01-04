@@ -28,8 +28,10 @@ jobs:
           mv ./docker-compose.dcproj_ ./docker-compose.dcproj
 
       - name: Decrypt Files Using 7z
-        run: 7z x -slt -p"${{ secrets.S7_REPO }}" appsettings.json.7z
-        shell: sh
+        shell: bash
+        env:
+          SUPER_SECRET: ${{ secrets.S7_REPO }}
+        run: 7z x -slt -p"$SUPER_SECRET" appsettings.json.7z
 
       - name: Restore dependencies
         run: dotnet restore ./api.engine-v2.sln
