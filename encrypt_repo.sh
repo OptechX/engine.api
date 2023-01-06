@@ -37,7 +37,7 @@ toEncrypt=(
     "secrets/docker-compose.yml"
     "secrets/user_host_rsa"
     "appsettings.json"
-    "appsettings.dev.json"
+    "appsettings.Development.json"
 )
 
 # iterate each file and encrypt using gpg
