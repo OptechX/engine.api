@@ -130,7 +130,6 @@ jobs:
 
   auto-pr:
     needs:
-      - docker-build-dev
       - docker-build-local
       - docker-build-prod
     runs-on: ubuntu-latest
