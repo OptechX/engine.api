@@ -22,15 +22,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME_REPO }}
           password: ${{ secrets.DOCKERHUB_TOKEN_REPO }}
 
-      - name: 🔐 Decrypt appsettings.json
-        run: ./decrypt_appsettings.sh
+      - name: 🔐 Decrypt Repo
+        run: ./decrypt_repo.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
-          
-      - name: 🔐 Decrypt Controllers
-        run: ./decrypt_Controllers.sh
-        env:
-          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
+        shell: bash
 
       - name: ❌ Remove Line 18 from launchSettings.json
         run: sed -i.bak -e '18d' Properties/launchSettings.json

@@ -1,8 +1,11 @@
-name: DEV Branch Tasks
+name: Development Branch
 
 on:
   push:
     branches: [ "dev" ]
+  schedule:
+    - cron: '0 2 * * 2'
+  workflow_dispatch:
 
 env:
   DOCKER_BUILD_VERSION: "2.0"
@@ -27,30 +30,27 @@ jobs:
           export PATH="$PATH:$HOME/.dotnet/tools"
           mv ./docker-compose.dcproj_ ./docker-compose.dcproj
 
-      - name: 🔐 Decrypt appsettings.json
-        run: ./decrypt_appsettings.sh
+      - name: 🔐 Decrypt Repo
+        run: ./decrypt_repo.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
-          
-      - name: 🔐 Decrypt Controllers
-        run: ./decrypt_Controllers.sh
-        env:
-          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
+        shell: bash
 
       - name: 🧶 Restore dependencies
-        run: dotnet restore ./api.engine-v2.sln
+        run: dotnet restore ./WebApi.sln
 
       - name: 🏗️ DotNet Build
-        run: dotnet build --no-restore ./api.engine-v2.sln
+        run: dotnet build --no-restore ./WebApi.sln
 
       - name: 🧪 DotNet Test
-        run: dotnet test --no-build --verbosity normal ./api.engine-v2.sln
+        run: dotnet test --no-build --verbosity normal ./WebApi.sln
 
       - name: ✍️ Rename project file (temp)
         run: mv ./docker-compose.dcproj ./docker-compose.dcproj_
 
-      - name: ✈️ Generate migrations
-        run: dotnet ef migrations add AddLookupTables
+      - name: 🚀 Generate migrations
+        run: dotnet ef migrations add ReCreateLookupTables
+
 
   docker-build-local:
     needs: [ "dotnet-build" ]
@@ -59,19 +59,16 @@ jobs:
       - name: 🛒 Checkout
         uses: actions/checkout@v3
 
-      - name: 🔐 Decrypt appsettings.json
-        run: ./decrypt_appsettings.sh
+      - name: 🔐 Decrypt Repo
+        run: ./decrypt_repo.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
-          
-      - name: 🔐 Decrypt Controllers
-        run: ./decrypt_Controllers.sh
-        env:
-          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
+        shell: bash
 
       - name: 🐳🏗️ Docker .local Build
         run: docker build --rm --no-cache --tag $DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION --file Dockerfile.local .
-  
+
+
   docker-build-prod:
     needs: [ "dotnet-build" ]
     runs-on: ubuntu-latest
@@ -79,15 +76,11 @@ jobs:
       - name: 🛒 Checkout
         uses: actions/checkout@v3
 
-      - name: 🔐 Decrypt appsettings.json
-        run: ./decrypt_appsettings.sh
+      - name: 🔐 Decrypt Repo
+        run: ./decrypt_repo.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
-          
-      - name: 🔐 Decrypt Controllers
-        run: ./decrypt_Controllers.sh
-        env:
-          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
+        shell: bash
 
       - name: ✍️ Remove Line 18 from launchSettings.json
         run: sed -i.bak -e '18d' Properties/launchSettings.json
@@ -102,28 +95,64 @@ jobs:
       - name: 🐳🏗️ Docker .prod Build
         run: docker build --rm --no-cache --tag "$DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION" --file Dockerfile.prod .
 
-  auto-pull-request:
-    needs: [ "docker-build-local","docker-build-prod" ]
+
+  # pre-pr:
+  #   needs:
+  #     - docker-build-dev
+  #     - docker-build-local
+  #     - docker-build-prod
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0
+  #         # repository: repasscloud/optechx.api.users.git
+  #         # token: ${{ secrets.PAT }}
+
+  #     - name: ⚙️ Set git config
+  #       run: |
+  #         git config user.name 'Auto Commit'
+  #         git config user.email 'auto-commit@users.noreply.github.com'
+  #         git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/OptechX/users.api.git
+
+  #     - name: 📚 Create report file
+  #       run: |
+  #         datecode=$(date +%Y%m%d%H%M%S)
+  #         echo "$datecode" > ./report.txt
+
+  #     - name: 🥹 Push updates to OptechX/users.api repo
+  #       run: |
+  #         updates=`cat report.txt`
+  #         git add .
+  #         git commit -m "$updates"
+  #         git push
+
+
+  auto-pr:
+    needs:
+      - docker-build-dev
+      - docker-build-local
+      - docker-build-prod
     runs-on: ubuntu-latest
     steps:
-      - name: 🛒 Checkout
-        uses: actions/checkout@v3
-
-      - name: ↔️ Create pull request
+      - uses: actions/checkout@v3
+      
+      - name: Create pull request
         run: gh pr create -B main -H dev --title 'Auto PR dev into main' --body 'Automatically created by gh-actions.'
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
-  
+
+
   auto-merge:
-    needs: [ "auto-pull-request" ]
+    needs: [ "auto-pr" ]
     runs-on: ubuntu-latest
     steps:
-      - name: 🛒 Checkout
-        uses: actions/checkout@v3
-      - name: ↕️ Merge pull request
-        run: gh pr merge --squash
+      - uses: actions/checkout@v3
+      - name: merge pull request
+        run: gh pr merge --merge
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
+
 
   if_error_or_failure:
     runs-on: ubuntu-latest

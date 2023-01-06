@@ -30,15 +30,11 @@ jobs:
           export PATH="$PATH:$HOME/.dotnet/tools"
           mv ./docker-compose.dcproj_ ./docker-compose.dcproj
 
-      - name: 🔐 Decrypt appsettings.json
-        run: ./decrypt_appsettings.sh
+      - name: 🔐 Decrypt Repo
+        run: ./decrypt_repo.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
-          
-      - name: 🔐 Decrypt Controllers
-        run: ./decrypt_Controllers.sh
-        env:
-          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
+        shell: bash
 
       - name: 🧶 Restore dependencies
         run: dotnet restore ./api.engine-v2.sln
@@ -64,15 +60,11 @@ jobs:
       - name: 🛒 Checkout
         uses: actions/checkout@v3
 
-      - name: 🔐 Decrypt appsettings.json
-        run: ./decrypt_appsettings.sh
+      - name: 🔐 Decrypt Repo
+        run: ./decrypt_repo.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
-          
-      - name: 🔐 Decrypt Controllers
-        run: ./decrypt_Controllers.sh
-        env:
-          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
+        shell: bash
 
       - name: 🐳🏗️ Docker .local Build
         run: docker build --rm --no-cache --tag $DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION --file Dockerfile.local .
@@ -84,15 +76,11 @@ jobs:
       - name: 🛒 Checkout
         uses: actions/checkout@v3
 
-      - name: 🔐 Decrypt appsettings.json
-        run: ./decrypt_appsettings.sh
+      - name: 🔐 Decrypt Repo
+        run: ./decrypt_repo.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
-          
-      - name: 🔐 Decrypt Controllers
-        run: ./decrypt_Controllers.sh
-        env:
-          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
+        shell: bash
 
       - name: ✍️ Remove Line 18 from launchSettings.json
         run: sed -i.bak -e '18d' Properties/launchSettings.json
