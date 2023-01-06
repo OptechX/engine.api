@@ -37,13 +37,13 @@ jobs:
         shell: bash
 
       - name: 🧶 Restore dependencies
-        run: dotnet restore ./WebApi.sln
+        run: dotnet restore ./api.engine-v2.sln
 
       - name: 🏗️ DotNet Build
-        run: dotnet build --no-restore ./WebApi.sln
+        run: dotnet build --no-restore ./api.engine-v2.sln
 
       - name: 🧪 DotNet Test
-        run: dotnet test --no-build --verbosity normal ./WebApi.sln
+        run: dotnet test --no-build --verbosity normal ./api.engine-v2.sln
 
       - name: ✍️ Rename project file (temp)
         run: mv ./docker-compose.dcproj ./docker-compose.dcproj_
