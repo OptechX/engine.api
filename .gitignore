@@ -1,4 +1,5 @@
 # globs
+fix.ps1
 Makefile.in
 *.userprefs
 *.usertasks
