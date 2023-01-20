@@ -43,7 +43,7 @@ jobs:
           docker build --rm --no-cache --tag "$DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION" --file Dockerfile.prod .
           docker tag "$DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION" "$DOCKER_IMAGE_NAME"
 
-      - name: 🚀🐳 Pushlish to Docker Hub
+      - name: 🚀🐳 Publish to Docker Hub
         run: |
           docker image push "$DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION"
           docker image push "$DOCKER_IMAGE_NAME"
