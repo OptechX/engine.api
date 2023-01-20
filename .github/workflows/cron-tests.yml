@@ -1,0 +1,108 @@
+name: crontab
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 5 * * 1,3,5'
+    - cron: '30 5 * * 0,2,4,6'
+
+env:
+  DOCKER_BUILD_VERSION: "2.0"
+  DOCKER_IMAGE_NAME: "repasscloud/optechx.engine.api.prod"
+
+jobs:
+  dotnet-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛒 Checkout
+        uses: actions/checkout@v3
+
+      - name: 🚀 Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+
+      - name: 🚀 Install dotnet-ef Tools
+        if: github.event.schedule != '30 5 * * 1,3,5'
+        run: |
+          mv ./docker-compose.dcproj ./docker-compose.dcproj_
+          dotnet tool install --global dotnet-ef
+          export PATH="$PATH:$HOME/.dotnet/tools"
+          mv ./docker-compose.dcproj_ ./docker-compose.dcproj
+
+      - name: 🔐 Decrypt Repo
+        run: ./decrypt_repo.sh
+        env:
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
+        shell: bash
+
+      - name: 🧶 Restore dependencies
+        run: dotnet restore ./api.engine-v2.sln
+
+      - name: 🏗️ DotNet Build
+        run: dotnet build --no-restore ./api.engine-v2.sln
+
+      - name: 🧪 DotNet Test
+        run: dotnet test --no-build --verbosity normal ./api.engine-v2.sln
+
+      - name: ✍️ Rename project file (temp)
+        if: github.event.schedule != '30 5 * * 1,3,5'
+        run: mv ./docker-compose.dcproj ./docker-compose.dcproj_
+
+      - name: ✈️ Generate migrations
+        if: github.event.schedule != '30 5 * * 1,3,5'
+        run: dotnet ef migrations add AddLookupTables
+
+  docker-build-local:
+    needs: [ "dotnet-build" ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛒 Checkout
+        uses: actions/checkout@v3
+
+      - name: 🔐 Decrypt Repo
+        run: ./decrypt_repo.sh
+        env:
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
+        shell: bash
+
+      - name: 🐳🏗️ Docker .local Build
+        run: docker build --rm --no-cache --tag $DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION --file Dockerfile.local .
+  
+  docker-build-prod:
+    needs: [ "dotnet-build" ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛒 Checkout
+        uses: actions/checkout@v3
+
+      - name: 🔐 Decrypt Repo
+        run: ./decrypt_repo.sh
+        env:
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
+        shell: bash
+
+      - name: ✍️ Remove Line 18 from launchSettings.json
+        run: sed -i.bak -e '18d' Properties/launchSettings.json
+    
+      - name: ❌ Remove backup of launchSettings.json
+        run: |
+          FILE=Properties/launchSettings.json
+          if [ -f "$FILE" ]; then
+            rm Properties/launchSettings.json.bak
+          fi
+
+      - name: 🐳🏗️ Docker .prod Build
+        run: docker build --rm --no-cache --tag "$DOCKER_IMAGE_NAME:$DOCKER_BUILD_VERSION" --file Dockerfile.prod .
+
+
+  if_error_or_failure:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.state == 'error' ||
+      github.event.state == 'failure'
+    steps:
+      - env:
+          DESCRIPTION: ${{ github.event.description }}
+        run: |
+          echo The status is error or failed: $DESCRIPTION

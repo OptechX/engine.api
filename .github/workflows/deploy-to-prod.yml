@@ -1,0 +1,44 @@
+name: Production Deploy
+
+on:
+  workflow_dispatch:
+
+env:
+  DOCKER_BUILD_VERSION: "2.0"
+  DOCKER_IMAGE_NAME: "repasscloud/optechx.engine.api.prod"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛒 Checkout
+        uses: actions/checkout@v3
+
+      - name: 🔐 Decrypt Repo
+        run: ./decrypt_repo.sh
+        env:
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
+        shell: bash
+
+      - name: 🔑 Setup SSH
+        run: |
+          chmod 700 ./secrets
+          chmod 400 ./secrets/user_host_rsa
+
+      - name: 🖥️ Deploy to PROD Environment
+        run: |
+          ssh -o "StrictHostKeyChecking=no" -i ./secrets/user_host_rsa $SSH_USER_REPO@$SSH_URI_REPO 'docker compose down; docker network prune --force; docker network create web; docker network create --internal caddy_internal; docker rmi $DOCKER_IMAGE_NAME; docker compose up -d'
+
+      - name: 🗑️ Cleanup
+        run: rm -rf ./secrets/user_host_rsa
+
+  if_error_or_failure:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.state == 'error' ||
+      github.event.state == 'failure'
+    steps:
+      - env:
+          DESCRIPTION: ${{ github.event.description }}
+        run: |
+          echo The status is error or failed: $DESCRIPTION
