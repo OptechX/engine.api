@@ -6,16 +6,16 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["api.engine-v2.csproj", "."]
-RUN dotnet restore "./api.engine-v2.csproj"
+COPY ["engine.api.csproj", "."]
+RUN dotnet restore "./engine.api.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "api.engine-v2.csproj" -c Release -o /app/build
+RUN dotnet build "engine.api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "api.engine-v2.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "engine.api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "api.engine-v2.dll"]
+ENTRYPOINT ["dotnet", "engine.api.dll"]
