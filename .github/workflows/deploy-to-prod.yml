@@ -26,8 +26,11 @@ jobs:
           chmod 400 ./secrets/user_host_rsa
 
       - name: 🖥️ Deploy to PROD Environment
+        env:
+          SSH_USER: ${{ secrets.SSH_USER_REPO }}
+          SSH_URI: ${{ secrets.SSH_URI_REPO }}
         run: |
-          ssh -o "StrictHostKeyChecking=no" -i ./secrets/user_host_rsa $SSH_USER_REPO@$SSH_URI_REPO 'docker compose down; docker network prune --force; docker network create web; docker network create --internal caddy_internal; docker rmi $DOCKER_IMAGE_NAME; docker compose up -d'
+          ssh -o "StrictHostKeyChecking=no" -i ./secrets/user_host_rsa $SSH_USER@$SSH_URI 'docker compose down; docker network prune --force; docker network create web; docker network create --internal caddy_internal; docker rmi $DOCKER_IMAGE_NAME; docker compose up -d'
 
       - name: 🗑️ Cleanup
         run: rm -rf ./secrets/user_host_rsa
