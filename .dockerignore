@@ -33,3 +33,5 @@ appsettings.Development.json
 _tmp_decrypt
 localhost_perform_db_migration.sh
 *.sh
+*.ps1
+Properties/launchSettings.json.bak
