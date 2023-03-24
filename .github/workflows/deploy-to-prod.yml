@@ -3,36 +3,28 @@ name: Production Deploy
 on:
   workflow_dispatch:
 
-env:
-  DOCKER_IMAGE_NAME: "repasscloud/optechx.engine.api.prod"
-
 jobs:
-  deploy:
+  prod-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: 🛒 Checkout
         uses: actions/checkout@v3
 
-      - name: 🔐 Decrypt Repo
-        run: ./decrypt_repo.sh
-        env:
-          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PHRASE }}
-        shell: bash
-
-      - name: 🔑 Setup SSH
-        run: |
-          chmod 700 ./secrets
-          chmod 400 ./secrets/user_host_rsa
+      - name: 🔑 Create SSH Key
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.PROD_OPTECHX_DATA_SSH_KEY }}
 
       - name: 🖥️ Deploy to PROD Environment
         env:
-          SSH_USER: ${{ secrets.SSH_USER_REPO }}
-          SSH_URI: ${{ secrets.SSH_URI_REPO }}
+          SSH_USER: ${{ secrets.PORTAL_SSH_USER }}
+          SSH_URL: ${{ secrets.PORTAL_SSH_URL }}
         run: |
-          ssh -o "StrictHostKeyChecking=no" -i ./secrets/user_host_rsa $SSH_USER@$SSH_URI 'docker compose down; docker network prune --force; docker network create web; docker network create --internal caddy_internal; docker rmi (docker ps -aq); docker compose up -d'
+          ssh -o "StrictHostKeyChecking=no" "$SSH_USER@$SSH_URL" 'docker compose down; docker network prune --force; docker network create web; docker network create --internal internal; docker rmi $(docker images -aq) --force; docker compose up -d'
 
       - name: 🗑️ Cleanup
-        run: rm -rf ./secrets/user_host_rsa
+        run: rm -rf ./secrets
+
 
   if_error_or_failure:
     runs-on: ubuntu-latest
