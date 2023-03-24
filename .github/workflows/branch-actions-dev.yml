@@ -167,15 +167,3 @@ jobs:
         run: gh pr merge --merge
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
-
-
-  if_error_or_failure:
-    runs-on: ubuntu-latest
-    if: >-
-      github.event.state == 'error' ||
-      github.event.state == 'failure'
-    steps:
-      - env:
-          DESCRIPTION: ${{ github.event.description }}
-        run: |
-          echo The status is error or failed: $DESCRIPTION
