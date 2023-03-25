@@ -17,8 +17,8 @@ jobs:
 
       - name: 🖥️ Deploy to PROD Environment
         env:
-          SSH_USER: ${{ secrets.PORTAL_SSH_USER }}
-          SSH_URL: ${{ secrets.PORTAL_SSH_URL }}
+          SSH_USER: ${{ secrets.PROD_OPTECHX_DATA_SSH_USER }}
+          SSH_URL: ${{ secrets.PROD_OPTECHX_DATA_URL }}
         run: |
           ssh -o "StrictHostKeyChecking=no" "$SSH_USER@$SSH_URL" 'docker compose down; docker network prune --force; docker network create web; docker network create --internal internal; docker rmi $(docker images -aq) --force; docker compose up -d'
 
