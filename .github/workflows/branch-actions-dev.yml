@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOCKER_BUILD_VERSION: "2.0"
+  DOCKER_BUILD_VERSION: "2.3"
   DOCKER_IMAGE_NAME: "repasscloud/optechx.engine.api.prod"
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
       - name: 🚀 Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 7.0.x
 
       - name: 🚀 Install dotnet-ef Tools
         run: |
